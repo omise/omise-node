@@ -5,7 +5,6 @@ var chai = require('chai'),
 var config = require('./config.js');
 var omise  = require('../index')(config);
 
-setTimeout(3000);
 describe('Omise', function() {
     describe('#token', function() {
         it('should be able to create token', function(done) {
