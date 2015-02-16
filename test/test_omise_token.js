@@ -20,9 +20,12 @@ describe('Omise', function() {
         'card[expiration_year]': 2017
       };
       omise.tokens.create(cardDetails, function(err, resp) {
+        should.exist(resp.id);
+        var token_id = resp.id;
+        expect(token_id).to.contains('tokn_test');
         should.exist(resp.card.id);
-        var token = resp.card.id;
-        expect(token).to.contains('card_test');
+        var card_id  = resp.card.id;
+        expect(card_id).to.contains('card_test');
         done();
       });
     })
