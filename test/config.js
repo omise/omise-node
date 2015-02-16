@@ -2,12 +2,12 @@
 var sys = require('sys');
 
 var config = {
-  public_key: process.env.OMISE_PUBLIC_KEY,
-  secret_key: process.env.OMISE_SECRET_KEY
+  publicKey: process.env.OMISE_PUBLIC_KEY,
+  secretKey: process.env.OMISE_SECRET_KEY
 };
 
-if (!config['public_key'] || !config['secret_key']) {
-    console.log('Need Omise key!');
-    process.exit(2)
+if (!config['publicKey'] || !config['secretKey']) {
+  console.log('Need Omise key!');
+  process.exit(2)
 }
 module.exports = config;

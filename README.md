@@ -13,8 +13,8 @@ $npm install omise-node
  - Configure
 ```
 var config = {
-    'public_key': 'pkey_test_4yyg6ko1yl82hlh1hmt',
-    'secret_key': 'skey_test_5yyg6l9b9lbcjknr418'
+  'publicKey': '<Public key>,
+  'secretKey': '<Secret key>'
 };
 
 var omise = require('omise-node')(config);
