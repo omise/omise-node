@@ -24,27 +24,25 @@ var omise = require('omise-node')(config);
 
 ```
 var card_details = {
-      'card[name]': 'JOHN DOE',
-      'card[city]': 'Bangkok',
-      'card[postal_code]': 10320,
-      'card[number]': '4242424242424242',
-      'card[expiration_month]': 2,
-      'card[expiration_year]': 2017
-  };
+  'card[name]': 'JOHN DOE',
+  'card[city]': 'Bangkok',
+  'card[postal_code]': 10320,
+  'card[number]': '4242424242424242',
+  'card[expiration_month]': 2,
+  'card[expiration_year]': 2017
+};
 
 omise.tokens.create(card_details, function(err, resp){
-      var token_id = resp.card.id;
-      console.log(token_id);
+  var token_id = resp.card.id;
+  console.log(token_id);
 });
 ```
 
-
-
 **Testing**
 ```
-$export OMISE_PUBLIC_KEY=<test public key>;
+$export OMISE_PUBLIC_KEY=<test public key>
 $export OMISE_SECRET_KEY=<test secret key>
 $cd omise-node;
-$mocha test
+$mocha test #for local test
+$NOCK_OFF=true mocha test #for remote test
 ```
-
