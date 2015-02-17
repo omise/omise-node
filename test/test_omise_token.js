@@ -24,11 +24,11 @@ describe('Omise', function() {
       };
       omise.tokens.create(cardDetails, function(err, resp) {
         should.exist(resp.id);
-        var token_id = resp.id;
-        expect(token_id).to.contains('tokn_test');
+        var tokenId = resp.id;
+        expect(tokenId).to.contains('tokn_test');
         should.exist(resp.card.id);
-        var card_id  = resp.card.id;
-        expect(card_id).to.contains('card_test');
+        var cardId  = resp.card.id;
+        expect(cardId).to.contains('card_test');
         done();
       });
     })

@@ -5,7 +5,8 @@ module.exports = function(config) {
   return {
     tokens: {
       /**
-       * @param  {Object} See more details in https://docs.omise.co/api/tokens/#create-a-token
+       * @param  {Object}
+       * See more details in https://docs.omise.co/api/tokens/#create-a-token
        * @callback The callback that handles the response.
        */
       create: function(data, callback) {

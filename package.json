@@ -4,6 +4,7 @@
   "description": "Omise Node.js client",
   "main": "index.js",
   "scripts": {
+    "jscs": "jscs *.js lib/*.js test/*.js",
     "test": "mocha test"
   },
   "repository": {
@@ -20,6 +21,6 @@
     "chai": "^2.0.0",
     "jscs": "^1.11.3",
     "mocha": "^2.1.0",
-    "nock": "^0.59.1"
+    "nock": "^0.59.1",
   }
 }
