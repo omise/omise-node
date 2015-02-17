@@ -50,6 +50,15 @@ module.exports = function(config) {
         api.get({'path': [customersPath, customerId].join('/'),
                  'key': config['secretKey']
               }, callback);
+      },
+      /**
+       * @param {String} The id of the customer to be deleted.
+       * @callback the callback will handle a customer object response.
+       */
+      destroy: function(customerId, callback) {
+        api.destroy({'path': [customersPath, customerId].join('/'),
+                    'key': config['secretKey']
+                    }, callback);
       }
     }
   };
