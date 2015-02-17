@@ -71,3 +71,7 @@ $cd omise-node;
 $mocha test #for local test
 $NOCK_OFF=true mocha test #for remote test
 ```
+
+**Code Style**
+You could use git pre-commit hook to check.
+Just run `ln -s ../../pre-commit.sh .git/hooks/pre-commit`
