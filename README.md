@@ -52,15 +52,18 @@ omise.tokens.create(card_details, function(err, resp){
 - Add a new customer
 
 ```
-var omise = require('../index')(config);
 var customer = {
   email: "john.doe@example.com",
   description: "John Doe (id: 30)",
 };
 omise.customers.create(customer, function(err, resp) {});
-````
+```
 
 - List all customers
+
+```
+omise.customers.list(function{err, resp} {});
+```
 
 
 **Testing**
