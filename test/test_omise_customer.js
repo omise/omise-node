@@ -36,5 +36,14 @@ describe('Omise', function() {
       });
       done();
     });
+
+    it('should be able to retrieve an existing customer', function(done) {
+      if (process.env.NOCK_OFF !== 'true') {
+        require('./mocks/customer_retrieve');
+        var customerId = 'cust_test_4z33o46lqreryhqua8w';
+        omise.customers.retrieve(customerId, function(err, resp) { });
+      }
+      done();
+    });
   })
 })
