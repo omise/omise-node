@@ -41,9 +41,13 @@ describe('Omise', function() {
       if (process.env.NOCK_OFF !== 'true') {
         require('./mocks/customer_retrieve');
         var customerId = 'cust_test_4z33o46lqreryhqua8w';
-        omise.customers.retrieve(customerId, function(err, resp) { });
+        omise.customers.retrieve(customerId, function(err, resp) {
+          expect(resp.object, 'list');
+          expect(resp.data).to.be.instanceof(Array);
+        });
       }
       done();
     });
+
   })
 })
