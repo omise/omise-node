@@ -60,6 +60,8 @@ var customer = {
 omise.customers.create(customer, function(err, resp) {});
 ````
 
+- List all customers
+
 
 **Testing**
 ```

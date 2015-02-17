@@ -17,14 +17,24 @@ module.exports = function(config) {
       },
     },
     customers: {
-       /**
-       * @param  {Object} See more details in https://docs.omise.co/api/customers/#create-a-customer
+      /**
+       * @param  {Object}
+       * See more details
+       * in https://docs.omise.co/api/customers/#create-a-customer
        * @callback The callback that handles the response.
-       */
+      */
       create: function(data, callback) {
         api.post({'path': '/customers',
                   'data': data,
                   'key' : config['secretKey']
+        }, callback);
+      },
+      /**
+       * @callback The callback that handles the response.
+       */
+      list: function(callback) {
+        api.get({'path': '/customers',
+                 'key': config['secretKey']
         }, callback);
       }
     }
