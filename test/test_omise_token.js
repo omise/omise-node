@@ -6,11 +6,14 @@ var config = require('./config.js');
 var omise  = require('../index')(config);
 
 describe('Omise', function() {
+  before(function() {
+    if (process.env.NOCK_OFF !== 'true') {// aka, remote test
+      require('./mocks/tokens_create');
+    }
+  });
+
   describe('#tokens', function() {
     it('should be able to create token', function(done) {
-      if (process.env.NOCK_OFF !== 'true') {// aka, remote test
-        require('./mocks/tokens_create');
-      }
       var cardDetails = {
         'card[name]': 'JOHN DOE',
         'card[city]': 'Bangkok',
