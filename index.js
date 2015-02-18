@@ -59,6 +59,16 @@ module.exports = function(config) {
         api.destroy({'path': [customersPath, customerId].join('/'),
                     'key': config['secretKey']
                     }, callback);
+      },
+      /**
+       * @param {String} The id of the customer to be updated.
+       * @callback the callback will handle a customer object response.
+       */
+      update: function(customerId, data, callback) {
+        api.update({'path': [customersPath, customerId].join('/'),
+                    'data': data,
+                    'key': config['secretKey']
+                    }, callback);
       }
     }
   };

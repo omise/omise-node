@@ -61,5 +61,17 @@ describe('Omise', function() {
         done();
       });
 
+    it('should be able to update an existing customer', function(done) {
+        if (process.env.NOCK_OFF !== 'true') {
+          require('./mocks/customer_update');
+          var customerId = 'cust_test_4z2owmajzsb3c527wj7';
+          omise.customers.update(customerId, function(err, resp) {
+            expect(resp.object, 'customer');
+            expect(resp.description, 'New description');
+          });
+        }
+        done();
+      });
+
   })
 })

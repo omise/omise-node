@@ -70,6 +70,17 @@ omise.customers.list(function{err, resp} {});
 ```
 omise.customers.retrieve(customerId, function{err, resp} {});
 ```
+
+
+- Updating a Customer
+
+```
+omise.customers.update(customerId, {
+  description: "Customer for john.doe@example.com"
+}, function(err, customer) {
+});
+```
+
 **Testing**
 ```
 $export OMISE_PUBLIC_KEY=<test public key>
