@@ -13,7 +13,7 @@ $npm install omise-node
  - Configure
 ```
 var config = {
-  'publicKey': '<Public key>,
+  'publicKey': '<Public key>',
   'secretKey': '<Secret key>'
 };
 
