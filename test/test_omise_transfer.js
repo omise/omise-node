@@ -41,6 +41,16 @@ describe('Omise', function() {
       done();
     });
 
+    it('should be able to destroy an existing transfer', function(done) {
+      testHelper.setupMock('transfers_destroy');
+      var transferId = 'trsf_test_4z4cw3ku87retguciji';
+      omise.transfers.destroy(transferId, function(err, resp) {
+        expect(resp.object, 'transfer');
+        expect(resp.deleted).to.be.true;
+      });
+      done();
+    });
+
     it('should be able to update an existing transfer', function(done) {
       testHelper.setupMock('transfers_update');
       var transferId = 'trsf_test_4z4cw3ku87retguciji';
