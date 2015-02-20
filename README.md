@@ -108,6 +108,7 @@ var <resource> = function(config) {
 }
 module.exports = <resource>;
 ```
+and append omiseResources in lib/apiResources.js with a new resourceName('<resource>')
 
 Note:
 Support actions: `['create', 'list', 'retrieve', 'destroy', 'update']`
