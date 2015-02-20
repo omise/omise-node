@@ -22,6 +22,13 @@ describe('Omise', function() {
       });
     });
 
+    it('should be able to list all transfers', function(done) {
+      testHelper.setupMock('transfers_list');
+      omise.transfers.list(function(err, resp) {
+        expect(resp.object, 'transfer');
+      });
+      done();
+    });
 
     it('should be able to retrieve an existing transfer', function(done) {
       testHelper.setupMock('transfers_retrieve');
