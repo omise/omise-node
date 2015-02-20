@@ -45,7 +45,7 @@ describe('Omise', function() {
     });
 
     it('should be able to destroy an existing customer', function(done) {
-      testHelper.setupMock('customer_delete');
+      testHelper.setupMock('customers_destroy');
       var customerId = 'cust_test_4yygdeiu4ko863sxts9';
       omise.customers.destroy(customerId, function(err, resp) {
         expect(resp.object, 'customer');
