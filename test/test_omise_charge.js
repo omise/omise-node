@@ -23,6 +23,16 @@ describe('Omise', function() {
         expect(resp.captured).be.true;
         done();
       });
-    })
+    });
+
+    it('should be able to list charges', function(done) {
+      testHelper.setupMock('charges_list');
+      omise.charges.list(function(err, resp) {
+        expect(resp.object, 'list');
+        expect(resp).to.have.property('data');
+        expect(resp.data).to.be.a('array');
+        done();
+      });
+    });
   })
 })
