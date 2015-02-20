@@ -22,6 +22,13 @@ describe('Omise', function() {
       });
     });
 
+    it('should be able to list all transfers', function(done) {
+      testHelper.setupMock('transfers_list');
+      omise.transfers.list(function(err, resp) {
+        expect(resp.object, 'transfer');
+      });
+      done();
+    });
 
     it('should be able to retrieve an existing transfer', function(done) {
       testHelper.setupMock('transfers_retrieve');
@@ -30,6 +37,16 @@ describe('Omise', function() {
         expect(resp.object, 'transfer');
         var amount = resp.amount;
         amount.should.equal(4000);
+      });
+      done();
+    });
+
+    it('should be able to destroy an existing transfer', function(done) {
+      testHelper.setupMock('transfers_destroy');
+      var transferId = 'trsf_test_4z4cw3ku87retguciji';
+      omise.transfers.destroy(transferId, function(err, resp) {
+        expect(resp.object, 'transfer');
+        expect(resp.deleted).to.be.true;
       });
       done();
     });
