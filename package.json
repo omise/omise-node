@@ -4,6 +4,7 @@
   "description": "Omise Node.js client",
   "main": "index.js",
   "scripts": {
+    "jscs": "jscs *.js lib/*.js test/*.js",
     "test": "mocha test"
   },
   "repository": {

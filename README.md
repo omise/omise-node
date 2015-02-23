@@ -52,13 +52,18 @@ omise.tokens.create(card_details, function(err, resp){
 - Add a new customer
 
 ```
-var omise = require('../index')(config);
 var customer = {
   email: "john.doe@example.com",
   description: "John Doe (id: 30)",
 };
 omise.customers.create(customer, function(err, resp) {});
-````
+```
+
+- List all customers
+
+```
+omise.customers.list(function{err, resp} {});
+```
 
 
 **Testing**
@@ -69,3 +74,7 @@ $cd omise-node;
 $mocha test #for local test
 $NOCK_OFF=true mocha test #for remote test
 ```
+
+**Code Style**
+You could use git pre-commit hook to check.
+Just run `ln -s ../../pre-commit.sh .git/hooks/pre-commit`
