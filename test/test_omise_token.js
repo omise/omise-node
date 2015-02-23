@@ -4,12 +4,11 @@ var should = chai.should();
 
 var config = require('./config.js');
 var omise  = require('../index')(config);
+var testHelper = require('./testHelper');
 
 describe('Omise', function() {
   before(function() {
-    if (process.env.NOCK_OFF !== 'true') {// aka, remote test
-      require('./mocks/tokens_create');
-    }
+    testHelper.setupMock('tokens_create');
   });
 
   describe('#tokens', function() {
