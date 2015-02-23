@@ -49,5 +49,17 @@ describe('Omise', function() {
       done();
     });
 
+    it('should be able to destroy an existing customer', function(done) {
+        if (process.env.NOCK_OFF !== 'true') {
+          require('./mocks/customer_delete');
+          var customerId = 'cust_test_4yygdeiu4ko863sxts9';
+          omise.customers.destroy(customerId, function(err, resp) {
+            expect(resp.object, 'customer');
+            expect(resp.deleted).to.be.true;
+          });
+        }
+        done();
+      });
+
   })
 })
