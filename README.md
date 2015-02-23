@@ -65,7 +65,11 @@ omise.customers.create(customer, function(err, resp) {});
 omise.customers.list(function{err, resp} {});
 ```
 
+- Retrieve a customer
 
+```
+omise.customers.retrieve(customerId, function{err, resp} {});
+```
 **Testing**
 ```
 $export OMISE_PUBLIC_KEY=<test public key>
