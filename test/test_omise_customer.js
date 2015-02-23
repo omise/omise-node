@@ -45,14 +45,14 @@ describe('Omise', function() {
     });
 
     it('should be able to destroy an existing customer', function(done) {
-        testHelper.setupMock('customer_delete');
-        var customerId = 'cust_test_4yygdeiu4ko863sxts9';
-        omise.customers.destroy(customerId, function(err, resp) {
-          expect(resp.object, 'customer');
-          expect(resp.deleted).to.be.true;
-        });
-        done();
+      testHelper.setupMock('customer_delete');
+      var customerId = 'cust_test_4yygdeiu4ko863sxts9';
+      omise.customers.destroy(customerId, function(err, resp) {
+        expect(resp.object, 'customer');
+        expect(resp.deleted).to.be.true;
       });
+      done();
+    });
 
     it('should be able to update an existing customer', function(done) {
       testHelper.setupMock('customer_update');
@@ -61,8 +61,7 @@ describe('Omise', function() {
         expect(resp.object, 'customer');
         expect(resp.description, 'New description');
       });
-        done();
-      });
-
+      done();
+    });
   })
 })

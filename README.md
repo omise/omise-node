@@ -88,8 +88,27 @@ $export OMISE_SECRET_KEY=<test secret key>
 $cd omise-node;
 $mocha test #for local test
 $NOCK_OFF=true mocha test #for remote test
+
 ```
 
 **Code Style**
 You could use git pre-commit hook to check.
 Just run `ln -s ../../pre-commit.sh .git/hooks/pre-commit`
+
+**Contribute**
+
+If you want to add a new resource, just creating new resource file in `lib/<resource>.js` and add a content like following:
+
+```
+var resource = require('../apiResources');
+var <resource> = function(config) {
+  return resource.resourceActions('<resource>',
+    [<array of actions>], {'key': config['<key to use>']}
+  );
+}
+module.exports = <resource>;
+```
+
+Note:
+Support actions: `['create', 'list', 'retrieve', 'destroy', 'update']`
+And don't for to add a test, to do so, setup mocking at `test/mocks/<resource>_<action>.js` and create relevant test in test/ directory.
