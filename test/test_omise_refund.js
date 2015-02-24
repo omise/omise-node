@@ -17,8 +17,19 @@ describe('Omise', function() {
         expect(resp.object, 'refund');
         expect(resp.amount, 100000);
         expect(resp.currency, 'thb');
+        done();
       });
-      done();
+    });
+
+    it('should be able to list refunds', function(done) {
+      testHelper.setupMock('refunds_list');
+      var chargeId = 'chrg_test_4z4295deewwyaviw003';
+      omise.charges.listRefunds(chargeId, function(err, resp) {
+        expect(resp.object, 'list');
+        expect(resp.data).to.be.instanceof(Array);
+        expect(resp.data[0].object, 'refund');
+        done();
+      });
     });
   })
 })
