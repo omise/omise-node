@@ -34,5 +34,30 @@ describe('Omise', function() {
         done();
       });
     });
+
+    it('should be able to retrieve a charge', function(done) {
+      testHelper.setupMock('charges_retrieve');
+      var chargeId = 'chrg_test_4z429hvnv7ouolu6kmp';
+      omise.charges.retrieve(chargeId, function(err, resp) {
+        expect(resp.object, 'charge');
+        expect(resp).to.have.property('amount');
+        resp.amount.should.equal(100000);
+      });
+      done();
+    });
+
+    it('should be able to update a charge', function(done) {
+      testHelper.setupMock('charges_update');
+      var chargeId = 'chrg_test_4z429hvnv7ouolu6kmp';
+      var data = {description: 'test description'};
+      omise.charges.update(chargeId, data, function(err, resp) {
+        expect(resp.object, 'charge');
+        var chargeId = resp.id;
+        chargeId.should.be.equal('chrg_test_4z429hvnv7ouolu6kmp');
+        expect(resp.description, 'test description');
+      });
+      done();
+    });
+
   })
 })
