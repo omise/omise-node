@@ -43,5 +43,17 @@ describe('Omise', function() {
         done();
       });
     });
+
+    it('should be able to destroy a card', function(done) {
+      testHelper.setupMock('card_destroy');
+      var customerId = 'cust_test_4z2owmajzsb3c527wj7';
+      var cardId = 'card_test_4z2owrdmvbygi7ah0fu';
+      omise.customers.destroyCard(customerId, cardId, function(err, resp) {
+        expect(resp.object, 'card');
+        expect(resp.id, 'card_test_4z2owrdmvbygi7ah0fu');
+        resp.deleted.should.be.true;
+        done();
+      });
+    });
   })
 })
