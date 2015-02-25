@@ -30,5 +30,18 @@ describe('Omise', function() {
         done();
       });
     });
+
+    it('should be able to update a card', function(done) {
+      testHelper.setupMock('card_update');
+      var customerId = 'cust_test_4z2owmajzsb3c527wj7';
+      var cardId = 'card_test_4z2owrdmvbygi7ah0fu';
+      var data = {'expiration_year': 2022};
+      omise.customers.updateCard(customerId, cardId, data, function(err, resp) {
+        expect(resp.object, 'card');
+        expect(resp.id, 'card_test_4z2owrdmvbygi7ah0fu');
+        expect(resp.brand, 'Visa');
+        done();
+      });
+    });
   })
 })
