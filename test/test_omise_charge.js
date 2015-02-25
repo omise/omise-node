@@ -59,5 +59,16 @@ describe('Omise', function() {
       done();
     });
 
+    it('should be able to capture a charge', function(done) {
+      testHelper.setupMock('charges_capture');
+      var chargeId = 'chrg_test_4z429hvnv7ouolu6kmp';
+      var data = {description: 'test description'};
+      omise.charges.capture(chargeId, function(err, resp) {
+        expect(resp.object, 'charge');
+        var captured = resp.captured;
+        captured.should.be.true;
+      });
+      done();
+    });
   })
 })
