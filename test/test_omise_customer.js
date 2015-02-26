@@ -30,8 +30,10 @@ describe('Omise', function() {
       testHelper.setupMock('customers_list');
       omise.customers.list(function(err, resp) {
         expect(resp.object, 'customer');
+        expect(resp.data).to.be.instanceof(Array);
+        expect(resp.data[0].object, 'card');
+        done();
       });
-      done();
     });
 
     it('should be able to retrieve an existing customer', function(done) {
@@ -40,8 +42,8 @@ describe('Omise', function() {
       omise.customers.retrieve(customerId, function(err, resp) {
         expect(resp.object, 'list');
         expect(resp.data).to.be.instanceof(Array);
+        done();
       });
-      done();
     });
 
     it('should be able to destroy an existing customer', function(done) {
@@ -50,18 +52,21 @@ describe('Omise', function() {
       omise.customers.destroy(customerId, function(err, resp) {
         expect(resp.object, 'customer');
         expect(resp.deleted).to.be.true;
+        done();
       });
-      done();
     });
 
     it('should be able to update an existing customer', function(done) {
       testHelper.setupMock('customer_update');
       var customerId = 'cust_test_4z2owmajzsb3c527wj7';
-      omise.customers.update(customerId, function(err, resp) {
+      var data = {
+        description: 'New description',
+      };
+      omise.customers.update(customerId, data, function(err, resp) {
         expect(resp.object, 'customer');
         expect(resp.description, 'New description');
+        done();
       });
-      done();
     });
   })
 })

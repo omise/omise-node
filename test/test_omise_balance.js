@@ -15,8 +15,8 @@ describe('Omise', function() {
         expect(resp.available).not.be.nil;
         expect(resp.total).not.be.nil;
         expect(resp.currency, 'thb');
+        done();
       });
-      done();
     });
   })
 })

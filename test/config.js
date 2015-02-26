@@ -7,7 +7,10 @@ var config = {
 };
 
 if (!config['publicKey'] || !config['secretKey']) {
-  console.log('Need Omise key!');
+  var  msg =
+  'please set OMISE_PUBLIC_KEY and OMISE_SECRET_KEY env vars ' +
+  'for public key and secret key respectively.';
+  console.log(msg);
   process.exit(2)
 }
 module.exports = config;
