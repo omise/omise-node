@@ -3,14 +3,13 @@ omise-node
 
 Omise Node.js client
 
-**Installation**
+##Installation
 ```
 $npm install omise-node
 ```
 
-**Usage**
+## Configuration
 
- - Configure
 ```
 var config = {
   'publicKey': '<Public key>',
@@ -19,6 +18,9 @@ var config = {
 
 var omise = require('omise-node')(config);
 ```
+
+
+## Overview and examples
 
  - Create token
 
@@ -80,6 +82,45 @@ omise.customers.update(customerId, {
 }, function(err, customer) {
 });
 ```
+
+### Available resources and related methods
+
+Check [https://docs.omise.co](https://docs.omise.co) for more details
+
+ * account
+  * `retrieve()`
+ * balance
+  * `retrieve()`
+ * charges
+  * `create(data)`
+  * `list()`
+  * `retrieve(chargeId)`
+  * `capture(chargeId)`
+  * `refund(chargeId)`
+  * `update(chargeId[, data])`
+ * customers
+  * `create(data)`
+  * `list()`
+  * `update(customerId[, data])`
+  * `destroy(customerId)`
+  * `retrieve(customerId)`
+  * `listCards(customerId)`
+  * `retrieveCard(customerId, cardId)`
+  * `updateCard(customerId, cardId[, data])`
+  * `destroyCard(customerId, cardId)`
+ * tokens
+  * `create(data)`
+  * `retrieve(tokenId)`
+ * transfers
+  * `create(data)`
+  * `list()`
+  * `retrieve(transferId)`
+  * `update(transferId[, data])`
+ * transactions
+  * `list()`
+  * `retrieve(transactionId)`
+
+Note: where `data` is a Javascript object, `{'amount': '4000'}` for instance.
 
 **Testing**
 ```
