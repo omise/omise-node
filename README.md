@@ -8,6 +8,8 @@ Omise Node.js client
 $npm install omise-node
 ```
 
+* tested with node version 0.10.32+
+
 ## Configuration
 
 ```
