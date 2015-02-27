@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/omise/omise-node",
   "devDependencies": {
+    "bluebird": "^2.9.12",
     "chai": "^2.0.0",
     "jscs": "^1.11.3",
     "lodash": "^3.2.0",
