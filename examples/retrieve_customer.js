@@ -1,11 +1,10 @@
-//retrieve
 'use strict';
-var config = {
-    'publicKey': 'pkey_test_4yyg6ko1yl82hlh1hmt',
-    'secretKey': 'skey_test_4yyg6l9b9lbcjknr418'
-};
 
-var omise = require('omise-node')(config);
+var omise = require('omise-node')({
+  'publicKey': 'pkey_test_4yyg6ko1yl82hlh1hmt',
+  'secretKey': 'skey_test_4yyg6l9b9lbcjknr418'
+});
+
 omise.customers.retrieve("cust_test_4z33o46lqreryhqua8w", function(err, resp) {
   console.log(resp);
 });

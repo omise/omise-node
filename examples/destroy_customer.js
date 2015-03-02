@@ -1,12 +1,10 @@
-//destroy
 'use strict';
-var config = {
-    'publicKey': process.env.OMISE_PUBLIC_KEY,
-    'secretKey': process.env.OMISE_SECRET_KEY
-};
 
-var omise = require('omise-node')(config);
-var customerId = 'cust_test_4yxn6vblxh83h605oxz';
-omise.customers.destroy(customerId, function(err, resp) {
+var omise = require('../index')({
+  'publicKey': process.env.OMISE_PUBLIC_KEY,
+  'secretKey': process.env.OMISE_SECRET_KEY
+});
+
+omise.customers.destroy('cust_test_4yxn6vblxh83h605oxz', function(err, resp) {
   console.log(resp);
 });
