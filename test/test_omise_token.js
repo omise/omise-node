@@ -11,12 +11,14 @@ describe('Omise', function() {
     it('should be able to create token', function(done) {
       testHelper.setupMock('tokens_create');
       var cardDetails = {
-        'card[name]': 'JOHN DOE',
-        'card[city]': 'Bangkok',
-        'card[postal_code]': 10320,
-        'card[number]': '4242424242424242',
-        'card[expiration_month]': 2,
-        'card[expiration_year]': 2017
+        card: {
+          'name': 'JOHN DOE',
+          'city': 'Bangkok',
+          'postal_code': 10320,
+          'number': '4242424242424242',
+          'expiration_month': 2,
+          'expiration_year': 2017
+        }
       };
       omise.tokens.create(cardDetails, function(err, resp) {
         should.exist(resp.id);
