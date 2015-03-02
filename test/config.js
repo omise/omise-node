@@ -1,4 +1,5 @@
 'use strict';
+
 var sys = require('sys');
 
 var config = {
@@ -6,11 +7,12 @@ var config = {
   secretKey: process.env.OMISE_SECRET_KEY
 };
 
-if (!config['publicKey'] || !config['secretKey']) {
-  var  msg =
-  'please set OMISE_PUBLIC_KEY and OMISE_SECRET_KEY env vars ' +
-  'for public key and secret key respectively.';
+if (process.env.NOCK_OFF && (!config['publicKey'] || !config['secretKey'])) {
+  var msg =
+    'Please set OMISE_PUBLIC_KEY and OMISE_SECRET_KEY env vars ' +
+    'for public key and secret key respectively.';
   console.log(msg);
   process.exit(2)
 }
+
 module.exports = config;
