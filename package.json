@@ -1,7 +1,7 @@
 {
   "name": "omise-node",
   "version": "0.1.0",
-  "description": "Omise Node.js client",
+  "description": "Omise Node.js binding",
   "main": "index.js",
   "scripts": {
     "jscs": "jscs *.js lib/*.js test/*.js",
