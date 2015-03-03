@@ -11,7 +11,7 @@ describe('Omise', function() {
     it('should be able to create token', function(done) {
       testHelper.setupMock('tokens_create');
       var cardDetails = {
-        card: {
+        'card':{
           'name': 'JOHN DOE',
           'city': 'Bangkok',
           'postal_code': 10320,
