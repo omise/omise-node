@@ -85,6 +85,43 @@ omise.customers.update(customerId, {
 });
 ```
 
+
+Furthermore (Experimental), if you'd like to use Promises compliant interface.
+Ideally, in every method of omise resource returns a promise when you haven't provide a callback. you could use like following:
+
+```
+var card_details = {
+       'card[name]': 'JOHN DOE',
+       'card[city]': 'Bangkok',
+       'card[postal_code]': 10320,
+       'card[number]': '4242424242424242',
+       'card[expiration_month]': 2,
+       'card[expiration_year]': 2017
+};
+
+omise.tokens.create(card_details)
+.then(function(token){
+  console.log(token.id);
+  omise.customers.create({
+    email: "john.doe@example.com",
+    description: "John Doe (id: 30)",
+    card: token.id
+  }).then(function(customer) {
+    console.log(customer.id);
+    return omise.charges.create({
+      amount: 5555,
+      currency: 'thb',
+      customer: customer.id
+    });
+  }).then(function(charge) {
+    // after the charge is created
+  }, function(err) {
+    // Do an error handling here
+  });
+});
+
+```
+
 ### Available resources and related methods
 
 Check [https://docs.omise.co](https://docs.omise.co) for more details

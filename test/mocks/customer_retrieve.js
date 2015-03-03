@@ -2,29 +2,41 @@ var nock  = require('nock');
 var scope = nock('https://api.omise.co')
             .persist()
             .get('/customers/cust_test_4z33o46lqreryhqua8w')
-            .reply(200, { object: 'list',
-                          from: '1970-01-01T00:00:00+00:00',
-                          to: '2015-02-17T05:14:32+00:00',
-                          offset: 0,
-                          limit: 20,
-                          total: 10,
-                          data:
-                           [ { object: 'customer',
-                               id: 'cust_test_4yxn6vblxh83h605oxz',
-                               livemode: false,
-                               location: '/customers/cust_test_4yxn6vblxh83h605oxz',
-                               default_card: 'card_test_4yy2wa1yvkagkcxcgif',
-                               email: 'john.doe@example.com',
-                               description: 'John Doe (id: 30)',
-                               created: '2015-02-03T05:28:15Z',
-                               cards: [Object] },
-                             { object: 'customer',
-                               id: 'cust_test_4yygdeiu4ko863sxts9',
-                               livemode: false,
-                               location: '/customers/cust_test_4yygdeiu4ko863sxts9',
-                               default_card: 'card_test_4yygde8bubfe1akwqq3',
-                               email: null,
-                               description: 'customer 1',
-                               created: '2015-02-05T07:12:33Z',
-                               cards: [Object] }
-                         ] } , { server: 'nginx/1.1', 'content-type': 'application/json', });
+            .reply(200, { "object": "customer",
+                          "id": "cust_test_4z70ihscpoa9557uakb",
+                          "livemode": false,
+                          "location": "/customers/cust_test_4z70ihscpoa9557uakb",
+                          "default_card": "card_test_4z70ihpsgokp70hxqnq",
+                          "email": "john.doe@example.com",
+                          "description": "John Doe (id: 30)",
+                          "created": "2015-02-27T04:25:19Z",
+                          "cards": {
+                            "object": "list",
+                            "from": "1970-01-01T00:00:00+00:00",
+                            "to": "2015-02-28T10:13:25+00:00",
+                            "offset": 0,
+                            "limit": 20,
+                            "total": 1,
+                            "data": [
+                              {
+                                "object": "card",
+                                "id": "card_test_4z70ihpsgokp70hxqnq",
+                                "livemode": false,
+                                "location": "/customers/cust_test_4z70ihscpoa9557uakb/cards/card_test_4z70ihpsgokp70hxqnq",
+                                "country": "us",
+                                "city": "Bangkok",
+                                "postal_code": "10320",
+                                "financing": "",
+                                "last_digits": "4242",
+                                "brand": "Visa",
+                                "expiration_month": 2,
+                                "expiration_year": 2017,
+                                "fingerprint": "umrBpbHRuc8vstbcNEZPbnKkIycR/gvI6ivW9AshKCw=",
+                                "name": "JOHN DOE",
+                                "security_code_check": true,
+                                "created": "2015-02-27T04:25:19Z"
+                              }
+                            ],
+                            "location": "/customers/cust_test_4z70ihscpoa9557uakb/cards"
+                          }
+                        }, { server: 'nginx/1.1', 'content-type': 'application/json', });

@@ -40,8 +40,9 @@ describe('Omise', function() {
       testHelper.setupMock('customer_retrieve');
       var customerId = 'cust_test_4z33o46lqreryhqua8w';
       omise.customers.retrieve(customerId, function(err, resp) {
-        expect(resp.object, 'list');
-        expect(resp.data).to.be.instanceof(Array);
+        expect(resp.object, 'customer');
+        expect(resp.id, 'cust_test_4z70ihscpoa9557uakb');
+        expect(resp.email, 'john.doe@example.com');
         done();
       });
     });
