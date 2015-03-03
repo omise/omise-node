@@ -1,6 +1,6 @@
 'use strict';
 
-var omise = require('omise-node')({
+var omise = require('../index')({
   'publicKey': 'pkey_test_4yyg6ko1yl82hlh1hmt',
   'secretKey': 'skey_test_4yyg6l9b9lbcjknr418'
 });

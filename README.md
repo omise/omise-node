@@ -6,17 +6,17 @@ Omise Node.js bindings.
 ## Installation
 
 ```
-$ npm install omise-node
+$ npm install omise
 ```
 
 The library has been tested with Node version 0.10.32+.
 
 ## Usage
 
-First, you have to configure the library by passing the public key and secret key from `https://dashboard.omise.co/` to `omise-node` export, for example:
+First, you have to configure the library by passing the public key and secret key from `https://dashboard.omise.co/` to `omise` export, for example:
 
 ```
-var omise = require('omise-node')({
+var omise = require('omise')({
   'publicKey': 'pkey_test_...',
   'secretKey': 'skey_test_...'
 });
@@ -191,7 +191,6 @@ The following API methods are available. Please see [https://docs.omise.co](http
 There are two modes of testing, to test without connecting to remote API server:
 
 ```
-$ cd omise-node
 $ mocha test
 ```
 
@@ -200,7 +199,6 @@ If you want to test by connecting to actual API server, you must first obtain a 
 ```
 $ export OMISE_PUBLIC_KEY=<test public key>
 $ export OMISE_SECRET_KEY=<test secret key>
-$ cd omise-node
 $ NOCK_OFF=true mocha test
 ```
 

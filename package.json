@@ -1,5 +1,5 @@
 {
-  "name": "omise-node",
+  "name": "omise",
   "version": "0.1.0",
   "description": "Omise Node.js binding",
   "main": "index.js",
