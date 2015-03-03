@@ -13,7 +13,7 @@ The library has been tested with Node version 0.10.32+.
 
 ## Usage
 
-You first have to configure the library by passing the public key and secret key to `omise-node` export, for example:
+First, you have to configure the library by passing the public key and secret key from `https://dashboard.omise.co/` to `omise-node` export, for example:
 
 ```
 var omise = require('omise-node')({
@@ -28,7 +28,7 @@ Please see [Omise Documentation](https://docs.omise.co/) for more information on
 
 ### Creating a token
 
-You can create a token by using `omise.tokens.create` and passing a callback. For example:
+Token can be created by using `omise.tokens.create`, for example (passing callback):
 
 ```
 var cardDetails = {
@@ -42,13 +42,13 @@ var cardDetails = {
   }
 };
 
-omise.tokens.create(cardDetails, function(err, resp){
-  var tokenId = resp.id;
+omise.tokens.create(cardDetails, function(err, token){
+  var tokenId = token.id;
   console.log(tokenId);
 });
 ```
 
-Please note that token creation this way **must** not be done in the production environment unless you have a very good reason to.
+Please note that token creation this way **must not** be done in the production environment unless you have a very good reason to do so.
 
 ### Create a customer with card associated to it
 
@@ -56,13 +56,13 @@ Creating a customer could be done by using `omise.customers.create` which accept
 
 ```
 var customer = {
-  email: "john.doe@example.com",
-  description: "John Doe (id: 30)",
-  card: tokenId
+  'email': "john.doe@example.com",
+  'description': "John Doe (id: 30)",
+  'card': tokenId
 };
 
-omise.customers.create(customer, function(err, resp) {
-  var customerId = resp.id;
+omise.customers.create(customer, function(err, customer) {
+  var customerId = customer.id;
   console.log(customerId);
 });
 ```
@@ -72,8 +72,8 @@ omise.customers.create(customer, function(err, resp) {
 After customers are created, you can list them with `customer.customers.list` and passing a callback to it. The object returned from a list API will be a `list` object, which you can access the raw data via `data` attribute:
 
 ```
-omise.customers.list(function(err, resp) {
-  console.log(resp.data);
+omise.customers.list(function(err, list) {
+  console.log(list.data);
 });
 ```
 
@@ -103,7 +103,7 @@ omise.customers.update(customerId, changes, function(err, resp) {
 
 ## Promise support
 
-The library also support the Promise interface which shares the same API method as the callback one. For example:
+The library also supports the Promise/A+ interface that shares the same API method as the callback one, for example:
 
 ```
 var cardDetails = {
@@ -117,10 +117,10 @@ var cardDetails = {
   }
 };
 
-// First we start by creating a token with `omise.tokens.create` to store the card data.
+// First, we start creating a token with `omise.tokens.create` to store the card data.
 omise.tokens.create(cardDetails).then(function(token) {
 
-  // Then create a customer using token returned the API.
+  // Then, create a customer using token returned the API.
   console.log(token.id);
   return omise.customers.create({
     email: "john.doe@example.com",
@@ -140,7 +140,7 @@ omise.tokens.create(cardDetails).then(function(token) {
 
 }).then(function(charge) {
 
-  // This function will be called after charge is created.
+  // This function will be called after a charge is created.
 
 }).error(function(err) {
 
