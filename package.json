@@ -1,7 +1,7 @@
 {
   "name": "omise",
   "version": "0.1.0",
-  "description": "Omise Node.js binding",
+  "description": "Omise Node.js bindings",
   "main": "index.js",
   "scripts": {
     "jscs": "jscs *.js lib/*.js test/*.js",
