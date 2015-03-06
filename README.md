@@ -162,7 +162,7 @@ The following API methods are available. Please see [https://docs.omise.co](http
   * `list()`
   * `retrieve(chargeId)`
   * `capture(chargeId)`
-  * `refund(chargeId)`
+  * `createRefund(chargeId[, data])`
   * `update(chargeId[, data])`
 * customers
   * `create(data)`
