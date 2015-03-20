@@ -149,7 +149,15 @@ omise.tokens.create(cardDetails).then(function(token) {
 }).done();
 ```
 
-### Resource methods
+##Error Handling
+
+To handle an invalid request, it is required to check any error via an `Error` object
+that includes `code` and `message` attributes as stated in https://docs.omise.co/api/errors.
+But, for any valid request, checking `failure_code` and `failure_message` is required, for example:
+If you'd like to create a `Charge` or a `Transfer` with a valid request,
+A sucessfully charge or tranfer happens only when none of failure exists that means both `failure_code` and `failure_message` must be `null`.
+
+## Resource methods
 
 The following API methods are available. Please see [https://docs.omise.co](https://docs.omise.co) for more details.
 
@@ -191,7 +199,7 @@ The following API methods are available. Please see [https://docs.omise.co](http
 There are two modes of testing, to test without connecting to remote API server:
 
 ```
-$ mocha test
+$ npm test
 ```
 
 If you want to test by connecting to actual API server, you must first obtain a public and secret keys and export it:
@@ -199,7 +207,7 @@ If you want to test by connecting to actual API server, you must first obtain a 
 ```
 $ export OMISE_PUBLIC_KEY=<test public key>
 $ export OMISE_SECRET_KEY=<test secret key>
-$ NOCK_OFF=true mocha test
+$ NOCK_OFF=true npm test
 ```
 
 ## Contributions
