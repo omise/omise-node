@@ -1,11 +1,11 @@
 var nock  = require('nock');
 var scope = nock('https://api.omise.co')
             .persist()
-            .get('/customers/cust_test_4z33o46lqreryhqua8w')
+            .get('/customers/cust_test_4z2owmajzsb3c527wj7')
             .reply(200, { "object": "customer",
-                          "id": "cust_test_4z70ihscpoa9557uakb",
+                          "id": "cust_test_4z2owmajzsb3c527wj7",
                           "livemode": false,
-                          "location": "/customers/cust_test_4z70ihscpoa9557uakb",
+                          "location": "/customers/cust_test_4z2owmajzsb3c527wj7",
                           "default_card": "card_test_4z70ihpsgokp70hxqnq",
                           "email": "john.doe@example.com",
                           "description": "John Doe (id: 30)",
