@@ -4,9 +4,9 @@ var scope = nock('https://api.omise.co')
             .post('/customers')
             .reply(200, {
                     "object": "customer",
-                    "id": "cust_test_4z2p1qpnjvkqj6z65c0",
+                    "id": "cust_test_4z2owmajzsb3c527wj7",
                     "livemode": false,
-                    "location": "/customers/cust_test_4z2p1qpnjvkqj6z65c0",
+                    "location": "/customers/cust_test_4z2owmajzsb3c527wj7",
                     "default_card": "card_test_4z2p1xz7uuiunks6sf5",
                     "email": "john.doe@example.com",
                     "description": "John Doe (id: 30)",

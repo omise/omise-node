@@ -1,7 +1,7 @@
 var nock  = require('nock');
 var scope = nock('https://vault.omise.co')
             .persist()
-            .get('/tokens/tokn_test_4z69sehi504pxca6umk')
+            .get('/tokens/tokn_test_4xs9408a642a1htto8z')
             .reply(200, { "object": "token",
                           "id": "tokn_test_4z69sehi504pxca6umk",
                           "livemode": false,

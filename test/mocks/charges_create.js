@@ -9,9 +9,9 @@ var scope = nock('https://api.omise.co')
                           "amount": 100000,
                           "currency": "thb",
                           "description": "Charge for order 3947",
-                          "capture": true,
+                          "capture": false,
                           "authorized": true,
-                          "captured": true,
+                          "captured": false,
                           "transaction": "trxn_test_4z429hw7a8x76nuxrc5",
                           "refunded": 0,
                           "refunds": {

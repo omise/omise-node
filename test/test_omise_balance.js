@@ -7,7 +7,7 @@ var omise  = require('../index')(config);
 var testHelper = require('./testHelper');
 
 describe('Omise', function() {
-  describe('#balance', function() {
+  describe('#Balance', function() {
     it('should be able to retrieve a balance', function(done) {
       testHelper.setupMock('balance_retrieve');
       omise.balance.retrieve(function(err, resp) {

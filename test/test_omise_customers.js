@@ -1,3 +1,4 @@
+'use strict';
 var chai   = require('chai');
 var expect = chai.expect;
 var should = chai.should();
@@ -7,16 +8,42 @@ var omise  = require('../index')(config);
 var testHelper = require('./testHelper');
 
 describe('Omise', function() {
-  describe('#customers', function() {
+  describe('#Customers', function() {
+    var tokenId    = '';
+    var customerId = '';
+    before(function(done) {
+      testHelper.setupMock('tokens_create');
+      var cardDetails = {
+        'card':{
+          'name': 'JOHN DOE',
+          'city': 'Bangkok',
+          'postal_code': 10320,
+          'number': '4242424242424242',
+          'expiration_month': 2,
+          'expiration_year': 2017,
+          'security_code': 123
+        }
+      };
+      omise.tokens.create(cardDetails, function(err, resp) {
+        should.exist(resp.id);
+        tokenId = resp.id;
+        expect(tokenId).to.contains('tokn_test');
+        should.exist(resp.card.id);
+        var cardId  = resp.card.id;
+        expect(cardId).to.contains('card_test');
+        done();
+      });
+    });
+
     it('should be able to create customer', function(done) {
       testHelper.setupMock('customers_create');
       var data = {
         email: 'john.doe@example.com',
         description: 'John Doe (id: 30)',
-        card: 'tokn_test_4xs9408a642a1htto8z'
+        card: tokenId
       };
       omise.customers.create(data, function(err, resp) {
-        var customerId = resp.id;
+        customerId = resp.id;
         expect(customerId).to.contains('cust_test');
         var obj = resp.object;
         obj.should.equal('customer');
@@ -38,28 +65,17 @@ describe('Omise', function() {
 
     it('should be able to retrieve an existing customer', function(done) {
       testHelper.setupMock('customer_retrieve');
-      var customerId = 'cust_test_4z33o46lqreryhqua8w';
       omise.customers.retrieve(customerId, function(err, resp) {
         expect(resp.object, 'customer');
-        expect(resp.id, 'cust_test_4z70ihscpoa9557uakb');
+        expect(resp.id).to.match(/^cust_test/);
         expect(resp.email, 'john.doe@example.com');
-        done();
-      });
-    });
-
-    it('should be able to destroy an existing customer', function(done) {
-      testHelper.setupMock('customers_destroy');
-      var customerId = 'cust_test_4yygdeiu4ko863sxts9';
-      omise.customers.destroy(customerId, function(err, resp) {
-        expect(resp.object, 'customer');
-        expect(resp.deleted).to.be.true;
         done();
       });
     });
 
     it('should be able to update an existing customer', function(done) {
       testHelper.setupMock('customer_update');
-      var customerId = 'cust_test_4z2owmajzsb3c527wj7';
+      // var customerId = 'cust_test_4z2owmajzsb3c527wj7';
       var data = {
         description: 'New description',
       };
@@ -69,5 +85,15 @@ describe('Omise', function() {
         done();
       });
     });
-  })
-})
+
+    it('should be able to destroy an existing customer', function(done) {
+      testHelper.setupMock('customers_destroy');
+      omise.customers.destroy(customerId, function(err, resp) {
+        expect(resp.object, 'customer');
+        expect(resp.deleted).to.be.true;
+        done();
+      });
+    });
+
+  });
+});

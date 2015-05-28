@@ -1,7 +1,7 @@
 var nock  = require('nock');
 var scope = nock('https://api.omise.co')
             .persist()
-            .post('/charges/chrg_test_4z4295deewwyaviw003/refunds')
+            .post('/charges/chrg_test_4z429hvnv7ouolu6kmp/refunds')
             .reply(200, { "object": "refund",
                           "id": "rfnd_test_4z5xxgntg3pzhhynae4",
                           "location": "/charges/chrg_test_4z4295deewwyaviw003/refunds/rfnd_test_4z5xxgntg3pzhhynae4",
