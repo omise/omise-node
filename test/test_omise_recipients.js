@@ -67,5 +67,35 @@ describe('Omise', function() {
         });
      });
 
+     it('should be able to retrieve the recipient', function(done) {
+        testHelper.setupMock('recipients_list');
+        omise.recipients.list(function(err, resp) {
+          var recipient_id = resp.data[0].id;
+          testHelper.setupMock('recipients_retrieve');
+          omise.recipients.retrieve(recipient_id, function(err, resp){
+            expect(resp.id, recipient_id);
+            done();
+          });
+        });
+     });
+
+     it('should be able to destroy the recipient', function(done) {
+       testHelper.setupMock('recipients_list');
+       omise.recipients.list(function(err, resp) {
+        var recipients = resp.data;
+        expect(resp.data).to.be.instanceof(Array);
+        //atm, the first recipient is always a default, but cannot destroy
+        expect(omise.recipients.destroy).instanceof(Function);
+        if (recipients.length < 1) done();
+        var recipient_id = recipients[recipients.length-1].id;
+        testHelper.setupMock('recipients_destroy');
+        omise.recipients.destroy(recipient_id, function(err, resp){
+          expect(resp.id, recipient_id);
+          expect(resp.deleted, true);
+          done();
+        });
+       });
+     });
+
   });
 });
