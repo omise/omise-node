@@ -9,7 +9,8 @@ var testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Recipients', function() {
-    it('should be able to create recipient', function(done) {
+
+    it('should be able to create a recipient', function(done) {
       var recipient = {
         'name': 'John Doe',
         'description': 'John Doe (id: 30)',
@@ -46,5 +47,25 @@ describe('Omise', function() {
         done();
       });
     });
+
+    it('should be able to update the recipient', function(done) {
+        testHelper.setupMock('recipients_list');
+        omise.recipients.list(function(err, resp) {
+          var recipient_id = resp.data[0].id;
+          var update_data = {
+            'name': 'Di Di',
+            'email': 'di@omise.co',
+            'tax_id': "9876543210"
+          }
+          testHelper.setupMock('recipients_update');
+          omise.recipients.update(recipient_id, update_data, function(err, resp){
+            expect(resp.name, update_data.name);
+            expect(resp.email, update_data.email);
+            expect(resp.tax_id, update_data.tax_id);
+            done();
+          });
+        });
+     });
+
   });
 });
