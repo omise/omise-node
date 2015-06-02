@@ -33,7 +33,7 @@ describe('Omise', function() {
 
       it('should be able to list closed disputes', function(done) {
         testHelper.setupMock('disputes_list_closed');
-        omise.disputes.listOpen(function(err, resp) {
+        omise.disputes.listClosed(function(err, resp) {
           expect(resp.object, 'list')
           expect(resp.data).to.be.instanceof(Array);
           expect(resp.data[0].status, 'closed');
@@ -43,7 +43,7 @@ describe('Omise', function() {
 
       it('should be able to list pending disputes', function(done) {
         testHelper.setupMock('disputes_list_pending');
-        omise.disputes.listOpen(function(err, resp) {
+        omise.disputes.listPending(function(err, resp) {
           expect(resp.object, 'list')
           expect(resp.data).to.be.instanceof(Array);
           expect(resp.data[0].status, 'pending');
