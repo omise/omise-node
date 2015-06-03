@@ -193,6 +193,19 @@ The following API methods are available. Please see [https://docs.omise.co](http
 * transactions
   * `list()`
   * `retrieve(transactionId)`
+* disputes
+  * `list()`
+  * `listClosed()`
+  * `listOpen()`
+  * `listPending()`
+  * `retrieve(disputeId)`
+  * `update(disputeId[, data])`
+* recipients
+  * `create(data)`
+  * `list()`
+  * `update(recipientId[, data])`
+  * `destroy(recipientId)`
+  * `retrieve(recipientId)`
 
 ## Testing
 
