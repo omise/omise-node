@@ -24,31 +24,19 @@ var omise = require('omise')({
 
 Please see [Omise Documentation](https://docs.omise.co/) for more information on how to use the library.
 
+
+**Full Credit Card data should never touch or go through your servers. That means, Do not send the credit card data to Omise from your servers directly.**
+
+The token creation method in the library should only be used either with fake data in test mode (e.g.: quickly creating some fake data, testing our API from a terminal, etc.), or if you do and you are PCI-DSS compliant, sending card data from server requires a valid PCI-DSS certification.
+that said, you must achieve, maintain PCI ompliance at all times and do following a Security Best Practices https://www.pcisecuritystandards.org/documents/PCI_DSS_V3.0_Best_Practices_for_Maintaining_PCI_DSS_Compliance.pdf
+
+So, we recommended you to create a token using [Omise.JS](https://github.com/omise/omise.js) library which runs on browser side. It uses javascript to send the credit card data on client side, send it to Omise, and then you can populate the form with a unique one-time used token which can be used later on with `omise-node`
+or [Card.js](https://docs.omise.co/card-js/), by using it you can let it builds a credit card payment form window and creates a card token that you can use to create a charge with `omise-node`.
+For both methods, the client will directly send the card information to Omise gateway, your servers don't have to deal with card information at all and you don't need to deal with credit card data hassle, it reduces risk.
+
+**Please read https://docs.omise.co/collecting-card-information/ regarding how to collecting card information.**
+
 ## Examples
-
-### Creating a token
-
-Token can be created by using `omise.tokens.create`, for example (passing callback):
-
-```
-var cardDetails = {
-  card: {
-    'name': 'JOHN DOE',
-    'city': 'Bangkok',
-    'postal_code': 10320,
-    'number': '4242424242424242',
-    'expiration_month': 2,
-    'expiration_year': 2017
-  }
-};
-
-omise.tokens.create(cardDetails, function(err, token){
-  var tokenId = token.id;
-  console.log(tokenId);
-});
-```
-
-Please note that token creation this way **must not** be done in the production environment unless you have a very good reason to do so.
 
 ### Create a customer with card associated to it
 
