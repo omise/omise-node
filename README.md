@@ -5,6 +5,8 @@ Omise Node.js bindings.
 
 ## Installation
 
+From NPM
+
 ```
 $ npm install omise
 ```
@@ -13,25 +15,52 @@ The library has been tested with Node version 0.10.32+.
 
 ## Usage
 
-First, you have to configure the library by passing the public key and secret key from `https://dashboard.omise.co/` to `omise` export, for example:
+###Flow
+
+1. Enter a credit card information.
+2. The card information is encrypted via HTTPS and send directly from client using Omise.js, Card.js or Omise-iOS SDK to Omise server.
+3. If the card passes the authorization, then your frontend will send the token to `omise-node` backend to finally capture the charge with Omise-node.
+
+###The code
+
+After you have implemented `Omise.js` on your frontend.
+Then you can charge the card by passing the token ( if `card.security_code_check` is true ) to `omise-node` backend.
+
+In order to implement `omise-node` as your backend code.
+First, you have to configure the library by passing the secret key from `https://dashboard.omise.co/` to `omise` export, for example:
 
 ```
 var omise = require('omise')({
-  'publicKey': 'pkey_test_...',
   'secretKey': 'skey_test_...'
 });
+omise.charges.create({
+  'description': 'Charge for order ID: 888',
+  'amount': '100000', // 1,000 Baht
+  'currency': 'thb',
+  'capture': false,
+  'card': tokenId
+}, function(err, resp) {
+  if (resp.captured) {
+    //Success
+  } else {
+    //Handle failure
+    throw resp.failure_code;
+  }
+});
+
 ```
 
 Please see [Omise Documentation](https://docs.omise.co/) for more information on how to use the library.
 
+###Important Note:
 
 **Full Credit Card data should never touch or go through your servers. That means, Do not send the credit card data to Omise from your servers directly.**
 
 The token creation method in the library should only be used either with fake data in test mode (e.g.: quickly creating some fake data, testing our API from a terminal, etc.), or if you do and you are PCI-DSS compliant, sending card data from server requires a valid PCI-DSS certification.
-that said, you must achieve, maintain PCI ompliance at all times and do following a Security Best Practices https://www.pcisecuritystandards.org/documents/PCI_DSS_V3.0_Best_Practices_for_Maintaining_PCI_DSS_Compliance.pdf
+that said, you must achieve, maintain PCI ompliance at all times and do following a [Security Best Practices](https://www.pcisecuritystandards.org/documents/PCI_DSS_V3.0_Best_Practices_for_Maintaining_PCI_DSS_Compliance.pdf)
 
-So, we recommended you to create a token using [Omise.JS](https://github.com/omise/omise.js) library which runs on browser side. It uses javascript to send the credit card data on client side, send it to Omise, and then you can populate the form with a unique one-time used token which can be used later on with `omise-node`
-or [Card.js](https://docs.omise.co/card-js/), by using it you can let it builds a credit card payment form window and creates a card token that you can use to create a charge with `omise-node`.
+So, we recommended you to create a token using [Omise.JS](https://github.com/omise/omise.js) library which runs on browser.
+It uses Javascript to send the credit card data on client side, send it to Omise, and then you can populate the form with a unique one-time used token which can be used later on with `omise-node` or [Card.js](https://docs.omise.co/card-js/), by using it you can let it builds a credit card payment form window and creates a card token that you can use to create a charge with `omise-node`.
 For both methods, the client will directly send the card information to Omise gateway, your servers don't have to deal with card information at all and you don't need to deal with credit card data hassle, it reduces risk.
 
 **Please read https://docs.omise.co/collecting-card-information/ regarding how to collecting card information.**
@@ -40,16 +69,14 @@ For both methods, the client will directly send the card information to Omise ga
 
 ### Create a customer with card associated to it
 
-Creating a customer could be done by using `omise.customers.create` which accept optional `card` argument. When you pass in a `tokenId` retrieve from `omise.tokens` or [Omise.js](https://docs.omise.co/omise-js/), the card associated to that token will be associated to the customer.
+Creating a customer can be done by using `omise.customers.create` which accepts an optional `card` argument. When you pass in a `tokenId` retrieve from [Omise.js](https://docs.omise.co/omise-js/), the card associated to that token will be associated to the customer.
 
 ```
-var customer = {
-  'email': "john.doe@example.com",
-  'description': "John Doe (id: 30)",
-  'card': tokenId
-};
-
-omise.customers.create(customer, function(err, customer) {
+omise.customers.create({
+  'email': 'john.doe@example.com',
+  'description': 'John Doe (id: 30)',
+  'card': 'tokn_test_4xs9408a642a1htto8z' //tokenId
+}, function(err, customer) {
   var customerId = customer.id;
   console.log(customerId);
 });
@@ -67,7 +94,7 @@ omise.customers.list(function(err, list) {
 
 ### Retrieve a customer
 
-You can retrieve a created customer by using `omise.customers.retrieve` and passing a customer ID to it, e.g.
+You can retrieve the created customer by using `omise.customers.retrieve` and passing a customer ID to it, e.g.
 
 ```
 omise.customers.retrieve(customerId, function(err, resp) {
@@ -80,11 +107,9 @@ omise.customers.retrieve(customerId, function(err, resp) {
 The same with customer updating, which could be done using `omise.customers.update` with a customer ID and an object containing changes:
 
 ```
-var changes = {
-  description: "Customer for john.doe@example.com"
-}
-
-omise.customers.update(customerId, changes, function(err, resp) {
+omise.customers.update(customerId, {
+  description: 'Customer for john.doe@example.com'
+}, function(err, resp) {
   console.log(resp.description);
 });
 ```
@@ -94,30 +119,13 @@ omise.customers.update(customerId, changes, function(err, resp) {
 The library also supports the Promise/A+ interface that shares the same API method as the callback one, for example:
 
 ```
-var cardDetails = {
-  card: {
-    'name': 'JOHN DOE',
-    'city': 'Bangkok',
-    'postal_code': 10320,
-    'number': '4242424242424242',
-    'expiration_month': 2,
-    'expiration_year': 2017
-  }
-};
-
-// First, we start creating a token with `omise.tokens.create` to store the card data.
-omise.tokens.create(cardDetails).then(function(token) {
-
-  // Then, create a customer using token returned the API.
-  console.log(token.id);
+omise.tokens.retrieve('tokn_test_4xs9408a642a1htto8z', function(error, token) {
   return omise.customers.create({
-    email: "john.doe@example.com",
-    description: "John Doe (id: 30)",
+    email: 'john.doe@example.com',
+    description: 'John Doe (id: 30)',
     card: token.id
   });
-
 }).then(function(customer) {
-
   // And we make a charge to actually charge the customer for something.
   console.log(customer.id);
   return omise.charges.create({
