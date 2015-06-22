@@ -17,8 +17,8 @@ The library has been tested with Node version 0.10.32+.
 
 ###Flow
 
-1. Enter a credit card information.
-2. The card information is encrypted via HTTPS and send directly from client using Omise.js, Card.js or Omise-iOS SDK to Omise server.
+1. User enters the credit card information on your website or application using a form.
+2. The card information is sent via HTTPS directly from the client to Omise Servers using Omise.js, Card.js or Omise-iOS SDK.
 3. If the card passes the authorization, then your frontend will send the token to `omise-node` backend to finally capture the charge with Omise-node.
 
 ###The code
