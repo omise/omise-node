@@ -1,21 +1,21 @@
-var chai   = require('chai');
+var chai = require('chai');
 var expect = chai.expect;
 var should = chai.should();
 
 var config = require('./config.js');
-var omise  = require('../index')(config);
+var omise = require('../index')(config);
 var testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Cards', function() {
-    var tokenId    = '';
+    var tokenId = '';
     var customerId = '';
-    var cardId     = '';
+    var cardId = '';
 
     before(function(done) {
       testHelper.setupMock('tokens_create');
       var cardDetails = {
-        'card':{
+        'card': {
           'name': 'JOHN DOE',
           'city': 'Bangkok',
           'postal_code': 10320,
@@ -30,7 +30,7 @@ describe('Omise', function() {
         tokenId = resp.id;
         expect(tokenId).to.contains('tokn_test');
         should.exist(resp.card.id);
-        var cardId  = resp.card.id;
+        var cardId = resp.card.id;
         expect(cardId).to.contains('card_test');
         done();
       });
@@ -75,26 +75,28 @@ describe('Omise', function() {
       });
     });
 
-   it('should be able to update a card', function(done) {
-        testHelper.setupMock('card_update');
-        var data = {'expiration_year': 2022};
-        omise.customers.updateCard(customerId, cardId, data, function(err, resp) {
-          expect(resp.object, 'card');
-          expect(resp.id, 'card_test_4z2owrdmvbygi7ah0fu');
-          expect(resp.brand, 'Visa');
-          done();
-        });
+    it('should be able to update a card', function(done) {
+      testHelper.setupMock('card_update');
+      var data = {
+        'expiration_year': 2022
+      };
+      omise.customers.updateCard(customerId, cardId, data, function(err, resp) {
+        expect(resp.object, 'card');
+        expect(resp.id, 'card_test_4z2owrdmvbygi7ah0fu');
+        expect(resp.brand, 'Visa');
+        done();
       });
+    });
 
-      it('should be able to destroy a card', function(done) {
-        testHelper.setupMock('card_destroy');
-        omise.customers.destroyCard(customerId, cardId, function(err, resp) {
-          expect(resp.object, 'card');
-          expect(resp.id, 'card_test_4z2owrdmvbygi7ah0fu');
-          resp.deleted.should.be.true;
-          done();
-        });
+    it('should be able to destroy a card', function(done) {
+      testHelper.setupMock('card_destroy');
+      omise.customers.destroyCard(customerId, cardId, function(err, resp) {
+        expect(resp.object, 'card');
+        expect(resp.id, 'card_test_4z2owrdmvbygi7ah0fu');
+        resp.deleted.should.be.true;
+        done();
       });
+    });
 
   });
 });

@@ -1,10 +1,10 @@
 'use strict';
-var chai   = require('chai');
+var chai = require('chai');
 var expect = chai.expect;
 var should = chai.should();
 
 var config = require('./config.js');
-var omise  = require('../index')(config);
+var omise = require('../index')(config);
 var testHelper = require('./testHelper');
 
 describe('Omise', function() {
@@ -66,15 +66,16 @@ describe('Omise', function() {
       it('should be able to update a dispute', function(done) {
         testHelper.setupMock('disputes_list_open');
         omise.disputes.listOpen(function(err, resp) {
-          var update_data = {
+          var updateData = {
             'message': 'Unauthorized transaction'
           }
           testHelper.setupMock('disputes_update');
-          omise.disputes.update(resp.data[0].id, update_data, function(err, resp) {
-            expect(resp.message, update_data.message);
-            expect(resp.charge).to.match(/^chrg_test/);
-            done();
-          });
+          omise.disputes.update(resp.data[0].id, updateData,
+            function(err, resp) {
+              expect(resp.message, updateData.message);
+              expect(resp.charge).to.match(/^chrg_test/);
+              done();
+            });
         });
       });
     }

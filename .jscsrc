@@ -5,7 +5,7 @@
     "maximumLineLength": 80,
     "validateLineBreaks": "LF",
     "validateIndentation": 2,
-
+    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
     "disallowKeywords": ["with"],
     "disallowSpacesInsideObjectBrackets": null,
     "disallowImplicitTypeConversion": ["string"],

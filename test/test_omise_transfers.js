@@ -13,7 +13,7 @@ describe('Omise', function() {
     it('should be able to list all transfers', function(done) {
       testHelper.setupMock('transfers_create');
       var data = {'amount': '4000'};
-      omise.transfers.create(data, function(err, resp){
+      omise.transfers.create(data, function(err, resp) {
         testHelper.setupMock('transfers_list');
         omise.transfers.list(function(err, resp) {
           expect(resp.object, 'transfer');
