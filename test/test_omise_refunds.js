@@ -39,7 +39,7 @@ describe('Omise', function() {
         };
         omise.charges.create(charge, function(err, resp) {
           chargeId = resp.id;
-          amount = resp.amount;
+          var amount = resp.amount;
           testHelper.setupMock('refunds_create');
           var data = {
             'amount': amount
