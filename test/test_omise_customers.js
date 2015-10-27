@@ -75,7 +75,6 @@ describe('Omise', function() {
 
     it('should be able to update an existing customer', function(done) {
       testHelper.setupMock('customer_update');
-      // var customerId = 'cust_test_4z2owmajzsb3c527wj7';
       var data = {
         description: 'New description',
       };
