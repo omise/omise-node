@@ -47,7 +47,7 @@ describe('Omise', function() {
         chargeId = resp.id;
         expect(chargeId).to.match(/^chrg_test/);
         expect(resp.capture).be.false;
-        expect(resp.captured).be.false;
+        expect(resp.paid).be.false;
         done();
       });
     });
@@ -88,8 +88,8 @@ describe('Omise', function() {
       testHelper.setupMock('charges_capture');
       omise.charges.capture(chargeId, function(err, resp) {
         expect(resp.object, 'charge');
-        var captured = resp.captured;
-        captured.should.be.true;
+        var paid = resp.paid;
+        paid.should.be.true;
         done();
       });
     });

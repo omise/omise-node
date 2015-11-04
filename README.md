@@ -45,7 +45,7 @@ omise.charges.create({
   'capture': false,
   'card': tokenId
 }, function(err, resp) {
-  if (resp.captured) {
+  if (resp.paid) {
     //Success
   } else {
     //Handle failure
