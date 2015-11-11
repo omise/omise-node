@@ -2,7 +2,8 @@
 
 var config = {
   publicKey: process.env.OMISE_PUBLIC_KEY,
-  secretKey: process.env.OMISE_SECRET_KEY
+  secretKey: process.env.OMISE_SECRET_KEY,
+  omiseVersion: '2015-09-10'
 };
 
 if (process.env.NOCK_OFF && (!config['publicKey'] || !config['secretKey'])) {
