@@ -2,6 +2,10 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.3.0 - 2015-11-13
+- Add `omiseVersion` config that support adding `Omise-Version` http header to the api request.
+- Improve test by cleaning up unused vars.
+
 ## 0.2.1 - 2015-06-10
 ### Removed
 - Remove token creation example.
@@ -27,6 +31,7 @@ Use [Semantic Versioning](http://semver.org/).
 - Fix typo in package.json and README.md
 
 [unreleased]: https://github.com/omise/omise-node/commits/master
+[0.3.0]: https://github.com/omise/omise-node/releases/tag/v0.3.0
 [0.2.1]: https://github.com/omise/omise-node/releases/tag/v0.2.1
 [0.2.0]: https://github.com/omise/omise-node/releases/tag/v0.2.0
 [0.1.2]: https://github.com/omise/omise-node/releases/tag/v0.1.2

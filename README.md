@@ -36,7 +36,8 @@ First, you have to configure the library by passing the secret key from `https:/
 
 ```
 var omise = require('omise')({
-  'secretKey': 'skey_test_...'
+  'secretKey': 'skey_test_...',
+  'omiseVersion': '2015-09-10'
 });
 omise.charges.create({
   'description': 'Charge for order ID: 888',
