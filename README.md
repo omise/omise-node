@@ -16,6 +16,7 @@ The library has been tested with Node version 0.10.32+.
 ## Code Status
 
 [![Build Status](https://circleci.com/gh/omise/omise-node.svg?style=svg)](https://circleci.com/gh/omise/omise-node)
+[![Code Climate](https://codeclimate.com/github/omise/omise-node/badges/gpa.svg)](https://codeclimate.com/github/omise/omise-node)
 
 ## Usage
 
@@ -44,7 +45,7 @@ omise.charges.create({
   'capture': false,
   'card': tokenId
 }, function(err, resp) {
-  if (resp.captured) {
+  if (resp.paid) {
     //Success
   } else {
     //Handle failure

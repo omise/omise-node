@@ -11,7 +11,7 @@ var scope = nock('https://api.omise.co')
                           "description": "Charge for order 3947",
                           "capture": true,
                           "authorized": true,
-                          "captured": true,
+                          "paid": true,
                           "transaction": "trxn_test_4z429hw7a8x76nuxrc5",
                           "refunded": 0,
                           "refunds": {

@@ -29,7 +29,6 @@ describe('Omise', function() {
       omise.tokens.create(cardDetails, function(err, resp) {
         tokenId = resp.id;
         should.exist(resp.card.id);
-        var cardId = resp.card.id;
         testHelper.setupMock('charges_create');
         var charge = {
           'description': 'Charge for order 3947',
