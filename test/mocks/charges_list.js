@@ -1,6 +1,5 @@
 var nock  = require('nock');
 var scope = nock('https://api.omise.co')
-            .persist()
             .get('/charges')
             .reply(200, { "object": "list",
                           "from": "1970-01-01T00:00:00+00:00",
