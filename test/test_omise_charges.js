@@ -62,6 +62,17 @@ describe('Omise', function() {
       });
     });
 
+    it('should be able to limit charges list', function(done) {
+      testHelper.setupMock('charges_list_data');
+      omise.charges.list({limit: 1}, function(err, resp) {
+        expect(resp.object, 'list');
+        expect(resp).to.have.property('data');
+        expect(resp.data).to.be.a('array');
+        resp.limit.should.equal(1);
+        done();
+      });
+    });
+
     it('should be able to retrieve a charge', function(done) {
       testHelper.setupMock('charges_retrieve');
       omise.charges.retrieve(chargeId, function(err, resp) {
