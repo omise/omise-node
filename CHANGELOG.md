@@ -2,6 +2,9 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.4.0 - 2016-01-04
+- Add missing resource listing parameters.
+
 ## 0.3.0 - 2015-11-13
 - Add `omiseVersion` config that support adding `Omise-Version` http header to the api request.
 - Improve test by cleaning up unused vars.
