@@ -169,14 +169,14 @@ The following API methods are available. Please see [https://docs.omise.co](http
   * `retrieve()`
 * charges
   * `create(data)`
-  * `list()`
+  * `list([data])`
   * `retrieve(chargeId)`
   * `capture(chargeId)`
   * `createRefund(chargeId[, data])`
   * `update(chargeId[, data])`
 * customers
   * `create(data)`
-  * `list()`
+  * `list([data])`
   * `update(customerId[, data])`
   * `destroy(customerId)`
   * `retrieve(customerId)`
@@ -189,14 +189,14 @@ The following API methods are available. Please see [https://docs.omise.co](http
   * `retrieve(tokenId)`
 * transfers
   * `create(data)`
-  * `list()`
+  * `list([data])`
   * `retrieve(transferId)`
   * `update(transferId[, data])`
 * transactions
-  * `list()`
+  * `list([data])`
   * `retrieve(transactionId)`
 * disputes
-  * `list()`
+  * `list([data])`
   * `listClosed()`
   * `listOpen()`
   * `listPending()`
@@ -204,7 +204,7 @@ The following API methods are available. Please see [https://docs.omise.co](http
   * `update(disputeId[, data])`
 * recipients
   * `create(data)`
-  * `list()`
+  * `list([data])`
   * `update(recipientId[, data])`
   * `destroy(recipientId)`
   * `retrieve(recipientId)`
