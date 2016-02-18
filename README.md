@@ -208,6 +208,9 @@ The following API methods are available. Please see [https://docs.omise.co](http
   * `update(recipientId[, data])`
   * `destroy(recipientId)`
   * `retrieve(recipientId)`
+* events
+  * `list([data])`
+  * `retrieve(eventId)`
 
 ## Testing
 
