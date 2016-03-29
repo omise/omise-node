@@ -2,6 +2,9 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.5.0 - 2016-02-18
+- Add Events API support.
+
 ## 0.4.1 - 2016-01-07
 - Update list() doc.
 
@@ -37,6 +40,7 @@ Use [Semantic Versioning](http://semver.org/).
 - Fix typo in package.json and README.md
 
 [unreleased]: https://github.com/omise/omise-node/commits/master
+[0.5.0]: https://github.com/omise/omise-node/releases/tag/v0.5.0
 [0.4.1]: https://github.com/omise/omise-node/releases/tag/v0.4.1
 [0.4.0]: https://github.com/omise/omise-node/releases/tag/v0.4.0
 [0.3.0]: https://github.com/omise/omise-node/releases/tag/v0.3.0
