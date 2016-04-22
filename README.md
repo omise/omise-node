@@ -180,7 +180,7 @@ The following API methods are available. Please see [https://docs.omise.co](http
   * `update(customerId[, data])`
   * `destroy(customerId)`
   * `retrieve(customerId)`
-  * `listCards(customerId)`
+  * `listCards(customerId[, data])`
   * `retrieveCard(customerId, cardId)`
   * `updateCard(customerId, cardId[, data])`
   * `destroyCard(customerId, cardId)`
