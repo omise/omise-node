@@ -174,6 +174,7 @@ The following API methods are available. Please see [https://docs.omise.co](http
   * `capture(chargeId)`
   * `createRefund(chargeId[, data])`
   * `update(chargeId[, data])`
+  * `reverse(chargeId)`
 * customers
   * `create(data)`
   * `list([data])`

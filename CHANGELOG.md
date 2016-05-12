@@ -2,6 +2,9 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.5.2 - 2016-05-12
+- Support for Charge reverse api.
+
 ## 0.5.1 - 2016-04-22
 - Add listCard([,data]) option.
 
@@ -43,6 +46,7 @@ Use [Semantic Versioning](http://semver.org/).
 - Fix typo in package.json and README.md
 
 [unreleased]: https://github.com/omise/omise-node/commits/master
+[0.5.2]: https://github.com/omise/omise-node/releases/tag/v0.5.2
 [0.5.1]: https://github.com/omise/omise-node/releases/tag/v0.5.1
 [0.5.0]: https://github.com/omise/omise-node/releases/tag/v0.5.0
 [0.4.1]: https://github.com/omise/omise-node/releases/tag/v0.4.1
