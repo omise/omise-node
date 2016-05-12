@@ -21,6 +21,7 @@ nock('https://api.omise.co')
       status: 'successful',
       capture: false,
       authorized: true,
+      reversed: false,
       paid: true,
       transaction: 'trxn_test_50zn6xotiaabible1cx',
       refunded: 0,

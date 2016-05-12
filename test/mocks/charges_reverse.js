@@ -1,7 +1,7 @@
 var nock = require('nock');
 nock('https://api.omise.co')
   .persist()
-  .post('/charges/chrg_test_4z429hvnv7ouolu6kmp/capture')
+  .post('/charges/chrg_test_4z429hvnv7ouolu6kmp/reverse')
   .reply(200, {
     "object": "charge",
     "id": "chrg_test_4z5goqdwpjebu1gsmqq",
@@ -12,8 +12,8 @@ nock('https://api.omise.co')
     "description": "Charge for order 3947",
     "capture": false,
     "authorized": true,
-    "reversed": false,
-    "paid": true,
+    "reversed": true,
+    "paid": false,
     "transaction": "trxn_test_4z5gp0t3mpfsu28u8jo",
     "refunded": 0,
     "refunds": {
