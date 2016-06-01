@@ -1,6 +1,8 @@
 omise-node
 ==========
 
+[![Join the chat at https://gitter.im/omise/omise-node](https://badges.gitter.im/omise/omise-node.svg)](https://gitter.im/omise/omise-node?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Omise Node.js bindings.
 
 ## Installation
