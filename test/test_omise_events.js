@@ -21,12 +21,14 @@ describe('Omise', function() {
 
     it('should be able to retrieve an event', function(done) {
       testHelper.setupMock('event_retrieve');
-      omise.events.retrieve('evnt_test_52lfalk2p3ssnhwfoez', function(err, resp) {
-        expect(resp.object, 'event');
-        expect(resp.id, 'evnt_test_52lfalk2p3ssnhwfoez');
-        expect(resp.key, 'charge.create');
-        done();
-      });
+      omise.events.retrieve('evnt_test_52lfalk2p3ssnhwfoez',
+        function(err, resp) {
+          expect(resp.object, 'event');
+          expect(resp.id, 'evnt_test_52lfalk2p3ssnhwfoez');
+          expect(resp.key, 'charge.create');
+          done();
+        }
+      );
     });
 
   });
