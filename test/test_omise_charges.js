@@ -52,6 +52,16 @@ describe('Omise', function() {
       });
     });
 
+    it('should be able to reverse a charge', function(done) {
+      testHelper.setupMock('charges_reverse');
+      omise.charges.reverse(chargeId, function(err, resp) {
+        expect(resp.object, 'charge');
+        var reversed = resp.reversed;
+        reversed.should.be.true;
+        done();
+      });
+    });
+
     it('should be able to list charges', function(done) {
       testHelper.setupMock('charges_list');
       omise.charges.list(function(err, resp) {
@@ -105,15 +115,6 @@ describe('Omise', function() {
       });
     });
 
-    it('should be able to reverse a charge', function(done) {
-      testHelper.setupMock('charges_reverse');
-      omise.charges.reverse(chargeId, function(err, resp) {
-        expect(resp.object, 'charge');
-        var reversed = resp.reversed;
-        reversed.should.be.true;
-        done();
-      });
-    });
 
   });
 });
