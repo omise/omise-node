@@ -115,6 +115,5 @@ describe('Omise', function() {
       });
     });
 
-
   });
 });
