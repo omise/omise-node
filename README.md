@@ -214,6 +214,10 @@ The following API methods are available. Please see [https://docs.omise.co](http
 * events
   * `list([data])`
   * `retrieve(eventId)`
+* links
+  * `create(data)`
+  * `list([data])`
+  * `retrieve(linkId)`
 
 ## Testing
 
