@@ -6,11 +6,11 @@ var omise = require('../index')({
 });
 
 var link = {
-  "amount": 19000,
-  "currency": "thb",
-  "multiple": true,
-  "title": "Cappuccino",
-  "description": "Freshly brewed coffee",
+  'amount': 19000,
+  'currency': 'thb',
+  'multiple': true,
+  'title': 'Cappuccino',
+  'description': 'Freshly brewed coffee'
 };
 
 omise.links.create(link, function(err, resp) {

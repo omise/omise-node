@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var omise = require('../index')({
   'publicKey': process.env.OMISE_PUBLIC_KEY,
@@ -6,8 +6,8 @@ var omise = require('../index')({
 });
 
 var customer = {
-  email: "john.doe@example.com",
-  description: "John Doe (id: 30)",
+  email: 'john.doe@example.com',
+  description: 'John Doe (id: 30)'
 };
 
 omise.customers.create(customer, function(err, resp) {

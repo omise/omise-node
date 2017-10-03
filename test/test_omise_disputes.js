@@ -10,7 +10,7 @@ describe('Omise', function() {
     it('should be able to list all disputes', function(done) {
       testHelper.setupMock('disputes_list');
       omise.disputes.list(function(err, resp) {
-        expect(resp.object, 'list')
+        expect(resp.object, 'list');
         expect(resp.data).to.be.instanceof(Array);
         done();
       });
@@ -22,7 +22,7 @@ describe('Omise', function() {
       it('should be able to list open disputes', function(done) {
         testHelper.setupMock('disputes_list_open');
         omise.disputes.listOpen(function(err, resp) {
-          expect(resp.object, 'list')
+          expect(resp.object, 'list');
           expect(resp.data).to.be.instanceof(Array);
           expect(resp.data[0].status, 'open');
           done();
@@ -32,7 +32,7 @@ describe('Omise', function() {
       it('should be able to list closed disputes', function(done) {
         testHelper.setupMock('disputes_list_closed');
         omise.disputes.listClosed(function(err, resp) {
-          expect(resp.object, 'list')
+          expect(resp.object, 'list');
           expect(resp.data).to.be.instanceof(Array);
           expect(resp.data[0].status, 'closed');
           done();
@@ -42,7 +42,7 @@ describe('Omise', function() {
       it('should be able to list pending disputes', function(done) {
         testHelper.setupMock('disputes_list_pending');
         omise.disputes.listPending(function(err, resp) {
-          expect(resp.object, 'list')
+          expect(resp.object, 'list');
           expect(resp.data).to.be.instanceof(Array);
           expect(resp.data[0].status, 'pending');
           done();
@@ -66,7 +66,7 @@ describe('Omise', function() {
         omise.disputes.listOpen(function(err, resp) {
           var updateData = {
             'message': 'Unauthorized transaction'
-          }
+          };
           testHelper.setupMock('disputes_update');
           omise.disputes.update(resp.data[0].id, updateData,
             function(err, resp) {

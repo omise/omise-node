@@ -9,5 +9,5 @@ nock('https://vault.omise.co')
     }
   }, {
     server: 'nginx/1.1',
-    'content-type': 'application/json',
+    'content-type': 'application/json'
   });

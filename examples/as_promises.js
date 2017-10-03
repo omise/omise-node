@@ -20,8 +20,8 @@ omise.tokens.create(cardDetails).then(function(token) {
 
   console.log(token);
   return omise.customers.create({
-    email: "john.doe@example.com",
-    description: "John Doe (id: 30)",
+    email: 'john.doe@example.com',
+    description: 'John Doe (id: 30)',
     card: token.id
   });
 
