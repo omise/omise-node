@@ -30,7 +30,7 @@ nock('https://api.omise.co')
       'data': [
 
       ],
-      'location': '/charges/' + chargeID + '/refunds'
+      'location': '/charges/' + chargeID + '/refunds',
     },
     'return_uri': 'http://www.example.com/orders/3947/complete',
     'reference': paymentID,
@@ -52,12 +52,12 @@ nock('https://api.omise.co')
       'fingerprint': 'umrBpbHRuc8vstbcNEZPbnKkIycR/gvI6ivW9AshKCw=',
       'name': 'JOHN DOE',
       'security_code_check': true,
-      'created': '2015-02-23T05:15:18Z'
+      'created': '2015-02-23T05:15:18Z',
     },
     'customer': null,
     'ip': null,
-    'created': '2015-02-23T05:16:05Z'
+    'created': '2015-02-23T05:16:05Z',
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

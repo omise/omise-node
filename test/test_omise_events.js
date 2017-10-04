@@ -29,6 +29,5 @@ describe('Omise', function() {
         }
       );
     });
-
   });
 });

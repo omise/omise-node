@@ -1,4 +1,4 @@
-var nock  = require('nock');
+var nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .get('/transactions')
@@ -15,23 +15,23 @@ nock('https://api.omise.co')
       'type': 'credit',
       'amount': 384,
       'currency': 'THB',
-      'created': '2015-02-05T07:11:40Z'
+      'created': '2015-02-05T07:11:40Z',
     }, {
       'object': 'transaction',
       'id': 'trxn_test_4yywncqjz53uvid4rw7',
       'type': 'credit',
       'amount': 384,
       'currency': 'THB',
-      'created': '2015-02-06T10:57:06Z'
+      'created': '2015-02-06T10:57:06Z',
     }, {
       'object': 'transaction',
       'id': 'trxn_test_4z0106itqssy9kba84v',
       'type': 'credit',
       'amount': 95,
       'currency': 'THB',
-      'created': '2015-02-09T07:44:14Z'
-    }]
+      'created': '2015-02-09T07:44:14Z',
+    }],
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

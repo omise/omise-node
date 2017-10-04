@@ -1,35 +1,35 @@
 'use strict';
-var chai   = require('chai');
+var chai = require('chai');
 var expect = chai.expect;
 var should = chai.should();
 
 var config = require('./config.js');
-var omise  = require('../index')(config);
+var omise = require('../index')(config);
 var testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Customers', function() {
-    var tokenId    = '';
+    var tokenId = '';
     var customerId = '';
     before(function(done) {
       testHelper.setupMock('tokens_create');
       var cardDetails = {
-        'card':{
+        'card': {
           'name': 'JOHN DOE',
           'city': 'Bangkok',
           'postal_code': 10320,
           'number': '4242424242424242',
           'expiration_month': 2,
           'expiration_year': 2017,
-          'security_code': 123
-        }
+          'security_code': 123,
+        },
       };
       omise.tokens.create(cardDetails, function(err, resp) {
         should.exist(resp.id);
         tokenId = resp.id;
         expect(tokenId).to.contains('tokn_test');
         should.exist(resp.card.id);
-        var cardId  = resp.card.id;
+        var cardId = resp.card.id;
         expect(cardId).to.contains('card_test');
         done();
       });
@@ -40,7 +40,7 @@ describe('Omise', function() {
       var data = {
         email: 'john.doe@example.com',
         description: 'John Doe (id: 30)',
-        card: tokenId
+        card: tokenId,
       };
       omise.customers.create(data, function(err, resp) {
         customerId = resp.id;
@@ -56,11 +56,13 @@ describe('Omise', function() {
     it('should be able to create and capture charge using customer ID',
       function(done) {
         testHelper.setupMock('charges_create');
-        var charge = { 'description': 'Charge for order 3948',
-                       'amount': '100000',
-                       'currency': 'thb',
-                       'capture': false,
-                       'customer': customerId };
+        var charge = {
+          'description': 'Charge for order 3948',
+          'amount': '100000',
+          'currency': 'thb',
+          'capture': false,
+          'customer': customerId,
+        };
         omise.charges.create(charge, function(err, resp) {
           expect(resp.object, 'charge');
           var chargeId = resp.id;
@@ -76,30 +78,32 @@ describe('Omise', function() {
       function(done) {
         testHelper.setupMock('tokens_create');
         var cardDetails = {
-          'card':{
+          'card': {
             'name': 'JOHN DOE',
             'city': 'Bangkok',
             'postal_code': 10320,
             'number': '4242424242424242',
             'expiration_month': 2,
             'expiration_year': 2017,
-            'security_code': 123
-          }
+            'security_code': 123,
+          },
         };
         omise.tokens.create(cardDetails, function(err, resp) {
           should.exist(resp.id);
           tokenId = resp.id;
           expect(tokenId).to.contains('tokn_test');
           should.exist(resp.card.id);
-          var cardId  = resp.card.id;
+          var cardId = resp.card.id;
           expect(cardId).to.contains('card_test');
           testHelper.setupMock('charges_create');
 
-          var charge = { 'description': 'Charge for order 3949',
-                         'amount': '100000',
-                         'currency': 'thb',
-                         'capture': false,
-                         'card': tokenId };
+          var charge = {
+            'description': 'Charge for order 3949',
+            'amount': '100000',
+            'currency': 'thb',
+            'capture': false,
+            'card': tokenId,
+          };
           omise.charges.create(charge, function(err, resp) {
             expect(err).to.equal(null, err !== null ? err.message : null);
             expect(resp.object, 'charge');
@@ -135,9 +139,7 @@ describe('Omise', function() {
 
     it('should be able to update an existing customer', function(done) {
       testHelper.setupMock('customer_update');
-      var data = {
-        description: 'New description',
-      };
+      var data = {description: 'New description'};
       omise.customers.update(customerId, data, function(err, resp) {
         expect(resp.object, 'customer');
         expect(resp.description, 'New description');
@@ -153,6 +155,5 @@ describe('Omise', function() {
         done();
       });
     });
-
   });
 });

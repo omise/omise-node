@@ -1,4 +1,4 @@
-var nock  = require('nock');
+var nock = require('nock');
 
 var custID = 'cust_test_4z2p1qpnjvkqj6z65c0';
 var cardID = 'card_test_4z2p1xz7uuiunks6sf5';
@@ -37,11 +37,11 @@ nock('https://api.omise.co')
         'fingerprint': 'umrBpbHRuc8vstbcNEZPbnKkIycR/gvI6ivW9AshKCw=',
         'name': 'JOHN DOE',
         'security_code_check': true,
-        'created': '2015-02-16T03:26:53Z'
+        'created': '2015-02-16T03:26:53Z',
       }],
-      'location': '/customers/' + custID + '/cards'
-    }
+      'location': '/customers/' + custID + '/cards',
+    },
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

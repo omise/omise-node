@@ -20,7 +20,7 @@ nock('https://api.omise.co')
         'brand': 'test',
         'last_digits': '6789',
         'name': 'DEFAULT BANK ACCOUNT',
-        'created': '2015-05-30T04:28:09Z'
+        'created': '2015-05-30T04:28:09Z',
       },
       'sent': false,
       'paid': false,
@@ -30,9 +30,9 @@ nock('https://api.omise.co')
       'failure_code': null,
       'failure_message': null,
       'transaction': null,
-      'created': '2016-01-06T03:34:34Z'
-    }
+      'created': '2016-01-06T03:34:34Z',
+    },
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

@@ -1,4 +1,4 @@
-var nock  = require('nock');
+var nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .get('/recipients/recp_test_5085pqoioecnxqz0zvi')
@@ -19,11 +19,11 @@ nock('https://api.omise.co')
       'brand': 'test',
       'last_digits': '6789',
       'name': 'DEFAULT BANK ACCOUNT',
-      'created': '2015-05-30T04:28:03Z'
+      'created': '2015-05-30T04:28:03Z',
     },
     'failure_code': null,
-    'created': '2015-05-30T04:28:03Z'
+    'created': '2015-05-30T04:28:03Z',
   }, {
     'server': 'nginx/1.1',
-    'content-type': 'application/json'
+    'content-type': 'application/json',
   });

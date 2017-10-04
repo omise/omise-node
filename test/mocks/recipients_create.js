@@ -19,11 +19,11 @@ nock('https://api.omise.co')
       'brand': 'bbl',
       'last_digits': '7890',
       'name': 'John Doe',
-      'created': '2015-06-02T04:38:42Z'
+      'created': '2015-06-02T04:38:42Z',
     },
     'failure_code': null,
-    'created': '2015-06-02T04:38:42Z'
+    'created': '2015-06-02T04:38:42Z',
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

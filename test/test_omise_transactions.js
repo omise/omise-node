@@ -1,7 +1,7 @@
-var chai   = require('chai');
+var chai = require('chai');
 var expect = chai.expect;
 var config = require('./config.js');
-var omise  = require('../index')(config);
+var omise = require('../index')(config);
 var testHelper = require('./testHelper');
 
 describe('Omise', function() {
@@ -19,7 +19,7 @@ describe('Omise', function() {
 
     it('should be able to retrieve a transaction', function(done) {
       testHelper.setupMock('transaction_retrieve');
-      //var transactionId = 'trxn_test_4z5gp0t3mpfsu28u8jo';
+      // var transactionId = 'trxn_test_4z5gp0t3mpfsu28u8jo';
       omise.transactions.retrieve(transactionId, function(err, resp) {
         expect(resp.object, 'transaction');
         expect(resp.id).to.match(/^trxn_test/);
@@ -27,5 +27,5 @@ describe('Omise', function() {
         done();
       });
     });
-  })
-})
+  });
+});

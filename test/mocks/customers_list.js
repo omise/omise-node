@@ -18,7 +18,7 @@ nock('https://api.omise.co')
       email: 'john.doe@example.com',
       description: 'John Doe (id: 30)',
       created: '2015-02-03T05:28:15Z',
-      cards: [Object]
+      cards: [Object],
     }, {
       object: 'customer',
       id: 'cust_test_4yygdeiu4ko863sxts9',
@@ -28,9 +28,9 @@ nock('https://api.omise.co')
       email: null,
       description: 'WooCommerce customer 1',
       created: '2015-02-05T07:12:33Z',
-      cards: [Object]
-    }]
+      cards: [Object],
+    }],
   }, {
-    server: 'nginx/1.1',
+    'server': 'nginx/1.1',
     'content-type': 'application/json',
   });

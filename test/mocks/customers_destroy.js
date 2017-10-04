@@ -1,4 +1,4 @@
-var nock  = require('nock');
+var nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .intercept('/customers/cust_test_4z2owmajzsb3c527wj7', 'DELETE')
@@ -6,8 +6,8 @@ nock('https://api.omise.co')
     'object': 'customer',
     'id': 'cust_test_4z2owmajzsb3c527wj7',
     'livemode': false,
-    'deleted': true
+    'deleted': true,
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

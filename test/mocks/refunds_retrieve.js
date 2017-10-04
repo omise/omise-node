@@ -1,4 +1,4 @@
-var nock  = require('nock');
+var nock = require('nock');
 
 var chargeID = 'chrg_test_4z429hvnv7ouolu6kmp';
 var refundID = 'rfnd_test_4z5xxgntg3pzhhynae4';
@@ -14,8 +14,8 @@ nock('https://api.omise.co')
     'currency': 'thb',
     'charge': chargeID,
     'transaction': 'trxn_test_4z5xxgnzst7caoa8f79',
-    'created': '2015-02-24T10:39:26Z'
+    'created': '2015-02-24T10:39:26Z',
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

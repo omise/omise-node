@@ -35,7 +35,7 @@ nock('https://api.omise.co')
         'data': [
 
         ],
-        'location': '/charges/chrg_test_4yygd35mhsna2wry8xb/refunds'
+        'location': '/charges/chrg_test_4yygd35mhsna2wry8xb/refunds',
       },
       'failure_code': null,
       'failure_message': null,
@@ -43,11 +43,11 @@ nock('https://api.omise.co')
         'object': 'card',
         'id': 'card_test_4yygde8bubfe1akwqq3',
         'livemode': false,
-        'deleted': true
+        'deleted': true,
       },
       'customer': 'cust_test_4yygdeiu4ko863sxts9',
       'ip': null,
-      'created': '2015-02-05T07:11:40Z'
+      'created': '2015-02-05T07:11:40Z',
     }, {
       'object': 'charge',
       'id': 'chrg_test_4z429hvnv7ouolu6kmp',
@@ -72,7 +72,7 @@ nock('https://api.omise.co')
         'data': [
 
         ],
-        'location': '/charges/chrg_test_4z429hvnv7ouolu6kmp/refunds'
+        'location': '/charges/chrg_test_4z429hvnv7ouolu6kmp/refunds',
       },
       'return_uri': 'http://www.example.com/orders/3947/complete',
       'reference': paymentID,
@@ -94,13 +94,13 @@ nock('https://api.omise.co')
         'fingerprint': 'umrBpbHRuc8vstbcNEZPbnKkIycR/gvI6ivW9AshKCw=',
         'name': 'JOHN DOE',
         'security_code_check': true,
-        'created': '2015-02-19T15:18:59Z'
+        'created': '2015-02-19T15:18:59Z',
       },
       'customer': null,
       'ip': null,
-      'created': '2015-02-19T15:19:26Z'
-    }]
+      'created': '2015-02-19T15:19:26Z',
+    }],
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

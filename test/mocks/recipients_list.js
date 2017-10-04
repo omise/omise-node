@@ -1,4 +1,4 @@
-var nock  = require('nock');
+var nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .get('/recipients')
@@ -26,13 +26,13 @@ nock('https://api.omise.co')
         'brand': 'bbl',
         'last_digits': '7890',
         'name': 'John Doe',
-        'created': '2015-06-02T03:37:12Z'
+        'created': '2015-06-02T03:37:12Z',
       },
       'failure_code': null,
-      'created': '2015-06-02T03:37:12Z'
+      'created': '2015-06-02T03:37:12Z',
     }],
-    'location': '/recipients'
+    'location': '/recipients',
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

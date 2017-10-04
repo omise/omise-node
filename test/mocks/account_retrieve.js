@@ -6,8 +6,8 @@ nock('https://api.omise.co')
     'object': 'account',
     'id': 'acct_123',
     'email': 'test@omise.co',
-    'created': '2015-02-02T13:19:17Z'
+    'created': '2015-02-02T13:19:17Z',
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });
