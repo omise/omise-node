@@ -7,8 +7,7 @@ var config = {
 };
 
 if (process.env.NOCK_OFF && (!config['publicKey'] || !config['secretKey'])) {
-  var msg =
-    'Please set OMISE_PUBLIC_KEY and OMISE_SECRET_KEY env vars ' +
+  var msg = 'Please set OMISE_PUBLIC_KEY and OMISE_SECRET_KEY env vars ' +
     'for public key and secret key respectively.';
   console.log(msg);
   process.exit(2)

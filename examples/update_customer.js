@@ -7,8 +7,9 @@ var omise = require('../index')({
 
 var updateParams = {
   description: 'the other description'
-}
+};
 
-omise.customers.update('cust_test_4z2owmajzsb3c527wj7', updateParams, function(err, resp) {
-  console.log(resp);
-});
+omise.customers.update('cust_test_4z2owmajzsb3c527wj7', updateParams,
+  function(err, resp) {
+    console.log(resp);
+  });
