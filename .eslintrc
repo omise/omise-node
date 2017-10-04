@@ -1,0 +1,44 @@
+{
+  "extends": ["eslint:recommended", "google"],
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "no-var": "off",
+    "max-len": [
+      2,
+      80
+    ],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "indent": [
+      2,
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "camelcase": [
+      2,
+      {
+        "properties": "never"
+      }
+    ],
+    "no-with": 2,
+    "no-implicit-coercion": [
+      2,
+      {
+        "boolean": false,
+        "string": true,
+        "number": false
+      }
+    ],
+    "consistent-this": [
+      2,
+      "_this"
+    ]
+  }
+}
