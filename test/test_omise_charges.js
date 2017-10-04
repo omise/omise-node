@@ -1,15 +1,15 @@
 'use strict';
-var chai = require('chai');
+var chai   = require('chai');
 var expect = chai.expect;
 var should = chai.should();
 
 var config = require('./config.js');
-var omise = require('../index')(config);
+var omise  = require('../index')(config);
 var testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Charges', function() {
-    var tokenId = '';
+    var tokenId  = '';
     var chargeId = '';
     before(function(done) {
       testHelper.setupMock('tokens_create');

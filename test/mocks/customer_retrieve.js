@@ -1,7 +1,7 @@
 var nock = require('nock');
 
-var custID = 'cust_test_4z2owmajzsb3c527wj7';
-var cardID = 'card_test_4z70ihpsgokp70hxqnq';
+var custID  = 'cust_test_4z2owmajzsb3c527wj7';
+var cardID  = 'card_test_4z70ihpsgokp70hxqnq';
 var custURL = '/customers/' + custID;
 var cardURL = custURL + '/cards';
 nock('https://api.omise.co')

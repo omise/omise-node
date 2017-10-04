@@ -1,6 +1,6 @@
 var nock = require('nock');
 
-var paymentID = 'paym_4z429hvmrk381n4q8xc';
+var paymentID  = 'paym_4z429hvmrk381n4q8xc';
 var paymentURL = 'https://api.omise.co/payments/' + paymentID + '/authorize';
 nock('https://api.omise.co')
   .persist()

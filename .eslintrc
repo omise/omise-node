@@ -7,29 +7,29 @@
   "rules": {
     "no-var": "off",
     "max-len": [
-      2,
+      "error",
       80
     ],
     "linebreak-style": [
-      2,
+      "error",
       "unix"
     ],
     "indent": [
-      2,
+      "error",
       2,
       {
         "SwitchCase": 1
       }
     ],
     "camelcase": [
-      2,
+      "error",
       {
         "properties": "never"
       }
     ],
-    "no-with": 2,
+    "no-with": "error",
     "no-implicit-coercion": [
-      2,
+      "error",
       {
         "boolean": false,
         "string": true,
@@ -41,6 +41,11 @@
       "_this"
     ],
     "no-console": "warn",
-    "require-jsdoc": "warn"
+    "require-jsdoc": "warn",
+    "no-multi-spaces": ["error", {
+      "exceptions": {
+        "VariableDeclarator": true
+      }
+    }]
   }
 }
