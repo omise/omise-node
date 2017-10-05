@@ -41,7 +41,7 @@
       "_this"
     ],
     "no-console": "warn",
-    "require-jsdoc": "warn",
+    "require-jsdoc": "off",
     "no-multi-spaces": ["error", {
       "exceptions": {
         "VariableDeclarator": true
