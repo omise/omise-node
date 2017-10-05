@@ -1,7 +1,7 @@
-var nock  = require('nock');
+var nock = require('nock');
 
-var chargeID = 'chrg_test_4z429hvnv7ouolu6kmp';
-var paymentID = 'paym_4z429hvmrk381n4q8xc';
+var chargeID   = 'chrg_test_4z429hvnv7ouolu6kmp';
+var paymentID  = 'paym_4z429hvmrk381n4q8xc';
 var paymentURL = 'https://api.omise.co/payments/' + paymentID + '/authorize';
 nock('https://api.omise.co')
   .persist()
@@ -28,7 +28,7 @@ nock('https://api.omise.co')
       'limit': 20,
       'total': 0,
       'data': [],
-      'location': '/charges/' + chargeID + '/refunds'
+      'location': '/charges/' + chargeID + '/refunds',
     },
     'return_uri': 'http://www.example.com/orders/3947/complete',
     'reference': paymentID,
@@ -50,12 +50,12 @@ nock('https://api.omise.co')
       'fingerprint': 'umrBpbHRuc8vstbcNEZPbnKkIycR/gvI6ivW9AshKCw=',
       'name': 'JOHN DOE',
       'security_code_check': true,
-      'created': '2015-02-19T15:18:59Z'
+      'created': '2015-02-19T15:18:59Z',
     },
     'customer': null,
     'ip': null,
-    'created': '2015-02-19T15:19:26Z'
+    'created': '2015-02-19T15:19:26Z',
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

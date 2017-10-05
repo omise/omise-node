@@ -14,22 +14,22 @@ describe('Omise', function() {
     before(function(done) {
       testHelper.setupMock('tokens_create');
       var cardDetails = {
-        'card':{
+        'card': {
           'name': 'JOHN DOE',
           'city': 'Bangkok',
           'postal_code': 10320,
           'number': '4242424242424242',
           'expiration_month': 2,
           'expiration_year': 2017,
-          'security_code': 123
-        }
+          'security_code': 123,
+        },
       };
       omise.tokens.create(cardDetails, function(err, resp) {
         should.exist(resp.id);
         tokenId = resp.id;
         expect(tokenId).to.contains('tokn_test');
         should.exist(resp.card.id);
-        var cardId  = resp.card.id;
+        var cardId = resp.card.id;
         expect(cardId).to.contains('card_test');
         done();
       });
@@ -37,11 +37,13 @@ describe('Omise', function() {
 
     it('should be able to create a charge', function(done) {
       testHelper.setupMock('charges_create');
-      var charge = { 'description': 'Charge for order 3947',
-                     'amount': '100000',
-                     'currency': 'thb',
-                     'capture': false,
-                     'card': tokenId };
+      var charge = {
+        'description': 'Charge for order 3947',
+        'amount': '100000',
+        'currency': 'thb',
+        'capture': false,
+        'card': tokenId,
+      };
       omise.charges.create(charge, function(err, resp) {
         expect(resp.object, 'charge');
         chargeId = resp.id;
@@ -114,6 +116,5 @@ describe('Omise', function() {
         done();
       });
     });
-
   });
 });

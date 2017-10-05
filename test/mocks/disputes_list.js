@@ -1,4 +1,4 @@
-var nock  = require('nock');
+var nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .get('/disputes')
@@ -19,9 +19,9 @@ nock('https://api.omise.co')
       'status': 'pending',
       'message': 'testing dispute',
       'charge': 'chrg_test_506bhcc5g7tchr1pifg',
-      'created': '2015-06-02T05:42:16Z'
-    }]
+      'created': '2015-06-02T05:42:16Z',
+    }],
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

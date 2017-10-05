@@ -16,5 +16,5 @@ describe('Omise', function() {
         done();
       });
     });
-  })
+  });
 });

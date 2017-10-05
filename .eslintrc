@@ -1,0 +1,51 @@
+{
+  "extends": ["eslint:recommended", "google"],
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "no-var": "off",
+    "max-len": [
+      "error",
+      80
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "camelcase": [
+      "error",
+      {
+        "properties": "never"
+      }
+    ],
+    "no-with": "error",
+    "no-implicit-coercion": [
+      "error",
+      {
+        "boolean": false,
+        "string": true,
+        "number": false
+      }
+    ],
+    "consistent-this": [
+      2,
+      "_this"
+    ],
+    "no-console": "warn",
+    "require-jsdoc": "off",
+    "no-multi-spaces": ["error", {
+      "exceptions": {
+        "VariableDeclarator": true
+      }
+    }]
+  }
+}

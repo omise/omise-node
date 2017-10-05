@@ -1,9 +1,9 @@
-var chai = require('chai');
+var chai   = require('chai');
 var expect = chai.expect;
 var should = chai.should();
 
 var config = require('./config.js');
-var omise = require('../index')(config);
+var omise  = require('../index')(config);
 var testHelper = require('./testHelper');
 
 describe('Omise', function() {
@@ -22,8 +22,8 @@ describe('Omise', function() {
           'number': '4242424242424242',
           'expiration_month': 2,
           'expiration_year': 2017,
-          'security_code': 123
-        }
+          'security_code': 123,
+        },
       };
       omise.tokens.create(cardDetails, function(err, resp) {
         should.exist(resp.id);
@@ -41,7 +41,7 @@ describe('Omise', function() {
       var data = {
         email: 'john.doe@example.com',
         description: 'John Doe (id: 30)',
-        card: tokenId
+        card: tokenId,
       };
       omise.customers.create(data, function(err, resp) {
         customerId = resp.id;
@@ -77,9 +77,7 @@ describe('Omise', function() {
 
     it('should be able to update a card', function(done) {
       testHelper.setupMock('card_update');
-      var data = {
-        'expiration_year': 2022
-      };
+      var data = {'expiration_year': 2022};
       omise.customers.updateCard(customerId, cardId, data, function(err, resp) {
         expect(resp.object, 'card');
         expect(resp.id, 'card_test_4z2owrdmvbygi7ah0fu');
@@ -97,6 +95,5 @@ describe('Omise', function() {
         done();
       });
     });
-
   });
 });

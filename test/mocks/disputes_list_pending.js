@@ -19,9 +19,9 @@ nock('https://api.omise.co')
       'status': 'pending',
       'message': 'This is an unauthorized transaction',
       'charge': 'chrg_test_4zgcsiv4s6ewsy8nrw3',
-      'created': '2015-03-23T05:24:39Z'
-    }]
+      'created': '2015-03-23T05:24:39Z',
+    }],
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

@@ -19,7 +19,7 @@ describe('Omise', function() {
 
     it('should be able to retrieve a transaction', function(done) {
       testHelper.setupMock('transaction_retrieve');
-      //var transactionId = 'trxn_test_4z5gp0t3mpfsu28u8jo';
+      // var transactionId = 'trxn_test_4z5gp0t3mpfsu28u8jo';
       omise.transactions.retrieve(transactionId, function(err, resp) {
         expect(resp.object, 'transaction');
         expect(resp.id).to.match(/^trxn_test/);
@@ -27,5 +27,5 @@ describe('Omise', function() {
         done();
       });
     });
-  })
-})
+  });
+});

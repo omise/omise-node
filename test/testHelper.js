@@ -5,5 +5,5 @@ module.exports = {
     if (process.env.NOCK_OFF !== 'true') {
       require(['./mocks', name].join('/'));
     }
-  }
+  },
 };

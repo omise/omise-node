@@ -1,4 +1,4 @@
-var nock  = require('nock');
+var nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .patch('/recipients/recp_test_5085pqoioecnxqz0zvi')
@@ -19,11 +19,11 @@ nock('https://api.omise.co')
       'brand': 'bbl',
       'last_digits': '7890',
       'name': 'John Doe',
-      'created': '2015-06-02T05:12:22Z'
+      'created': '2015-06-02T05:12:22Z',
     },
     'failure_code': null,
-    'created': '2015-06-02T04:54:51Z'
+    'created': '2015-06-02T04:54:51Z',
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

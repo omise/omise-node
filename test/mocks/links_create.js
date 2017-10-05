@@ -1,4 +1,4 @@
-var nock  = require('nock');
+var nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .post('/links')
@@ -22,11 +22,11 @@ nock('https://api.omise.co')
       'total': 0,
       'order': null,
       'location': '/links/link_test_576mha4pdwrzyqlpl1n/charges',
-      'data': []
+      'data': [],
     },
     'payment_uri': 'http://link.example.com/0BB268C6',
-    'created': '2017-03-03T12:16:48Z'
+    'created': '2017-03-03T12:16:48Z',
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

@@ -1,9 +1,9 @@
-var chai = require('chai');
+var chai   = require('chai');
 var expect = chai.expect;
 var should = chai.should();
 
 var config = require('./config.js');
-var omise = require('../index')(config);
+var omise  = require('../index')(config);
 var testHelper = require('./testHelper');
 
 describe('Omise', function() {
@@ -22,8 +22,8 @@ describe('Omise', function() {
           'number': '4242424242424242',
           'expiration_month': 2,
           'expiration_year': 2017,
-          'security_code': 123
-        }
+          'security_code': 123,
+        },
       };
 
       omise.tokens.create(cardDetails, function(err, resp) {
@@ -34,15 +34,13 @@ describe('Omise', function() {
           'description': 'Charge for order 3947',
           'amount': '100000',
           'currency': 'thb',
-          'card': tokenId
+          'card': tokenId,
         };
         omise.charges.create(charge, function(err, resp) {
           chargeId = resp.id;
           var amount = resp.amount;
           testHelper.setupMock('refunds_create');
-          var data = {
-            'amount': amount
-          };
+          var data = {'amount': amount};
           omise.charges.createRefund(chargeId, data, function(err, resp) {
             expect(resp.id).to.match(/^rfnd_test/);
             expect(resp.object, 'refund');
@@ -52,7 +50,6 @@ describe('Omise', function() {
           });
         });
       });
-
     });
 
     it('should be able to list refunds', function(done) {
@@ -76,5 +73,5 @@ describe('Omise', function() {
         done();
       });
     });
-  })
-})
+  });
+});

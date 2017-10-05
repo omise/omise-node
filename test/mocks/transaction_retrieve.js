@@ -8,8 +8,8 @@ nock('https://api.omise.co')
     'type': 'credit',
     'amount': 96094,
     'currency': 'THB',
-    'created': '2015-02-23T05:16:54Z'
+    'created': '2015-02-23T05:16:54Z',
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

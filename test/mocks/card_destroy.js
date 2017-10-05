@@ -8,8 +8,8 @@ nock('https://api.omise.co')
     'object': 'card',
     'id': cardID,
     'livemode': false,
-    'deleted': true
+    'deleted': true,
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

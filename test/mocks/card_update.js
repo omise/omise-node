@@ -2,7 +2,7 @@ var nock = require('nock');
 
 var custID = 'cust_test_4z2owmajzsb3c527wj7';
 var cardID = 'card_test_4z2owrdmvbygi7ah0fu';
-var url = '/customers/' + custID + '/cards/' + cardID;
+var url    = '/customers/' + custID + '/cards/' + cardID;
 nock('https://api.omise.co')
   .persist()
   .intercept(url, 'PATCH')
@@ -22,8 +22,8 @@ nock('https://api.omise.co')
     'fingerprint': 'umrBpbHRuc8vstbcNEZPbnKkIycR/gvI6ivW9AshKCw=',
     'name': 'JOHN DOE',
     'security_code_check': true,
-    'created': '2015-02-16T03:12:10Z'
+    'created': '2015-02-16T03:12:10Z',
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

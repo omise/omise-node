@@ -46,7 +46,7 @@ nock('https://api.omise.co')
           'location': '/charges/chrg_test_52znerhlcrw98oi6ncb/refunds',
           'data': [
 
-          ]
+          ],
         },
         'return_uri': 'http://www.example.com/orders/3947/complete',
         'reference': paymentID1,
@@ -69,13 +69,13 @@ nock('https://api.omise.co')
           'fingerprint': 'm4QON3Fw51GFPBYc9O9W6Csz58cJyFNwhCydSAEtCNw=',
           'name': 'JOHN DOE',
           'security_code_check': true,
-          'created': '2016-02-11T12:27:13Z'
+          'created': '2016-02-11T12:27:13Z',
         },
         'customer': null,
         'ip': null,
         'dispute': null,
-        'created': '2016-02-11T12:27:14Z'
-      }
+        'created': '2016-02-11T12:27:14Z',
+      },
     }, {
       'object': 'event',
       'id': 'evnt_test_52zxzoxxiiz7nij39u6',
@@ -108,7 +108,7 @@ nock('https://api.omise.co')
           'location': '/charges/chrg_test_52zxzou3a9kxjc2mh8q/refunds',
           'data': [
 
-          ]
+          ],
         },
         'return_uri': 'http://www.example.com/orders/3947/complete',
         'reference': paymentID2,
@@ -131,15 +131,15 @@ nock('https://api.omise.co')
           'fingerprint': 'm4QON3Fw51GFPBYc9O9W6Csz58cJyFNwhCydSAEtCNw=',
           'name': 'JOHN DOE',
           'security_code_check': true,
-          'created': '2016-02-12T06:29:21Z'
+          'created': '2016-02-12T06:29:21Z',
         },
         'customer': null,
         'ip': null,
         'dispute': null,
-        'created': '2016-02-12T06:29:21Z'
-      }
-    }]
+        'created': '2016-02-12T06:29:21Z',
+      },
+    }],
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

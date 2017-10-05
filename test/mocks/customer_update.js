@@ -37,11 +37,11 @@ nock('https://api.omise.co')
         'fingerprint': 'umrBpbHRuc8vstbcNEZPbnKkIycR/gvI6ivW9AshKCw=',
         'name': 'JOHN DOE',
         'security_code_check': true,
-        'created': '2015-02-16T03:12:10Z'
+        'created': '2015-02-16T03:12:10Z',
       }],
-      'location': '/customers/' + custID + '/cards'
-    }
+      'location': '/customers/' + custID + '/cards',
+    },
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });

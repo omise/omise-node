@@ -25,16 +25,14 @@ describe('Omise', function() {
       testHelper.setupMock('transfers_retrieve');
       omise.transfers.retrieve(transferId, function(err, resp) {
         expect(resp.object, 'transfer');
-        expect(resp.amount).not.nil
+        expect(resp.amount).not.nil;
         done();
       });
     });
 
     it('should be able to update an existing transfer', function(done) {
       testHelper.setupMock('transfers_update');
-      var data = {
-        'amount': 5000
-      };
+      var data = {'amount': 5000};
       omise.transfers.update(transferId, data, function(err, resp) {
         expect(resp.object, 'transfer');
         var amount = resp.amount;
@@ -51,6 +49,5 @@ describe('Omise', function() {
         done();
       });
     });
-
-  })
-})
+  });
+});

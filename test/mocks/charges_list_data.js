@@ -32,9 +32,9 @@ nock('https://api.omise.co')
       customer: null,
       ip: null,
       dispute: null,
-      created: '2015-08-11T10:08:19Z'
+      created: '2015-08-11T10:08:19Z',
     }],
   }, {
-    server: 'nginx/1.1',
+    'server': 'nginx/1.1',
     'content-type': 'application/json',
   });

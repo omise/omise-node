@@ -1,4 +1,4 @@
-var nock  = require('nock');
+var nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .get('/balance')
@@ -7,8 +7,8 @@ nock('https://api.omise.co')
     'livemode': false,
     'available': 97242,
     'total': 385524,
-    'currency': 'thb'
+    'currency': 'thb',
   }, {
-    server: 'nginx/1.1',
-    'content-type': 'application/json'
+    'server': 'nginx/1.1',
+    'content-type': 'application/json',
   });
