@@ -11,6 +11,6 @@ nock('https://api.omise.co')
     currency:          'thb',
     installment_terms: '4',
   }, {
-    server: 'nginx/1.1',
+    'server': 'nginx/1.1',
     'content-type': 'application/json',
   });
