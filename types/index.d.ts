@@ -3,36 +3,36 @@
 // Definitions by: Bhoomtawath Plinsut <https://github.com/varshard>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-import * as Bluebird from "bluebird";
+import * as Bluebird from 'bluebird';
 
-declare function omise(options: Omise.Options): Omise.OmiseStatic;
+declare function omise(options: Omise.IOptions): Omise.IOmise;
 
-declare module Omise {
-  interface Options {
+declare namespace Omise {
+  interface IOptions {
     publicKey: string;
     secretKey: string;
   }
 
-  interface OmiseStatic {
-    accounts: Account.Account;
-    balances: Balance.Balance;
-    charges: Charges.Charges;
-    customers: Customers.Customers;
-    disputes: Disputes.Disputes;
-    events: Events.Events;
-    links: Links.Links;
-    recipients: Recipients.Recipients;
-    tokens: Tokens.Tokens;
-    transactions: Transactions.Transactions;
-    transfers: Transfers.Transfers;
+  interface IOmise {
+    accounts: Account.IAccount;
+    balances: Balance.IBalance;
+    charges: Charges.ICharges;
+    customers: Customers.ICustomers;
+    disputes: Disputes.IDisputes;
+    events: Events.IEvents;
+    links: Links.ILinks;
+    recipients: Recipients.IRecipients;
+    tokens: Tokens.ITokens;
+    transactions: Transactions.ITransactions;
+    transfers: Transfers.ITransfers;
   }
 
   namespace Account {
-    interface Account {
-      retrieve(callback?: ResponseCallback): Bluebird<Account>;
+    interface IAccount {
+      retrieve(callback?: ResponseCallback): Bluebird<IAccount>;
     }
 
-    interface Account extends BaseResponse {
+    interface IAccount extends IBaseResponse {
       email: string;
       currency: string;
       supported_currencies: [string];
@@ -41,11 +41,11 @@ declare module Omise {
   }
 
   namespace Balance {
-    interface Balance {
-      retrieve(callback?: ResponseCallback): Bluebird<Balance>;
+    interface IBalance {
+      retrieve(callback?: ResponseCallback): Bluebird<IBalance>;
     }
 
-    interface Balance extends BaseResponse {
+    interface IBalance extends IBaseResponse {
       available: number;
       total: number;
       currency: string;
@@ -53,7 +53,7 @@ declare module Omise {
   }
 
   namespace Cards {
-    interface Card extends BaseResponse {
+    interface ICard extends IBaseResponse {
       country: string;
       city: string;
       postal_code: string;
@@ -69,7 +69,7 @@ declare module Omise {
       created: string;
     }
 
-    interface CardRequest {
+    interface ICardRequest {
       name?: string;
       expiration_month?: number;
       expiration_year?: number;
@@ -77,25 +77,25 @@ declare module Omise {
       city?: string;
     }
 
-    interface CardList extends Pagination.Response {
-      data: [Card];
+    interface ICardList extends Pagination.IResponse {
+      data: [ICard];
     }
   }
 
   namespace Charges {
-    interface Charges {
-      create(req: Request, callback?: ResponseCallback): Bluebird<Charge>;
-      update(chargeID: string, req: Request, callback?: ResponseCallback): Bluebird<Charge>;
-      retrieve(chargeID: string, callback?: ResponseCallback): Bluebird<Charge>;
-      list(parameters?: Pagination.Request, callback?: ResponseCallback): Bluebird<ChargeList>;
-      capture(chargeID: string, callback?: ResponseCallback): Bluebird<Charge>;
-      reverse(chargeID: string, callback?: ResponseCallback): Bluebird<Charge>;
-      createRefund(chargeID: string, callback?: ResponseCallback): Bluebird<RefundResponse>;
-      listRefunds(chargeID: string, callback?: ResponseCallback): Bluebird<ListRefundResponse>;
-      retrieveRefund(chargeID: string, refundID: string, callback?: ResponseCallback): Bluebird<RefundResponse>;
+    interface ICharges {
+      create(req: IRequest, callback?: ResponseCallback): Bluebird<ICharge>;
+      update(chargeID: string, req: IRequest, callback?: ResponseCallback): Bluebird<ICharge>;
+      retrieve(chargeID: string, callback?: ResponseCallback): Bluebird<ICharge>;
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback): Bluebird<IChargeList>;
+      capture(chargeID: string, callback?: ResponseCallback): Bluebird<ICharge>;
+      reverse(chargeID: string, callback?: ResponseCallback): Bluebird<ICharge>;
+      createRefund(chargeID: string, callback?: ResponseCallback): Bluebird<IRefundResponse>;
+      listRefunds(chargeID: string, callback?: ResponseCallback): Bluebird<IListRefundResponse>;
+      retrieveRefund(chargeID: string, refundID: string, callback?: ResponseCallback): Bluebird<IRefundResponse>;
     }
 
-    interface Request {
+    interface IRequest {
       description?: string;
       amount: number;
       currency: string;
@@ -105,7 +105,7 @@ declare module Omise {
       return_uri?: string;
     }
 
-    interface Charge extends BaseResponse {
+    interface ICharge extends IBaseResponse {
       amount: number;
       currency: string;
       description: string;
@@ -115,10 +115,10 @@ declare module Omise {
       paid: boolean;
       transaction: string;
       refunded: number;
-      refunds: ListRefundResponse;
+      refunds: IListRefundResponse;
       failure_code: string;
       failure_message: string;
-      card: Cards.Card;
+      card: Cards.ICard;
       customer: string;
       ip: string;
       dispute: string;
@@ -126,15 +126,15 @@ declare module Omise {
       metadata: {[key: string]: any};
     }
 
-    interface ListRefundResponse extends Pagination.Response {
-      data: [RefundResponse]
+    interface IListRefundResponse extends Pagination.IResponse {
+      data: [IRefundResponse];
     }
 
-    interface ChargeList extends Pagination.Response {
-      data: [Charge]
+    interface IChargeList extends Pagination.IResponse {
+      data: [ICharge];
     }
 
-    interface RefundResponse extends BaseResponse {
+    interface IRefundResponse extends IBaseResponse {
       amount: number;
       currency: string;
       charge: string;
@@ -145,105 +145,106 @@ declare module Omise {
   }
 
   namespace Customers {
-    interface Customers {
-      create(req: Request, callback?: ResponseCallback): Bluebird<Customer>;
-      retrieve(customerID: string, callback?: ResponseCallback): Bluebird<Customer>;
-      update(customerID: string, req: Request, callback?: ResponseCallback, ): Bluebird<Customer>;
-      destroy(customerID: string, callback?: ResponseCallback): Bluebird<DestroyResponse>;
-      list(parameters?: Pagination.Request): Bluebird<CustomerList>;
-      listCards(customerID: string, parameters?: Pagination.Request, callback?: ResponseCallback): Bluebird<Cards.CardList>;
-      retrieveCard(customerID: string, cardID: string, callback?: ResponseCallback): Bluebird<Cards.Card>;
-      updateCard(customerID: string, cardID: string, details: Cards.CardRequest,
-                 callback?: ResponseCallback): Bluebird<Cards.Card>;
-      destroyCard(customerID: string, cardID: string, callback?: ResponseCallback): Bluebird<Cards.Card>;
+    interface ICustomers {
+      create(req: IRequest, callback?: ResponseCallback): Bluebird<ICustomer>;
+      retrieve(customerID: string, callback?: ResponseCallback): Bluebird<ICustomer>;
+      update(customerID: string, req: IRequest, callback?: ResponseCallback): Bluebird<ICustomer>;
+      destroy(customerID: string, callback?: ResponseCallback): Bluebird<IDestroyResponse>;
+      list(parameters?: Pagination.IRequest): Bluebird<ICustomerList>;
+      listCards(customerID: string, parameters?: Pagination.IRequest, callback?: ResponseCallback)
+        : Bluebird<Cards.ICardList>;
+      retrieveCard(customerID: string, cardID: string, callback?: ResponseCallback): Bluebird<Cards.ICard>;
+      updateCard(customerID: string, cardID: string, details: Cards.ICardRequest,
+                 callback?: ResponseCallback): Bluebird<Cards.ICard>;
+      destroyCard(customerID: string, cardID: string, callback?: ResponseCallback): Bluebird<Cards.ICard>;
     }
 
-    interface Request {
+    interface IRequest {
       email?: string;
       description?: string;
       card?: string;
     }
 
-    interface Customer extends BaseResponse {
+    interface ICustomer extends IBaseResponse {
       default_card: string;
       email: string;
       description: string;
       created: string;
-      cards: Cards.CardList;
+      cards: Cards.ICardList;
     }
 
-    interface CustomerList extends Pagination.Response {
-      data: [Customer]
+    interface ICustomerList extends Pagination.IResponse {
+      data: [ICustomer];
     }
   }
 
   namespace Disputes {
-    interface Disputes {
-      list(parameters?: Pagination.Request, callback?: ResponseCallback): Bluebird<ListResponse>;
-      listClosed(callback?: ResponseCallback): Bluebird<ListResponse>;
-      listOpen(callback?: ResponseCallback): Bluebird<ListResponse>;
-      listPending(callback?: ResponseCallback): Bluebird<ListResponse>;
-      retrieve(disputeID: string, callback?: ResponseCallback): Bluebird<Response>;
-      update(disputeID: string, req: Request, callback?: ResponseCallback): Bluebird<Response>;
+    interface IDisputes {
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback): Bluebird<IListResponse>;
+      listClosed(callback?: ResponseCallback): Bluebird<IListResponse>;
+      listOpen(callback?: ResponseCallback): Bluebird<IListResponse>;
+      listPending(callback?: ResponseCallback): Bluebird<IListResponse>;
+      retrieve(disputeID: string, callback?: ResponseCallback): Bluebird<IResponse>;
+      update(disputeID: string, req: IRequest, callback?: ResponseCallback): Bluebird<IResponse>;
     }
 
-    interface Request {
+    interface IRequest {
       message: string;
     }
 
-    interface Response extends BaseResponse {
+    interface IResponse extends IBaseResponse {
       amount: number;
       charge: string;
       created: string;
       closed_at: string;
       currency: string;
       message: string;
-      documents: DocumentsList;
+      documents: IDocumentsList;
       reason_code: string;
       reason_message: string;
       status: string;
       transaction: string;
     }
 
-    interface ListResponse extends Pagination.Response {
-      data: [Response];
+    interface IListResponse extends Pagination.IResponse {
+      data: [IResponse];
     }
 
-    interface Document extends BaseResponse {
+    interface IDocument extends IBaseResponse {
       filename: string;
       created: string;
     }
 
-    interface DocumentsList extends Pagination.Response {
-      data: [Document];
+    interface IDocumentsList extends Pagination.IResponse {
+      data: [IDocument];
     }
   }
 
   namespace Events {
-    interface Events {
-      retrieve(eventID: string, callback?: ResponseCallback, ): Bluebird<Event>;
-      list(parameters?: Pagination.Request, callback?: ResponseCallback): Bluebird<EventList>;
+    interface IEvents {
+      retrieve(eventID: string, callback?: ResponseCallback): Bluebird<IEvent>;
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback): Bluebird<IEventList>;
     }
 
-    interface Event extends BaseResponse {
+    interface IEvent extends IBaseResponse {
       key: string;
       created: string;
       data: any;
     }
 
-    interface EventList extends Pagination.Response {
-      data: [Event];
+    interface IEventList extends Pagination.IResponse {
+      data: [IEvent];
     }
   }
 
   namespace Links {
-    interface Links {
-      retrieve(linkID: string, callback?: ResponseCallback): Bluebird<Link>;
-      list(parameters?: Pagination.Request, callback?: ResponseCallback): Bluebird<LinkListResponse>;
-      create(req: Request, callback?: ResponseCallback): Bluebird<Link>;
+    interface ILinks {
+      retrieve(linkID: string, callback?: ResponseCallback): Bluebird<ILink>;
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback): Bluebird<ILinkListResponse>;
+      create(req: IRequest, callback?: ResponseCallback): Bluebird<ILink>;
     }
 
-    interface Request {
+    interface IRequest {
       amount: number;
       currency: string;
       title: string;
@@ -251,42 +252,42 @@ declare module Omise {
       multiple?: boolean;
     }
 
-    interface Link extends BaseResponse {
+    interface ILink extends IBaseResponse {
       amount: number;
       currency: string;
       used: boolean;
       multiple: boolean;
       title: string;
       description: string;
-      charges: Charges.ChargeList;
+      charges: Charges.IChargeList;
       payment_uri: string;
       created: string;
     }
 
-    interface LinkListResponse extends Pagination.Response {
-      data: [Link];
+    interface ILinkListResponse extends Pagination.IResponse {
+      data: [ILink];
     }
   }
 
   namespace Recipients {
-    interface Recipients {
-      create(req: Request, callback?: ResponseCallback): Bluebird<Recipient>;
-      update(recipientID: string, req: Request, callback?: ResponseCallback): Bluebird<Recipient>;
-      retrieve(recipientID: string, callback?: ResponseCallback): Bluebird<Recipient>;
-      destroy(recipientID: string, callback?: ResponseCallback): Bluebird<DestroyResponse>;
-      list(parameters?: Pagination.Request, callback?: ResponseCallback): Bluebird<RecipientList>;
+    interface IRecipients {
+      create(req: IRequest, callback?: ResponseCallback): Bluebird<IRecipient>;
+      update(recipientID: string, req: IRequest, callback?: ResponseCallback): Bluebird<IRecipient>;
+      retrieve(recipientID: string, callback?: ResponseCallback): Bluebird<IRecipient>;
+      destroy(recipientID: string, callback?: ResponseCallback): Bluebird<IDestroyResponse>;
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback): Bluebird<IRecipientList>;
     }
 
-    interface Request {
+    interface IRequest {
       name: string;
       email?: string;
       description?: string;
       type: string;
       tax_id?: string;
-      back_account: BankAccount;
+      back_account: IBankAccount;
     }
 
-    interface Recipient extends BaseResponse {
+    interface IRecipient extends IBaseResponse {
       verified: boolean;
       active: boolean;
       name: string;
@@ -294,23 +295,23 @@ declare module Omise {
       description: string;
       type: string;
       tax_id: string;
-      bank_account: BankAccount;
+      bank_account: IBankAccount;
       failure_code: string;
       created: string;
     }
 
-    interface RecipientList extends Pagination.Response {
-      data: [Recipient];
+    interface IRecipientList extends Pagination.IResponse {
+      data: [IRecipient];
     }
   }
 
   namespace Transactions {
-    interface Transactions {
-      retrieve(transactionID: string, callback?: ResponseCallback): Bluebird<Transaction>;
-      list(parameters?: Pagination.Request, callback?: ResponseCallback): Bluebird<TransactionList>;
+    interface ITransactions {
+      retrieve(transactionID: string, callback?: ResponseCallback): Bluebird<ITransaction>;
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback): Bluebird<ITransactionList>;
     }
 
-    interface Transaction extends BaseResponse {
+    interface ITransaction extends IBaseResponse {
       type: string;
       amount: number;
       currency: string;
@@ -318,29 +319,29 @@ declare module Omise {
       created: string;
     }
 
-    interface TransactionList extends Pagination.Response {
-      data: [Transaction];
+    interface ITransactionList extends Pagination.IResponse {
+      data: [ITransaction];
     }
   }
 
   namespace Transfers {
-    interface Transfers {
-      create(req: Request, callback?: ResponseCallback): Bluebird<Transfer>;
-      update(transferID: string, req: Request, callback?: ResponseCallback): Bluebird<Transfer>;
-      retrieve(transferID: string, callback?: ResponseCallback): Bluebird<Transfer>;
-      destroy(transferID: string, callback?: ResponseCallback): Bluebird<DestroyResponse>;
-      list(parameters: Pagination.Request, callback?: ResponseCallback): Bluebird<TransferList>;
+    interface ITransfers {
+      create(req: IRequest, callback?: ResponseCallback): Bluebird<ITransfer>;
+      update(transferID: string, req: IRequest, callback?: ResponseCallback): Bluebird<ITransfer>;
+      retrieve(transferID: string, callback?: ResponseCallback): Bluebird<ITransfer>;
+      destroy(transferID: string, callback?: ResponseCallback): Bluebird<IDestroyResponse>;
+      list(parameters: Pagination.IRequest, callback?: ResponseCallback): Bluebird<ITransferList>;
     }
 
-    interface Request {
+    interface IRequest {
       amount: number;
       recipient?: string;
       fail_fast?: boolean;
     }
 
-    interface Transfer extends BaseResponse {
+    interface ITransfer extends IBaseResponse {
       recipient: string;
-      bank_account: BankAccount;
+      bank_account: IBankAccount;
       sent: boolean;
       paid: boolean;
       amount: number;
@@ -353,22 +354,22 @@ declare module Omise {
       created: string;
     }
 
-    interface TransferList extends Pagination.Response {
-      data: [Transfer];
+    interface ITransferList extends Pagination.IResponse {
+      data: [ITransfer];
     }
   }
 
   namespace Tokens {
-    interface Tokens {
-      create(options: CreateOptions, callback?: ResponseCallback): Bluebird<Token>;
-      retrieve(tokenID: string, callback?: ResponseCallback): Bluebird<Token>;
+    interface ITokens {
+      create(options: ICreateOptions, callback?: ResponseCallback): Bluebird<IToken>;
+      retrieve(tokenID: string, callback?: ResponseCallback): Bluebird<IToken>;
     }
 
-    interface CreateOptions {
-      card: TokenCreateCardOptions;
+    interface ICreateOptions {
+      card: ITokenCreateCardOptions;
     }
 
-    interface TokenCreateCardOptions {
+    interface ITokenCreateCardOptions {
       name: string;
       city: string;
       postal_code: number|string;
@@ -378,15 +379,15 @@ declare module Omise {
       expiration_year: number|string;
     }
 
-    interface Token extends BaseResponse {
+    interface IToken extends IBaseResponse {
       used: boolean;
-      card: Cards.Card;
+      card: Cards.ICard;
       created: string;
     }
   }
 
   namespace Pagination {
-    interface Request {
+    interface IRequest {
       offset?: number;
       limit?: number;
       from?: string;
@@ -395,7 +396,7 @@ declare module Omise {
       total?: number;
     }
 
-    interface Response {
+    interface IResponse {
       object: string;
       offset: number;
       limit: number;
@@ -408,7 +409,7 @@ declare module Omise {
     }
   }
 
-  interface BankAccount {
+  interface IBankAccount {
     object: string;
     brand: string;
     last_digits: string;
@@ -416,14 +417,14 @@ declare module Omise {
     created: string;
   }
 
-  interface BaseResponse {
+  interface IBaseResponse {
     object: string;
     id: string;
     livemode?: boolean;
     location?: string;
   }
 
-  interface DestroyResponse extends BaseResponse {
+  interface IDestroyResponse extends IBaseResponse {
     deleted: boolean;
   }
 

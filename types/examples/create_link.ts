@@ -1,8 +1,8 @@
-import {omise as omiseNode} from "../index";
+import {omise as omiseNode} from '../index';
 
 const omise = omiseNode({
     publicKey: process.env.OMISE_PUBLIC_KEY,
-    secretKey: process.env.OMISE_SECRET_KEY
+    secretKey: process.env.OMISE_SECRET_KEY,
 });
 
 const link = {
@@ -10,9 +10,9 @@ const link = {
     currency: 'thb',
     multiple: true,
     title: 'Cappuccino',
-    description: 'Freshly brewed coffee'
+    description: 'Freshly brewed coffee',
 };
 
-omise.links.create(link, function(err, resp) {
+omise.links.create(link, (err, resp) => {
     console.log(resp);
 });
