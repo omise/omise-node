@@ -1,7 +1,6 @@
-///<reference path="../index.d.ts"/>
+import {omise as omiseNode} from "../index";
 
-import * as Omise from 'omise';
-const omise = Omise({
+const omise = omiseNode({
   publicKey: process.env.OMISE_PUBLIC_KEY,
   secretKey: process.env.OMISE_SECRET_KEY
 });
