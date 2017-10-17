@@ -103,6 +103,7 @@ declare namespace Omise {
       card?: string;
       customer?: string;
       return_uri?: string;
+      metadata?: any;
     }
 
     interface ICharge extends IBaseResponse {
