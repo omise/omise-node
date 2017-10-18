@@ -247,7 +247,7 @@ $ npm test
 You could use also use a git pre-commit hook to do this automatically by aliasing the `pre-commit.sh` to Git pre-commit hook:
 
 ```
-ln -s ../../pre-commit.sh .git/hooks/pre-commit
+ln -s ./pre-commit.sh .git/hooks/pre-commit
 ```
 
 ### Adding new resources
