@@ -29,7 +29,7 @@ declare namespace Omise {
 
   namespace Account {
     interface IAccount {
-      retrieve(callback?: ResponseCallback): Bluebird<IAccount>;
+      retrieve(callback?: ResponseCallback<IAccount>): Bluebird<IAccount>;
     }
 
     interface IAccount extends IBaseResponse {
@@ -42,7 +42,7 @@ declare namespace Omise {
 
   namespace Balance {
     interface IBalance {
-      retrieve(callback?: ResponseCallback): Bluebird<IBalance>;
+      retrieve(callback?: ResponseCallback<IBalance>): Bluebird<IBalance>;
     }
 
     interface IBalance extends IBaseResponse {
@@ -84,15 +84,15 @@ declare namespace Omise {
 
   namespace Charges {
     interface ICharges {
-      create(req: IRequest, callback?: ResponseCallback): Bluebird<ICharge>;
-      update(chargeID: string, req: IRequest, callback?: ResponseCallback): Bluebird<ICharge>;
-      retrieve(chargeID: string, callback?: ResponseCallback): Bluebird<ICharge>;
-      list(parameters?: Pagination.IRequest, callback?: ResponseCallback): Bluebird<IChargeList>;
-      capture(chargeID: string, callback?: ResponseCallback): Bluebird<ICharge>;
-      reverse(chargeID: string, callback?: ResponseCallback): Bluebird<ICharge>;
-      createRefund(chargeID: string, callback?: ResponseCallback): Bluebird<IRefundResponse>;
-      listRefunds(chargeID: string, callback?: ResponseCallback): Bluebird<IListRefundResponse>;
-      retrieveRefund(chargeID: string, refundID: string, callback?: ResponseCallback): Bluebird<IRefundResponse>;
+      create(req: IRequest, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
+      update(chargeID: string, req: IRequest, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
+      retrieve(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<IChargeList>): Bluebird<IChargeList>;
+      capture(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
+      reverse(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
+      createRefund(chargeID: string, callback?: ResponseCallback<IRefundResponse>): Bluebird<IRefundResponse>;
+      listRefunds(chargeID: string, callback?: ResponseCallback<IListRefundResponse>): Bluebird<IListRefundResponse>;
+      retrieveRefund(chargeID: string, refundID: string, callback?: ResponseCallback<IRefundResponse>): Bluebird<IRefundResponse>;
     }
 
     interface IRequest {
@@ -146,17 +146,17 @@ declare namespace Omise {
 
   namespace Customers {
     interface ICustomers {
-      create(req: IRequest, callback?: ResponseCallback): Bluebird<ICustomer>;
-      retrieve(customerID: string, callback?: ResponseCallback): Bluebird<ICustomer>;
-      update(customerID: string, req: IRequest, callback?: ResponseCallback): Bluebird<ICustomer>;
-      destroy(customerID: string, callback?: ResponseCallback): Bluebird<IDestroyResponse>;
+      create(req: IRequest, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
+      retrieve(customerID: string, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
+      update(customerID: string, req: IRequest, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
+      destroy(customerID: string, callback?: ResponseCallback<IDestroyResponse>): Bluebird<IDestroyResponse>;
       list(parameters?: Pagination.IRequest): Bluebird<ICustomerList>;
-      listCards(customerID: string, parameters?: Pagination.IRequest, callback?: ResponseCallback)
+      listCards(customerID: string, parameters?: Pagination.IRequest, callback?: ResponseCallback<Cards.ICardList>)
         : Bluebird<Cards.ICardList>;
-      retrieveCard(customerID: string, cardID: string, callback?: ResponseCallback): Bluebird<Cards.ICard>;
+      retrieveCard(customerID: string, cardID: string, callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
       updateCard(customerID: string, cardID: string, details: Cards.ICardRequest,
-                 callback?: ResponseCallback): Bluebird<Cards.ICard>;
-      destroyCard(customerID: string, cardID: string, callback?: ResponseCallback): Bluebird<Cards.ICard>;
+                 callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
+      destroyCard(customerID: string, cardID: string, callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
     }
 
     interface IRequest {
@@ -180,12 +180,12 @@ declare namespace Omise {
 
   namespace Disputes {
     interface IDisputes {
-      list(parameters?: Pagination.IRequest, callback?: ResponseCallback): Bluebird<IListResponse>;
-      listClosed(callback?: ResponseCallback): Bluebird<IListResponse>;
-      listOpen(callback?: ResponseCallback): Bluebird<IListResponse>;
-      listPending(callback?: ResponseCallback): Bluebird<IListResponse>;
-      retrieve(disputeID: string, callback?: ResponseCallback): Bluebird<IResponse>;
-      update(disputeID: string, req: IRequest, callback?: ResponseCallback): Bluebird<IResponse>;
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<IListResponse>): Bluebird<IListResponse>;
+      listClosed(callback?: ResponseCallback<IListResponse>): Bluebird<IListResponse>;
+      listOpen(callback?: ResponseCallback<IListResponse>): Bluebird<IListResponse>;
+      listPending(callback?: ResponseCallback<IListResponse>): Bluebird<IListResponse>;
+      retrieve(disputeID: string, callback?: ResponseCallback<IResponse>): Bluebird<IResponse>;
+      update(disputeID: string, req: IRequest, callback?: ResponseCallback<IResponse>): Bluebird<IResponse>;
     }
 
     interface IRequest {
@@ -222,8 +222,8 @@ declare namespace Omise {
 
   namespace Events {
     interface IEvents {
-      retrieve(eventID: string, callback?: ResponseCallback): Bluebird<IEvent>;
-      list(parameters?: Pagination.IRequest, callback?: ResponseCallback): Bluebird<IEventList>;
+      retrieve(eventID: string, callback?: ResponseCallback<IEvent>): Bluebird<IEvent>;
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<IEventList>): Bluebird<IEventList>;
     }
 
     interface IEvent extends IBaseResponse {
@@ -239,9 +239,9 @@ declare namespace Omise {
 
   namespace Links {
     interface ILinks {
-      retrieve(linkID: string, callback?: ResponseCallback): Bluebird<ILink>;
-      list(parameters?: Pagination.IRequest, callback?: ResponseCallback): Bluebird<ILinkListResponse>;
-      create(req: IRequest, callback?: ResponseCallback): Bluebird<ILink>;
+      retrieve(linkID: string, callback?: ResponseCallback<ILink>): Bluebird<ILink>;
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<ILinkListResponse>): Bluebird<ILinkListResponse>;
+      create(req: IRequest, callback?: ResponseCallback<ILink>): Bluebird<ILink>;
     }
 
     interface IRequest {
@@ -271,11 +271,11 @@ declare namespace Omise {
 
   namespace Recipients {
     interface IRecipients {
-      create(req: IRequest, callback?: ResponseCallback): Bluebird<IRecipient>;
-      update(recipientID: string, req: IRequest, callback?: ResponseCallback): Bluebird<IRecipient>;
-      retrieve(recipientID: string, callback?: ResponseCallback): Bluebird<IRecipient>;
-      destroy(recipientID: string, callback?: ResponseCallback): Bluebird<IDestroyResponse>;
-      list(parameters?: Pagination.IRequest, callback?: ResponseCallback): Bluebird<IRecipientList>;
+      create(req: IRequest, callback?: ResponseCallback<IRecipient>): Bluebird<IRecipient>;
+      update(recipientID: string, req: IRequest, callback?: ResponseCallback<IRecipient>): Bluebird<IRecipient>;
+      retrieve(recipientID: string, callback?: ResponseCallback<IRecipient>): Bluebird<IRecipient>;
+      destroy(recipientID: string, callback?: ResponseCallback<IDestroyResponse>): Bluebird<IDestroyResponse>;
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<IRecipientList>): Bluebird<IRecipientList>;
     }
 
     interface IRequest {
@@ -307,8 +307,8 @@ declare namespace Omise {
 
   namespace Transactions {
     interface ITransactions {
-      retrieve(transactionID: string, callback?: ResponseCallback): Bluebird<ITransaction>;
-      list(parameters?: Pagination.IRequest, callback?: ResponseCallback): Bluebird<ITransactionList>;
+      retrieve(transactionID: string, callback?: ResponseCallback<ITransaction>): Bluebird<ITransaction>;
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<ITransactionList>): Bluebird<ITransactionList>;
     }
 
     interface ITransaction extends IBaseResponse {
@@ -326,11 +326,11 @@ declare namespace Omise {
 
   namespace Transfers {
     interface ITransfers {
-      create(req: IRequest, callback?: ResponseCallback): Bluebird<ITransfer>;
-      update(transferID: string, req: IRequest, callback?: ResponseCallback): Bluebird<ITransfer>;
-      retrieve(transferID: string, callback?: ResponseCallback): Bluebird<ITransfer>;
-      destroy(transferID: string, callback?: ResponseCallback): Bluebird<IDestroyResponse>;
-      list(parameters: Pagination.IRequest, callback?: ResponseCallback): Bluebird<ITransferList>;
+      create(req: IRequest, callback?: ResponseCallback<ITransfer>): Bluebird<ITransfer>;
+      update(transferID: string, req: IRequest, callback?: ResponseCallback<ITransfer>): Bluebird<ITransfer>;
+      retrieve(transferID: string, callback?: ResponseCallback<ITransfer>): Bluebird<ITransfer>;
+      destroy(transferID: string, callback?: ResponseCallback<IDestroyResponse>): Bluebird<IDestroyResponse>;
+      list(parameters: Pagination.IRequest, callback?: ResponseCallback<ITransferList>): Bluebird<ITransferList>;
     }
 
     interface IRequest {
@@ -361,8 +361,8 @@ declare namespace Omise {
 
   namespace Tokens {
     interface ITokens {
-      create(options: ICreateOptions, callback?: ResponseCallback): Bluebird<IToken>;
-      retrieve(tokenID: string, callback?: ResponseCallback): Bluebird<IToken>;
+      create(options: ICreateOptions, callback?: ResponseCallback<IToken>): Bluebird<IToken>;
+      retrieve(tokenID: string, callback?: ResponseCallback<IToken>): Bluebird<IToken>;
     }
 
     interface ICreateOptions {
@@ -428,5 +428,5 @@ declare namespace Omise {
     deleted: boolean;
   }
 
-  type ResponseCallback = (err: any, resp: any) => void;
+  type ResponseCallback<R> = (err: any, resp: R) => void;
 }
