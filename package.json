@@ -20,6 +20,7 @@
   "homepage": "https://github.com/omise/omise-node",
   "dependencies": {
     "bluebird": "^2.9.12",
+    "https-proxy-agent": "^2.1.0",
     "lodash": "^3.2.0"
   },
   "devDependencies": {
