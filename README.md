@@ -22,13 +22,13 @@ The library has been tested with Node version 0.10.32+.
 
 ## Usage
 
-###Flow
+### Flow
 
 1. User enters the credit card information on your website or application using a form.
 2. The card information is sent via HTTPS directly from the client to Omise Servers using Omise.js, Card.js or Omise-iOS SDK.
 3. If the card passes the authorization, then your frontend will send the token to `omise-node` backend to finally capture the charge with Omise-node.
 
-###The code
+### The code
 
 After you have implemented `Omise.js` on your frontend.
 Then you can charge the card by passing the token ( if `card.security_code_check` is true ) to `omise-node` backend.
@@ -36,7 +36,7 @@ Then you can charge the card by passing the token ( if `card.security_code_check
 In order to implement `omise-node` as your backend code.
 First, you have to configure the library by passing the secret key from `https://dashboard.omise.co/` to `omise` export, for example:
 
-```
+```javascript
 var omise = require('omise')({
   'secretKey': 'skey_test_...',
   'omiseVersion': '2015-09-10'
@@ -55,12 +55,11 @@ omise.charges.create({
     throw resp.failure_code;
   }
 });
-
 ```
 
 Please see [Omise Documentation](https://docs.omise.co/) for more information on how to use the library.
 
-###Important Note:
+### Important Note:
 
 **Full Credit Card data should never touch or go through your servers. That means, Do not send the credit card data to Omise from your servers directly.**
 
@@ -79,7 +78,7 @@ For both methods, the client will directly send the card information to Omise ga
 
 Creating a customer can be done by using `omise.customers.create` which accepts an optional `card` argument. When you pass in a `tokenId` retrieve from [Omise.js](https://docs.omise.co/omise-js/), the card associated to that token will be associated to the customer.
 
-```
+```javascript
 omise.customers.create({
   'email': 'john.doe@example.com',
   'description': 'John Doe (id: 30)',
@@ -94,7 +93,7 @@ omise.customers.create({
 
 After customers are created, you can list them with `customer.customers.list` and passing a callback to it. The object returned from a list API will be a `list` object, which you can access the raw data via `data` attribute:
 
-```
+```javascript
 omise.customers.list(function(err, list) {
   console.log(list.data);
 });
@@ -104,7 +103,7 @@ omise.customers.list(function(err, list) {
 
 You can retrieve the created customer by using `omise.customers.retrieve` and passing a customer ID to it, e.g.
 
-```
+```javascript
 omise.customers.retrieve(customerId, function(err, resp) {
   console.log(resp.description);
 });
@@ -114,7 +113,7 @@ omise.customers.retrieve(customerId, function(err, resp) {
 
 The same with customer updating, which could be done using `omise.customers.update` with a customer ID and an object containing changes:
 
-```
+```javascript
 omise.customers.update(customerId, {
   description: 'Customer for john.doe@example.com'
 }, function(err, resp) {
@@ -126,7 +125,7 @@ omise.customers.update(customerId, {
 
 The library also supports the Promise/A+ interface that shares the same API method as the callback one, for example:
 
-```
+```javascript
 omise.tokens.retrieve('tokn_test_4xs9408a642a1htto8z', function(error, token) {
   return omise.customers.create({
     email: 'john.doe@example.com',
@@ -153,7 +152,7 @@ omise.tokens.retrieve('tokn_test_4xs9408a642a1htto8z', function(error, token) {
 }).done();
 ```
 
-##Error Handling
+## Error Handling
 
 To handle an invalid request, it is required to check any error via an `Error` object
 that includes `code` and `message` attributes as stated in https://docs.omise.co/api/errors.
@@ -223,13 +222,13 @@ The following API methods are available. Please see [https://docs.omise.co](http
 
 There are two modes of testing, to test without connecting to remote API server:
 
-```
+```console
 $ npm test
 ```
 
 If you want to test by connecting to actual API server, you must first obtain a public and secret keys and export it:
 
-```
+```console
 $ export OMISE_PUBLIC_KEY=<test public key>
 $ export OMISE_SECRET_KEY=<test secret key>
 $ NOCK_OFF=true npm test
@@ -239,7 +238,7 @@ $ NOCK_OFF=true npm test
 
 Before submitting a pull request, please run jscs to verify coding styles and ensure all test passed:
 
-```
+```console
 $ npm run jscs
 $ npm test
 ```
@@ -254,7 +253,7 @@ ln -s ./pre-commit.sh .git/hooks/pre-commit
 
 Resources are handled via `apiResource`. Adding new resource could be done by creating a new resource file as `lib/resourceName.js` with the following content:
 
-```
+```javascript
 var resource = require('../apiResources');
 var resourceName = function(config) {
   return resource.resourceActions(
