@@ -1,7 +1,7 @@
 omise-node
 ==========
 
-[![Join the chat at https://gitter.im/omise/omise-node](https://badges.gitter.im/omise/omise-node.svg)](https://gitter.im/omise/omise-node?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Please pop onto [our community forum](https://forum.omise.co) or contact [support@omise.co](support@omise.co) if you have any question regarding this library and the functionality it provides.
 
 Omise Node.js bindings.
 
