@@ -127,6 +127,7 @@ declare namespace Omise {
       dispute: string;
       created: string;
       metadata: {[key: string]: any};
+      source?: Sources.ISource;
     }
 
     interface IListRefundResponse extends Pagination.IResponse {
