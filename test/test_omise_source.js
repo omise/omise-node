@@ -10,26 +10,22 @@ var testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Sources', function() {
-    var sourceID = '';
     var sourceParameters = {};
 
     before(function() {
       testHelper.setupMock('sources_create');
       sourceParameters = {
-        type:              'installment_kbank',
-        amount:            '500000',
-        currency:          'thb',
-        installment_terms: 4,
+        type:     'internet_banking_bbl',
+        amount:   '500000',
+        currency: 'thb',
       };
     });
 
     it('should be able to create a source', function(done) {
       omise.sources.create(sourceParameters, function(err, resp) {
-        sourceID = resp.id;
+        var sourceID = resp.id;
         should.exist(sourceID);
         expect(sourceID).to.contains(('src_'));
-        var installmentTerms = resp.installment_terms;
-        expect(installmentTerms).to.equal('4');
         done();
       });
     });
