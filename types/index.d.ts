@@ -93,6 +93,7 @@ declare namespace Omise {
       createRefund(chargeID: string, callback?: ResponseCallback<IRefundResponse>): Bluebird<IRefundResponse>;
       listRefunds(chargeID: string, callback?: ResponseCallback<IListRefundResponse>): Bluebird<IListRefundResponse>;
       retrieveRefund(chargeID: string, refundID: string, callback?: ResponseCallback<IRefundResponse>): Bluebird<IRefundResponse>;
+      schedules(callback?: ResponseCallback<IChargeScheduleResponse>): Bluebird<IChargeScheduleResponse>;
     }
 
     interface IRequest {
@@ -125,6 +126,18 @@ declare namespace Omise {
       dispute: string;
       created: string;
       metadata: {[key: string]: any};
+    }
+
+    interface IChargeScheduleResponse extends Schedules.ISchedulesResponse {
+      charge: IChargeSchedule;
+    }
+
+    interface IChargeSchedule {
+      amount: number;
+      currency: string;
+      description: string;
+      customer: string;
+      card: string;
     }
 
     interface IListRefundResponse extends Pagination.IResponse {
@@ -421,6 +434,38 @@ declare namespace Omise {
       total: number;
       data: [any];
       location?: string;
+    }
+  }
+
+  namespace Schedules {
+    interface ISchedulesResponse extends IBaseResponse {
+      status: string;
+      every: number;
+      period: string;
+      in_words: string;
+      start_date: string;
+      end_date: string;
+      on: IOn;
+      occurrences: Array<IOccurrence>;
+      next_occurrence_dates: Array<string>;
+      created: string;
+    }
+
+    interface IOn {
+      weekdays?: Array<string>;
+      days_of_month?: Array<string>;
+      weekday_of_month?: Array<string>;
+    }
+
+    interface IOccurrence extends IBaseResponse {
+      schedule:	string;
+      schedule_date: string;
+      retry_date:	string;
+      processed_at: string;
+      status: string;
+      message: string;
+      result: any;
+      created: string;
     }
   }
 
