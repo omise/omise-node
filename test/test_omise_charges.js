@@ -3,7 +3,7 @@ var chai   = require('chai');
 var expect = chai.expect;
 var should = chai.should();
 
-var config = require('./config.js');
+var config = require('./config');
 var omise  = require('../index')(config);
 var testHelper = require('./testHelper');
 

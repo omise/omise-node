@@ -1,8 +1,8 @@
 var chai   = require('chai');
 var expect = chai.expect;
 
-var config = require('./config.js');
-var omise  = require('../index')(config);
+var config = require('./config');
+var omise = require('../index')(config);
 var testHelper = require('./testHelper');
 
 describe('Omise', function() {
