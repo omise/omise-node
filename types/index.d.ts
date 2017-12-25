@@ -385,6 +385,17 @@ declare namespace Omise {
     interface ITransferList extends Pagination.IResponse {
       data: [ITransfer];
     }
+
+    interface ITransferScheduleResponse extends Schedules.ISchedulesResponse {
+      transfer: ITransferSchedule;
+    }
+
+    interface ITransferSchedule {
+      recipient: string;
+      amount: number;
+      percentage_of_balance: number;
+      currency: string;
+    }
   }
 
   namespace Tokens {
