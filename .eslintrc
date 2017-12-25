@@ -42,9 +42,11 @@
     ],
     "no-console": "warn",
     "require-jsdoc": "off",
+    "key-spacing": ["warn", { "align": "value" }],
     "no-multi-spaces": ["error", {
       "exceptions": {
-        "VariableDeclarator": true
+        "VariableDeclarator": true,
+        "Property": true
       }
     }]
   }

@@ -22,6 +22,7 @@ declare namespace Omise {
     events: Events.IEvents;
     links: Links.ILinks;
     recipients: Recipients.IRecipients;
+    sources: Sources.ISources;
     tokens: Tokens.ITokens;
     transactions: Transactions.ITransactions;
     transfers: Transfers.ITransfers;
@@ -104,6 +105,7 @@ declare namespace Omise {
       customer?: string;
       return_uri?: string;
       metadata?: any;
+      source?: string;
     }
 
     interface ICharge extends IBaseResponse {
@@ -125,6 +127,7 @@ declare namespace Omise {
       dispute: string;
       created: string;
       metadata: {[key: string]: any};
+      source?: Sources.ISource;
     }
 
     interface IListRefundResponse extends Pagination.IResponse {
@@ -142,6 +145,25 @@ declare namespace Omise {
       transaction: string;
       created: string;
       voided: boolean;
+    }
+  }
+
+  namespace Sources {
+    interface ISources {
+      create(req: IRequest, callback?: ResponseCallback<ISource>): Bluebird<ISource>;
+    }
+
+    interface IRequest {
+      type: string;
+      amount: number;
+      currency: string;
+    }
+
+    interface ISource extends IBaseResponse {
+      type: string;
+      flow: string;
+      amount: number;
+      currency: string;
     }
   }
 
