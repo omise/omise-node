@@ -238,6 +238,20 @@ declare namespace Omise {
     }
   }
 
+  namespace Forex {
+    interface IForexes {
+      retrieve(forexID: string, callback?: ResponseCallback<IForex>): Bluebird<IForex>;
+    }
+
+    interface IForex extends IBaseResponse {
+      object: string;
+      rate: number;
+      from: string;
+      to: string;
+      location: string;
+    }
+  }
+
   namespace Links {
     interface ILinks {
       retrieve(linkID: string, callback?: ResponseCallback<ILink>): Bluebird<ILink>;
