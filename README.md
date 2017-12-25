@@ -59,7 +59,7 @@ omise.charges.create({
 });
 ```
 
-Please see [Omise Documentation](https://docs.omise.co/) for more information on how to use the library.
+Please see [Omise Documentation](https://www.omise.co/docs) for more information on how to use the library.
 
 ### Important Note:
 
@@ -69,16 +69,16 @@ The token creation method in the library should only be used either with fake da
 that said, you must achieve, maintain PCI compliance at all times and do following a [Security Best Practices](https://www.pcisecuritystandards.org/documents/PCI_DSS_V3.0_Best_Practices_for_Maintaining_PCI_DSS_Compliance.pdf)
 
 So, we recommended you to create a token using [Omise.JS](https://github.com/omise/omise.js) library which runs on browser.
-It uses Javascript to send the credit card data on client side, send it to Omise, and then you can populate the form with a unique one-time used token which can be used later on with `omise-node` or [Card.js](https://docs.omise.co/card-js/), by using it you can let it builds a credit card payment form window and creates a card token that you can use to create a charge with `omise-node`.
+It uses Javascript to send the credit card data on client side, send it to Omise, and then you can populate the form with a unique one-time used token which can be used later on with `omise-node` or [Card.js](https://www.omise.co/card-js-api), by using it you can let it builds a credit card payment form window and creates a card token that you can use to create a charge with `omise-node`.
 For both methods, the client will directly send the card information to Omise gateway, your servers don't have to deal with card information at all and you don't need to deal with credit card data hassle, it reduces risk.
 
-**Please read https://docs.omise.co/collecting-card-information/ regarding how to collecting card information.**
+**Please read https://www.omise.co/collecting-card-information/ regarding how to collecting card information.**
 
 ## Examples
 
 ### Create a customer with card associated to it
 
-Creating a customer can be done by using `omise.customers.create` which accepts an optional `card` argument. When you pass in a `tokenId` retrieve from [Omise.js](https://docs.omise.co/omise-js/), the card associated to that token will be associated to the customer.
+Creating a customer can be done by using `omise.customers.create` which accepts an optional `card` argument. When you pass in a `tokenId` retrieve from [Omise.js](https://www.omise.co/omise-js/), the card associated to that token will be associated to the customer.
 
 ```javascript
 omise.customers.create({
@@ -157,14 +157,14 @@ omise.tokens.retrieve('tokn_test_4xs9408a642a1htto8z', function(error, token) {
 ## Error Handling
 
 To handle an invalid request, it is required to check any error via an `Error` object
-that includes `code` and `message` attributes as stated in https://docs.omise.co/api/errors.
+that includes `code` and `message` attributes as stated in https://www.omise.co/api/errors.
 But, for any valid request, checking `failure_code` and `failure_message` is required, for example:
 If you'd like to create a `Charge` or a `Transfer` with a valid request,
 A sucessfully charge or tranfer happens only when none of failure exists that means both `failure_code` and `failure_message` must be `null`.
 
 ## Resource methods
 
-The following API methods are available. Please see [https://docs.omise.co](https://docs.omise.co) for more details.
+The following API methods are available. Please see [https://www.omise.co/docs](https://www.omise.co/docs) for more details.
 
 * account
   * `retrieve()`
