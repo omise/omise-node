@@ -15,7 +15,7 @@ From NPM
 $ npm install omise
 ```
 
-The library has been tested with Node version 0.10.32+.
+The library has been tested with Node version 8.9.4.
 
 ## Code Status
 
@@ -219,6 +219,8 @@ The following API methods are available. Please see [https://www.omise.co/docs](
   * `create(data)`
   * `list([data])`
   * `retrieve(linkId)`
+* sources
+  * `create(data)`
 
 ## Testing
 
