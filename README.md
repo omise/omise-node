@@ -15,7 +15,7 @@ From NPM
 $ npm install omise
 ```
 
-The library has been tested with Node version 8.9.4.
+The library has been tested with Node version 4.4.6.
 
 ## Code Status
 
