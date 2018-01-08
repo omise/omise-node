@@ -173,7 +173,7 @@ declare namespace Omise {
       retrieve(customerID: string, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
       update(customerID: string, req: IRequest, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
       destroy(customerID: string, callback?: ResponseCallback<IDestroyResponse>): Bluebird<IDestroyResponse>;
-      list(parameters?: Pagination.IRequest): Bluebird<ICustomerList>;
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<ICustomerList>): Bluebird<ICustomerList>;
       listCards(customerID: string, parameters?: Pagination.IRequest, callback?: ResponseCallback<Cards.ICardList>)
         : Bluebird<Cards.ICardList>;
       retrieveCard(customerID: string, cardID: string, callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
