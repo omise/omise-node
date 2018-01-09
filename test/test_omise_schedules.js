@@ -51,6 +51,15 @@ describe('Omise', function() {
         expect(resp.id, scheduleID);
         done();
       });
+
+      it('should be able to destroy a schedule', function(done) {
+        testHelper.setupMock('schedule_destroy');
+        omise.schedules.destroy(scheduleID, function(err, resp) {
+          expect(resp.object, 'schedule');
+          expect(resp.id, scheduleID);
+          done();
+        });
+      });
     });
   });
 });
