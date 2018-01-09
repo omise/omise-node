@@ -453,3 +453,5 @@ declare namespace Omise {
 
   type ResponseCallback<R> = (err: any, resp: R) => void;
 }
+
+export = omise;
