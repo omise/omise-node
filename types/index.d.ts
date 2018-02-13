@@ -22,6 +22,7 @@ declare namespace Omise {
     events: Events.IEvents;
     links: Links.ILinks;
     recipients: Recipients.IRecipients;
+    sources: Sources.ISources;
     tokens: Tokens.ITokens;
     transactions: Transactions.ITransactions;
     transfers: Transfers.ITransfers;
@@ -105,6 +106,7 @@ declare namespace Omise {
       customer?: string;
       return_uri?: string;
       metadata?: any;
+      source?: string;
     }
 
     interface ICharge extends IBaseResponse {
@@ -126,6 +128,7 @@ declare namespace Omise {
       dispute: string;
       created: string;
       metadata: {[key: string]: any};
+      source?: Sources.ISource;
     }
 
     interface IChargeSchedule {
@@ -154,13 +157,32 @@ declare namespace Omise {
     }
   }
 
+  namespace Sources {
+    interface ISources {
+      create(req: IRequest, callback?: ResponseCallback<ISource>): Bluebird<ISource>;
+    }
+
+    interface IRequest {
+      type: string;
+      amount: number;
+      currency: string;
+    }
+
+    interface ISource extends IBaseResponse {
+      type: string;
+      flow: string;
+      amount: number;
+      currency: string;
+    }
+  }
+
   namespace Customers {
     interface ICustomers {
       create(req: IRequest, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
       retrieve(customerID: string, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
       update(customerID: string, req: IRequest, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
       destroy(customerID: string, callback?: ResponseCallback<IDestroyResponse>): Bluebird<IDestroyResponse>;
-      list(parameters?: Pagination.IRequest): Bluebird<ICustomerList>;
+      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<ICustomerList>): Bluebird<ICustomerList>;
       listCards(customerID: string, parameters?: Pagination.IRequest, callback?: ResponseCallback<Cards.ICardList>)
         : Bluebird<Cards.ICardList>;
       retrieveCard(customerID: string, cardID: string, callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
