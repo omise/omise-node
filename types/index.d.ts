@@ -26,6 +26,7 @@ declare namespace Omise {
     tokens: Tokens.ITokens;
     transactions: Transactions.ITransactions;
     transfers: Transfers.ITransfers;
+    schedules: Schedules.ISchedule;
   }
 
   namespace Account {
@@ -128,6 +129,14 @@ declare namespace Omise {
       created: string;
       metadata: {[key: string]: any};
       source?: Sources.ISource;
+    }
+
+    interface IChargeSchedule {
+      amount: number;
+      currency: string;
+      description: string;
+      customer: string;
+      card: string;
     }
 
     interface IListRefundResponse extends Pagination.IResponse {
@@ -260,6 +269,20 @@ declare namespace Omise {
     }
   }
 
+  namespace Forex {
+    interface IForexes {
+      retrieve(forexID: string, callback?: ResponseCallback<IForex>): Bluebird<IForex>;
+    }
+
+    interface IForex extends IBaseResponse {
+      object: string;
+      rate: number;
+      from: string;
+      to: string;
+      location: string;
+    }
+  }
+
   namespace Links {
     interface ILinks {
       retrieve(linkID: string, callback?: ResponseCallback<ILink>): Bluebird<ILink>;
@@ -380,6 +403,13 @@ declare namespace Omise {
     interface ITransferList extends Pagination.IResponse {
       data: [ITransfer];
     }
+
+    interface ITransferSchedule {
+      recipient: string;
+      amount: number;
+      percentage_of_balance: number;
+      currency: string;
+    }
   }
 
   namespace Tokens {
@@ -429,6 +459,61 @@ declare namespace Omise {
       total: number;
       data: [any];
       location?: string;
+    }
+  }
+
+  namespace Schedules {
+    interface ISchedule {
+      create(req: IRequest, callback?: ResponseCallback<ISchedule>): Bluebird<ISchedule>;
+      destroy(scheduleID: string, callback?: ResponseCallback<IDestroyResponse>): Bluebird<IDestroyResponse>;
+      list(callback?: ResponseCallback<IScheduleList>): Bluebird<IScheduleList>;
+      retrieve(scheduleID: string, callback?: ResponseCallback<ISchedule>): Bluebird<ISchedule>;
+    }
+
+    interface IRequest {
+      every: number;
+      period: string;
+      on: IOn;
+      start_date: string;
+      end_date: string;
+      transfer?: Transfers.ITransferSchedule;
+      charge?: Charges.IChargeSchedule;
+    }
+
+    interface ISchedule extends IBaseResponse {
+      status: string;
+      every: number;
+      period: string;
+      in_words: string;
+      start_date: string;
+      end_date: string;
+      on: IOn;
+      occurrences: Array<IOccurrence>;
+      next_occurrence_dates: Array<string>;
+      created: string;
+      transfer?: Transfers.ITransferSchedule;
+      charge?: Charges.IChargeSchedule;
+    }
+
+    interface IOn {
+      weekdays?: Array<string>;
+      days_of_month?: Array<string>;
+      weekday_of_month?: Array<string>;
+    }
+
+    interface IOccurrence extends IBaseResponse {
+      schedule:	string;
+      schedule_date: string;
+      retry_date:	string;
+      processed_at: string;
+      status: string;
+      message: string;
+      result: any;
+      created: string;
+    }
+
+    interface IScheduleList extends Pagination.IResponse {
+      data: [ISchedule];
     }
   }
 
