@@ -17,6 +17,23 @@ const cardDetails = {
     },
 };
 
-omise.tokens.create(cardDetails, (err, resp) => {
-    console.log(resp);
+omise.tokens.create(cardDetails, (err, token) => {
+    if (err) {
+        console.log('error', err);
+        return;
+    }
+
+    omise.charges.create({
+        amount: 10000,
+        currency: 'thb',
+        return_uri: 'http://example.com',
+        card: token.id,
+    }, function(err, charge) {
+        if (err) {
+            console.log('error', err);
+            return;
+        }
+
+        console.log('charge', charge);
+    })
 });
