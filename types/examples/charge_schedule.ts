@@ -1,4 +1,4 @@
-import omise = require('../index');
+import omise = require('../../index');
 
 const chargeEvery2Days = {
   every: 2,
@@ -6,8 +6,8 @@ const chargeEvery2Days = {
   start_date: '2018-01-01',
   end_date: '2018-12-01',
   charge: {
-    customer: 'cust_test_57m2wcnfx96k634rkqq',
-    card: 'card_test_57m2w8iemdovs4f92m2',
+    customer:    'cust_test_5aikub0w7976lnyiy5j',
+    card:        'card_test_5aikuaxu7emawe0y9u6',
     amount: 1000000,
     description: 'Membership fee',
   },
@@ -15,7 +15,7 @@ const chargeEvery2Days = {
 
 const omiseStatic = omise({
   publicKey: process.env.OMISE_PUBLIC_KEY,
-  secretKey: process.env.OMISE_SECRET_KEY,
+  secretKey: 'skey_test_58uputp2xdsnktje7u4',
 });
 
 omiseStatic.schedules.create(chargeEvery2Days, (err, resp) => {
@@ -31,8 +31,8 @@ const monthlyCharge = {
     days_of_month: [1],
   },
   charge: {
-    customer:    'cust_test_57m2wcnfx96k634rkqq',
-    card:        'card_test_57m2w8iemdovs4f92m2',
+    customer:    'cust_test_5aikub0w7976lnyiy5j',
+    card:        'card_test_5aikuaxu7emawe0y9u6',
     amount:      1000000,
     description: 'Membership fee',
   },

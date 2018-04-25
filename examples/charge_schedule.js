@@ -30,7 +30,7 @@ omise.schedules.create(chargeEvery2Days, function(err, schedule) {
   console.log(schedule.next_occurrence_dates);
 });
 
-// Charge on eery Monday and Friday
+// Charge on the 1st day of each month
 var monthlyCharge = {
   every:      1,
   period:     'month',
