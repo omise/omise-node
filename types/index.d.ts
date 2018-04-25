@@ -304,6 +304,7 @@ declare namespace Omise {
       retrieve(recipientID: string, callback?: ResponseCallback<IRecipient>): Bluebird<IRecipient>;
       destroy(recipientID: string, callback?: ResponseCallback<IDestroyResponse>): Bluebird<IDestroyResponse>;
       list(parameters?: Pagination.IRequest, callback?: ResponseCallback<IRecipientList>): Bluebird<IRecipientList>;
+      schedules(recipientID: string, callback?: ResponseCallback<Schedules.ITransferScheduleList>): Bluebird<Schedules.ITransferScheduleList>;
     }
 
     interface IRequest {
@@ -359,6 +360,7 @@ declare namespace Omise {
       retrieve(transferID: string, callback?: ResponseCallback<ITransfer>): Bluebird<ITransfer>;
       destroy(transferID: string, callback?: ResponseCallback<IDestroyResponse>): Bluebird<IDestroyResponse>;
       list(parameters: Pagination.IRequest, callback?: ResponseCallback<ITransferList>): Bluebird<ITransferList>;
+      schedules(callback?: ResponseCallback<Schedules.ITransferScheduleList>): Bluebird<Schedules.ITransferScheduleList>;
     }
 
     interface IRequest {
@@ -445,6 +447,10 @@ declare namespace Omise {
       amount?: number;
       percentage_of_balance?: number;
       recipient: string;
+    }
+
+    interface ITransferScheduleList extends IOccurrences {
+      data: ITransferSchedule[];
     }
 
     interface ICreateSchedule {
