@@ -36,7 +36,7 @@ declare namespace Omise {
     interface IAccount extends IBaseResponse {
       email: string;
       currency: string;
-      supported_currencies: [string];
+      supported_currencies: string[];
       created: string;
     }
   }
@@ -79,7 +79,7 @@ declare namespace Omise {
     }
 
     interface ICardList extends Pagination.IResponse {
-      data: [ICard];
+      data: ICard[];
     }
   }
 
@@ -131,11 +131,11 @@ declare namespace Omise {
     }
 
     interface IListRefundResponse extends Pagination.IResponse {
-      data: [IRefundResponse];
+      data: IRefundResponse[];
     }
 
     interface IChargeList extends Pagination.IResponse {
-      data: [ICharge];
+      data: ICharge[];
     }
 
     interface IRefundResponse extends IBaseResponse {
