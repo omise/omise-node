@@ -97,6 +97,7 @@ declare namespace Omise {
       createRefund(chargeID: string, callback?: ResponseCallback<IRefundResponse>): Bluebird<IRefundResponse>;
       listRefunds(chargeID: string, callback?: ResponseCallback<IListRefundResponse>): Bluebird<IListRefundResponse>;
       retrieveRefund(chargeID: string, refundID: string, callback?: ResponseCallback<IRefundResponse>): Bluebird<IRefundResponse>;
+      schedules(callback?: ResponseCallback<Schedules.IChargeScheduleList>): Bluebird<Schedules.IChargeScheduleList>;
     }
 
     interface IRequest {
@@ -421,6 +422,10 @@ declare namespace Omise {
 
     interface IChargeSchedule extends ICreateSchedule {
       charge: ICharge;
+    }
+
+    interface IChargeScheduleList extends IOccurrences {
+      data: IChargeSchedule[];
     }
 
     interface ICharge {
