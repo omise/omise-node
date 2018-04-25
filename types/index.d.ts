@@ -197,7 +197,7 @@ declare namespace Omise {
     }
 
     interface ICustomerList extends Pagination.IResponse {
-      data: [ICustomer];
+      data: ICustomer[];
     }
   }
 
@@ -230,7 +230,7 @@ declare namespace Omise {
     }
 
     interface IListResponse extends Pagination.IResponse {
-      data: [IResponse];
+      data: IResponse[];
     }
 
     interface IDocument extends IBaseResponse {
@@ -239,7 +239,7 @@ declare namespace Omise {
     }
 
     interface IDocumentsList extends Pagination.IResponse {
-      data: [IDocument];
+      data: IDocument[];
     }
   }
 
@@ -256,7 +256,7 @@ declare namespace Omise {
     }
 
     interface IEventList extends Pagination.IResponse {
-      data: [IEvent];
+      data: IEvent[];
     }
   }
 
@@ -288,7 +288,7 @@ declare namespace Omise {
     }
 
     interface ILinkListResponse extends Pagination.IResponse {
-      data: [ILink];
+      data: ILink[];
     }
   }
 
@@ -324,7 +324,7 @@ declare namespace Omise {
     }
 
     interface IRecipientList extends Pagination.IResponse {
-      data: [IRecipient];
+      data: IRecipient[];
     }
   }
 
@@ -343,7 +343,7 @@ declare namespace Omise {
     }
 
     interface ITransactionList extends Pagination.IResponse {
-      data: [ITransaction];
+      data: ITransaction[];
     }
   }
 
@@ -378,7 +378,7 @@ declare namespace Omise {
     }
 
     interface ITransferList extends Pagination.IResponse {
-      data: [ITransfer];
+      data: ITransfer[];
     }
   }
 
@@ -427,7 +427,7 @@ declare namespace Omise {
       to: string;
       order: string;
       total: number;
-      data: [any];
+      data: any[];
       location?: string;
     }
   }
