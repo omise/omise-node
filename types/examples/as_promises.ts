@@ -1,6 +1,7 @@
-import {omise} from '../index';
+import omise = require('../index');
 
-const cardDetails = {
+let cardDetails: omise.Tokens.IRequest;
+cardDetails = {
   card: {
     city: 'Bangkok',
     expiration_month: 2,
