@@ -184,6 +184,7 @@ declare namespace Omise {
       updateCard(customerID: string, cardID: string, details: Cards.ICardRequest,
                  callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
       destroyCard(customerID: string, cardID: string, callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
+      schedules(customerID: string, callback?: ResponseCallback<Schedules.IChargeScheduleList>): Bluebird<Schedules.IChargeScheduleList>;
     }
 
     interface IRequest {
