@@ -429,12 +429,22 @@ declare namespace Omise {
       data: IChargeSchedule[];
     }
 
+    interface ITransferSchedule extends ICreateSchedule {
+      transfer: ITransfer;
+    }
+
     interface ICharge {
       amount: number;
       currency: string;
       description: string;
       customer: string;
       card: string;
+    }
+
+    interface ITransfer {
+      amount?: number;
+      percentage_of_balance?: number;
+      recipient: string;
     }
 
     interface ICreateSchedule {
@@ -462,6 +472,7 @@ declare namespace Omise {
       occurrences: IOccurrences;
       next_occurrence_dates: string[];
       charge?: ICharge;
+      transfer?: ITransfer;
     }
   }
 
