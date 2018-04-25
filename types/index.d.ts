@@ -5,31 +5,33 @@
 
 import * as Bluebird from 'bluebird';
 
-declare function omise(options: Omise.IOptions): Omise.IOmise;
+declare function Omise(options: Omise.IOptions): Omise.IOmise;
+
+export = Omise;
 
 declare namespace Omise {
-  interface IOptions {
+  export interface IOptions {
     publicKey: string;
     secretKey: string;
   }
 
-  interface IOmise {
-    accounts: Account.IAccount;
-    balances: Balance.IBalance;
-    charges: Charges.ICharges;
-    customers: Customers.ICustomers;
-    disputes: Disputes.IDisputes;
-    events: Events.IEvents;
-    links: Links.ILinks;
-    recipients: Recipients.IRecipients;
-    sources: Sources.ISources;
-    tokens: Tokens.ITokens;
-    transactions: Transactions.ITransactions;
-    transfers: Transfers.ITransfers;
+  export interface IOmise {
+    accounts: Account.IAccountAPI;
+    balances: Balance.IBalanceAPI;
+    charges: Charges.IChargesAPI;
+    customers: Customers.ICustomersAPI;
+    disputes: Disputes.IDisputesAPI;
+    events: Events.IEventsAPI;
+    links: Links.ILinksAPI;
+    recipients: Recipients.IRecipientsAPI;
+    sources: Sources.ISourcesAPI;
+    tokens: Tokens.ITokensAPI;
+    transactions: Transactions.ITransactionsAPI;
+    transfers: Transfers.ITransfersAPI;
   }
 
-  namespace Account {
-    interface IAccount {
+  export namespace Account {
+    interface IAccountAPI {
       retrieve(callback?: ResponseCallback<IAccount>): Bluebird<IAccount>;
     }
 
@@ -41,8 +43,8 @@ declare namespace Omise {
     }
   }
 
-  namespace Balance {
-    interface IBalance {
+  export namespace Balance {
+    interface IBalanceAPI {
       retrieve(callback?: ResponseCallback<IBalance>): Bluebird<IBalance>;
     }
 
@@ -53,7 +55,7 @@ declare namespace Omise {
     }
   }
 
-  namespace Cards {
+  export namespace Cards {
     interface ICard extends IBaseResponse {
       country: string;
       city: string;
@@ -83,8 +85,8 @@ declare namespace Omise {
     }
   }
 
-  namespace Charges {
-    interface ICharges {
+  export namespace Charges {
+    interface IChargesAPI {
       create(req: IRequest, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
       update(chargeID: string, req: IRequest, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
       retrieve(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
@@ -148,8 +150,8 @@ declare namespace Omise {
     }
   }
 
-  namespace Sources {
-    interface ISources {
+  export namespace Sources {
+    interface ISourcesAPI {
       create(req: IRequest, callback?: ResponseCallback<ISource>): Bluebird<ISource>;
     }
 
@@ -167,8 +169,8 @@ declare namespace Omise {
     }
   }
 
-  namespace Customers {
-    interface ICustomers {
+  export namespace Customers {
+    interface ICustomersAPI {
       create(req: IRequest, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
       retrieve(customerID: string, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
       update(customerID: string, req: IRequest, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
@@ -201,8 +203,8 @@ declare namespace Omise {
     }
   }
 
-  namespace Disputes {
-    interface IDisputes {
+  export namespace Disputes {
+    interface IDisputesAPI {
       list(parameters?: Pagination.IRequest, callback?: ResponseCallback<IListResponse>): Bluebird<IListResponse>;
       listClosed(callback?: ResponseCallback<IListResponse>): Bluebird<IListResponse>;
       listOpen(callback?: ResponseCallback<IListResponse>): Bluebird<IListResponse>;
@@ -243,8 +245,8 @@ declare namespace Omise {
     }
   }
 
-  namespace Events {
-    interface IEvents {
+  export namespace Events {
+    interface IEventsAPI {
       retrieve(eventID: string, callback?: ResponseCallback<IEvent>): Bluebird<IEvent>;
       list(parameters?: Pagination.IRequest, callback?: ResponseCallback<IEventList>): Bluebird<IEventList>;
     }
@@ -260,8 +262,8 @@ declare namespace Omise {
     }
   }
 
-  namespace Links {
-    interface ILinks {
+  export namespace Links {
+    interface ILinksAPI {
       retrieve(linkID: string, callback?: ResponseCallback<ILink>): Bluebird<ILink>;
       list(parameters?: Pagination.IRequest, callback?: ResponseCallback<ILinkListResponse>): Bluebird<ILinkListResponse>;
       create(req: IRequest, callback?: ResponseCallback<ILink>): Bluebird<ILink>;
@@ -292,8 +294,8 @@ declare namespace Omise {
     }
   }
 
-  namespace Recipients {
-    interface IRecipients {
+  export namespace Recipients {
+    interface IRecipientsAPI {
       create(req: IRequest, callback?: ResponseCallback<IRecipient>): Bluebird<IRecipient>;
       update(recipientID: string, req: IRequest, callback?: ResponseCallback<IRecipient>): Bluebird<IRecipient>;
       retrieve(recipientID: string, callback?: ResponseCallback<IRecipient>): Bluebird<IRecipient>;
@@ -328,8 +330,8 @@ declare namespace Omise {
     }
   }
 
-  namespace Transactions {
-    interface ITransactions {
+  export namespace Transactions {
+    interface ITransactionsAPI {
       retrieve(transactionID: string, callback?: ResponseCallback<ITransaction>): Bluebird<ITransaction>;
       list(parameters?: Pagination.IRequest, callback?: ResponseCallback<ITransactionList>): Bluebird<ITransactionList>;
     }
@@ -347,8 +349,8 @@ declare namespace Omise {
     }
   }
 
-  namespace Transfers {
-    interface ITransfers {
+  export namespace Transfers {
+    interface ITransfersAPI {
       create(req: IRequest, callback?: ResponseCallback<ITransfer>): Bluebird<ITransfer>;
       update(transferID: string, req: IRequest, callback?: ResponseCallback<ITransfer>): Bluebird<ITransfer>;
       retrieve(transferID: string, callback?: ResponseCallback<ITransfer>): Bluebird<ITransfer>;
@@ -382,17 +384,17 @@ declare namespace Omise {
     }
   }
 
-  namespace Tokens {
-    interface ITokens {
-      create(options: ICreateOptions, callback?: ResponseCallback<IToken>): Bluebird<IToken>;
+  export namespace Tokens {
+    interface ITokensAPI {
+      create(options: IRequest, callback?: ResponseCallback<IToken>): Bluebird<IToken>;
       retrieve(tokenID: string, callback?: ResponseCallback<IToken>): Bluebird<IToken>;
     }
 
-    interface ICreateOptions {
-      card: ITokenCreateCardOptions;
+    interface IRequest {
+      card: ICard;
     }
 
-    interface ITokenCreateCardOptions {
+    interface ICard {
       name: string;
       city: string;
       postal_code: number|string;
@@ -409,7 +411,7 @@ declare namespace Omise {
     }
   }
 
-  namespace Pagination {
+  export namespace Pagination {
     interface IRequest {
       offset?: number;
       limit?: number;
