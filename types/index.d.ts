@@ -24,6 +24,7 @@ declare namespace Omise {
     events: Events.IEventsAPI;
     links: Links.ILinksAPI;
     recipients: Recipients.IRecipientsAPI;
+    schedules: Schedules.ISchedulesAPI;
     sources: Sources.ISourcesAPI;
     tokens: Tokens.ITokensAPI;
     transactions: Transactions.ITransactionsAPI;
@@ -80,7 +81,7 @@ declare namespace Omise {
       city?: string;
     }
 
-    interface ICardList extends Pagination.IResponse {
+    interface ICardList extends IOccurrences {
       data: ICard[];
     }
   }
@@ -132,11 +133,11 @@ declare namespace Omise {
       source?: Sources.ISource;
     }
 
-    interface IListRefundResponse extends Pagination.IResponse {
+    interface IListRefundResponse extends IOccurrences {
       data: IRefundResponse[];
     }
 
-    interface IChargeList extends Pagination.IResponse {
+    interface IChargeList extends IOccurrences {
       data: ICharge[];
     }
 
@@ -198,7 +199,7 @@ declare namespace Omise {
       cards: Cards.ICardList;
     }
 
-    interface ICustomerList extends Pagination.IResponse {
+    interface ICustomerList extends IOccurrences {
       data: ICustomer[];
     }
   }
@@ -231,7 +232,7 @@ declare namespace Omise {
       transaction: string;
     }
 
-    interface IListResponse extends Pagination.IResponse {
+    interface IListResponse extends IOccurrences {
       data: IResponse[];
     }
 
@@ -240,7 +241,7 @@ declare namespace Omise {
       created: string;
     }
 
-    interface IDocumentsList extends Pagination.IResponse {
+    interface IDocumentsList extends IOccurrences {
       data: IDocument[];
     }
   }
@@ -257,7 +258,7 @@ declare namespace Omise {
       data: any;
     }
 
-    interface IEventList extends Pagination.IResponse {
+    interface IEventList extends IOccurrences {
       data: IEvent[];
     }
   }
@@ -289,7 +290,7 @@ declare namespace Omise {
       created: string;
     }
 
-    interface ILinkListResponse extends Pagination.IResponse {
+    interface ILinkListResponse extends IOccurrences {
       data: ILink[];
     }
   }
@@ -325,7 +326,7 @@ declare namespace Omise {
       created: string;
     }
 
-    interface IRecipientList extends Pagination.IResponse {
+    interface IRecipientList extends IOccurrences {
       data: IRecipient[];
     }
   }
@@ -344,7 +345,7 @@ declare namespace Omise {
       created: string;
     }
 
-    interface ITransactionList extends Pagination.IResponse {
+    interface ITransactionList extends IOccurrences {
       data: ITransaction[];
     }
   }
@@ -379,7 +380,7 @@ declare namespace Omise {
       created: string;
     }
 
-    interface ITransferList extends Pagination.IResponse {
+    interface ITransferList extends IOccurrences {
       data: ITransfer[];
     }
   }
@@ -411,6 +412,53 @@ declare namespace Omise {
     }
   }
 
+  export namespace Schedules {
+
+    interface ISchedulesAPI {
+      create(options: ICreateSchedule, callback?: ResponseCallback<ISchedule>): Bluebird<ISchedule>;
+      retrieve(scheduleID: string, callback?: ResponseCallback<ISchedule>): Bluebird<ISchedule>;
+    }
+
+    interface IChargeSchedule extends ICreateSchedule {
+      charge: ICharge;
+    }
+
+    interface ICharge {
+      amount: number;
+      currency: string;
+      description: string;
+      customer: string;
+      card: string;
+    }
+
+    interface ICreateSchedule {
+      every: number;
+      period: string;
+      on?: Ion;
+      start_date: string;
+      end_date: string;
+    }
+
+    interface Ion {
+      weekdays?: string[];
+      days_of_month?: number[];
+      weekday_of_month?: string;
+    }
+
+    interface ISchedule extends IBaseResponse {
+      status: string;
+      every: number;
+      period: string;
+      on: Ion;
+      in_words: string;
+      start_date: string;
+      end_date: string;
+      occurrences: IOccurrences;
+      next_occurrence_dates: string[];
+      charge?: ICharge;
+    }
+  }
+
   export namespace Pagination {
     interface IRequest {
       offset?: number;
@@ -420,18 +468,18 @@ declare namespace Omise {
       order?: string;
       total?: number;
     }
+  }
 
-    interface IResponse {
-      object: string;
-      offset: number;
-      limit: number;
-      from: string;
-      to: string;
-      order: string;
-      total: number;
-      data: any[];
-      location?: string;
-    }
+  interface IOccurrences {
+    object: string;
+    offset: number;
+    limit: number;
+    from: string;
+    to: string;
+    order: string;
+    total: number;
+    data: any[];
+    location?: string;
   }
 
   interface IBankAccount {
