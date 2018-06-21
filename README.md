@@ -178,6 +178,7 @@ The following API methods are available. Please see [https://www.omise.co/docs](
   * `createRefund(chargeId[, data])`
   * `update(chargeId[, data])`
   * `reverse(chargeId)`
+  * `schedules([data])`
 * customers
   * `create(data)`
   * `list([data])`
@@ -196,6 +197,7 @@ The following API methods are available. Please see [https://www.omise.co/docs](
   * `list([data])`
   * `retrieve(transferId)`
   * `update(transferId[, data])`
+  * `schedules([data])`
 * transactions
   * `list([data])`
   * `retrieve(transactionId)`
@@ -221,6 +223,10 @@ The following API methods are available. Please see [https://www.omise.co/docs](
   * `retrieve(linkId)`
 * sources
   * `create(data)`
+* schedules
+  * `create(data)`
+  * `destroy(scheduleId)`
+  * `retrieve([scheduleId])`
 
 ## Testing
 
