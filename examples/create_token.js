@@ -7,12 +7,12 @@ var omise = require('../index')({
 
 var cardDetails = {
   card: {
-    'name': 'JOHN DOE',
-    'city': 'Bangkok',
-    'postal_code': 10160,
-    'number': '4532156433142865',
+    'name':             'JOHN DOE',
+    'city':             'Bangkok',
+    'postal_code':      10160,
+    'number':           '4532156433142865',
     'expiration_month': 8,
-    'expiration_year': 2022,
+    'expiration_year':  2022,
   },
 };
 

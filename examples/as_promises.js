@@ -7,21 +7,21 @@ var omise = require('../index')({
 
 var cardDetails = {
   card: {
-    'name': 'JOHN DOE',
-    'city': 'Bangkok',
-    'postal_code': 10320,
-    'number': '4242424242424242',
+    'name':             'JOHN DOE',
+    'city':             'Bangkok',
+    'postal_code':      10320,
+    'number':           '4242424242424242',
     'expiration_month': 2,
-    'expiration_year': 2017,
+    'expiration_year':  2017,
   },
 };
 
 omise.tokens.create(cardDetails).then(function(token) {
   console.log(token);
   return omise.customers.create({
-    'email': 'john.doe@example.com',
+    'email':       'john.doe@example.com',
     'description': 'John Doe (id: 30)',
-    'card': token.id,
+    'card':        token.id,
   });
 }).then(function(customer) {
   console.log(customer);

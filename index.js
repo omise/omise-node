@@ -1,5 +1,5 @@
 'use strict';
-//Omise.co
+// Omise.co
 var resource = require('./lib/apiResources');
 module.exports = function(config) {
   return resource.omiseResources(config);
