@@ -2,8 +2,8 @@
 
 // More information: https://www.omise.co/charge-schedules-api
 var omise = require('../index')({
-  'publicKey': 'pkey_test_58uputp2pjvubug0rza',
-  'secretKey': 'skey_test_58uputp2xdsnktje7u4',
+  'publicKey': 'pkey_test_1234',
+  'secretKey': 'skey_test_1234',
 });
 
 // Charge every 2 days
