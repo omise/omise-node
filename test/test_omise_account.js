@@ -12,7 +12,7 @@ describe('Omise', function() {
         expect(resp.object, 'account');
         expect(resp.id, 'acct_123');
         expect(resp.email, 'test@omise.co');
-        done();
+        done(err);
       });
     });
   });

@@ -15,13 +15,13 @@ describe('Omise', function() {
       testHelper.setupMock('tokens_create');
       var cardDetails = {
         'card': {
-          'name': 'JOHN DOE',
-          'city': 'Bangkok',
-          'postal_code': 10320,
-          'number': '4242424242424242',
+          'name':             'JOHN DOE',
+          'city':             'Bangkok',
+          'postal_code':      10320,
+          'number':           '4242424242424242',
           'expiration_month': 2,
-          'expiration_year': 2017,
-          'security_code': 123,
+          'expiration_year':  2017,
+          'security_code':    123,
         },
       };
       omise.tokens.create(cardDetails, function(err, resp) {
@@ -31,7 +31,7 @@ describe('Omise', function() {
         should.exist(resp.card.id);
         var cardId = resp.card.id;
         expect(cardId).to.contains('card_test');
-        done();
+        done(err);
       });
     });
 
@@ -39,10 +39,10 @@ describe('Omise', function() {
       testHelper.setupMock('charges_create');
       var charge = {
         'description': 'Charge for order 3947',
-        'amount': '100000',
-        'currency': 'thb',
-        'capture': false,
-        'card': tokenId,
+        'amount':      '100000',
+        'currency':    'thb',
+        'capture':     false,
+        'card':        tokenId,
       };
       omise.charges.create(charge, function(err, resp) {
         expect(resp.object, 'charge');
@@ -50,7 +50,7 @@ describe('Omise', function() {
         expect(chargeId).to.match(/^chrg_test/);
         expect(resp.capture).be.false;
         expect(resp.paid).be.false;
-        done();
+        done(err);
       });
     });
 
@@ -60,7 +60,7 @@ describe('Omise', function() {
         expect(resp.object, 'charge');
         var reversed = resp.reversed;
         reversed.should.be.true;
-        done();
+        done(err);
       });
     });
 
@@ -70,7 +70,7 @@ describe('Omise', function() {
         expect(resp.object, 'list');
         expect(resp).to.have.property('data');
         expect(resp.data).to.be.a('array');
-        done();
+        done(err);
       });
     });
 
@@ -81,7 +81,7 @@ describe('Omise', function() {
         expect(resp).to.have.property('data');
         expect(resp.data).to.be.a('array');
         resp.limit.should.equal(1);
-        done();
+        done(err);
       });
     });
 
@@ -91,7 +91,7 @@ describe('Omise', function() {
         expect(resp.object, 'charge');
         expect(resp).to.have.property('amount');
         resp.amount.should.equal(100000);
-        done();
+        done(err);
       });
     });
 
@@ -103,7 +103,7 @@ describe('Omise', function() {
         var chargeId = resp.id;
         expect(chargeId).to.match(/^chrg_test/);
         expect(resp.description, 'test description');
-        done();
+        done(err);
       });
     });
 
@@ -113,7 +113,7 @@ describe('Omise', function() {
         expect(resp.object, 'charge');
         var paid = resp.paid;
         paid.should.be.true;
-        done();
+        done(err);
       });
     });
   });

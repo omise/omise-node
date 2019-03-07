@@ -11,12 +11,12 @@ describe('Omise', function() {
     it('should be able to list all transfers', function(done) {
       testHelper.setupMock('transfers_create');
       var data = {'amount': '4000'};
-      omise.transfers.create(data, function(err, resp) {
+      omise.transfers.create(data, function() {
         testHelper.setupMock('transfers_list');
         omise.transfers.list(function(err, resp) {
           expect(resp.object, 'transfer');
           transferId = resp.data[0].id;
-          done();
+          done(err);
         });
       });
     });
@@ -26,7 +26,7 @@ describe('Omise', function() {
       omise.transfers.retrieve(transferId, function(err, resp) {
         expect(resp.object, 'transfer');
         expect(resp.amount).not.nil;
-        done();
+        done(err);
       });
     });
 
@@ -37,7 +37,7 @@ describe('Omise', function() {
         expect(resp.object, 'transfer');
         var amount = resp.amount;
         amount.should.equal(5000);
-        done();
+        done(err);
       });
     });
 
@@ -46,7 +46,7 @@ describe('Omise', function() {
       omise.transfers.destroy(transferId, function(err, resp) {
         expect(resp.object, 'transfer');
         expect(resp.deleted).to.be.true;
-        done();
+        done(err);
       });
     });
   });

@@ -26,7 +26,7 @@ describe('Omise', function() {
         var sourceID = resp.id;
         should.exist(sourceID);
         expect(sourceID).to.contains(('src_'));
-        done();
+        done(err);
       });
     });
   });
