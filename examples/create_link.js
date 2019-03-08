@@ -6,10 +6,10 @@ var omise = require('../index')({
 });
 
 var link = {
-  'amount': 19000,
-  'currency': 'thb',
-  'multiple': true,
-  'title': 'Cappuccino',
+  'amount':      19000,
+  'currency':    'thb',
+  'multiple':    true,
+  'title':       'Cappuccino',
   'description': 'Freshly brewed coffee',
 };
 

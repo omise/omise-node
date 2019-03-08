@@ -12,7 +12,7 @@ var chargeEvery2Days = {
   period:     'day',
   start_date: '2018-01-01',
   end_date:   '2018-12-01',
-  charge: {
+  charge:     {
     customer:    'cust_test_57m2wcnfx96k634rkqq',
     card:        'card_test_57m2w8iemdovs4f92m2',
     amount:      1000000,
@@ -36,7 +36,7 @@ var monthlyCharge = {
   period:     'month',
   start_date: '2018-01-01',
   end_date:   '2018-12-01',
-  on: {
+  on:         {
     days_of_month: [1],
   },
   charge: {
