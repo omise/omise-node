@@ -12,7 +12,7 @@ describe('Omise', function() {
       omise.disputes.list(function(err, resp) {
         expect(resp.object, 'list');
         expect(resp.data).to.be.instanceof(Array);
-        done();
+        done(err);
       });
     });
 
@@ -25,7 +25,7 @@ describe('Omise', function() {
           expect(resp.object, 'list');
           expect(resp.data).to.be.instanceof(Array);
           expect(resp.data[0].status, 'open');
-          done();
+          done(err);
         });
       });
 
@@ -35,7 +35,7 @@ describe('Omise', function() {
           expect(resp.object, 'list');
           expect(resp.data).to.be.instanceof(Array);
           expect(resp.data[0].status, 'closed');
-          done();
+          done(err);
         });
       });
 
@@ -45,7 +45,7 @@ describe('Omise', function() {
           expect(resp.object, 'list');
           expect(resp.data).to.be.instanceof(Array);
           expect(resp.data[0].status, 'pending');
-          done();
+          done(err);
         });
       });
 
@@ -56,7 +56,7 @@ describe('Omise', function() {
           omise.disputes.retrieve(resp.data[0].id, function(err, resp) {
             expect(resp.message, 'testing dispute');
             expect(resp.charge).to.match(/^chrg_test/);
-            done();
+            done(err);
           });
         });
       });
@@ -70,7 +70,7 @@ describe('Omise', function() {
             function(err, resp) {
               expect(resp.message, updateData.message);
               expect(resp.charge).to.match(/^chrg_test/);
-              done();
+              done(err);
             });
         });
       });

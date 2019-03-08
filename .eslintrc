@@ -7,7 +7,7 @@
   "rules": {
     "no-var": "off",
     "max-len": [
-      "error",
+      "warn",
       80
     ],
     "linebreak-style": [

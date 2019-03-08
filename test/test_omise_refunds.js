@@ -16,13 +16,13 @@ describe('Omise', function() {
       testHelper.setupMock('tokens_create');
       var cardDetails = {
         'card': {
-          'name': 'JOHN DOE',
-          'city': 'Bangkok',
-          'postal_code': 10320,
-          'number': '4242424242424242',
+          'name':             'JOHN DOE',
+          'city':             'Bangkok',
+          'postal_code':      10320,
+          'number':           '4242424242424242',
           'expiration_month': 2,
-          'expiration_year': 2017,
-          'security_code': 123,
+          'expiration_year':  2017,
+          'security_code':    123,
         },
       };
 
@@ -32,9 +32,9 @@ describe('Omise', function() {
         testHelper.setupMock('charges_create');
         var charge = {
           'description': 'Charge for order 3947',
-          'amount': '100000',
-          'currency': 'thb',
-          'card': tokenId,
+          'amount':      '100000',
+          'currency':    'thb',
+          'card':        tokenId,
         };
         omise.charges.create(charge, function(err, resp) {
           chargeId = resp.id;
@@ -46,7 +46,7 @@ describe('Omise', function() {
             expect(resp.object, 'refund');
             expect(resp.amount, data['amount']);
             expect(resp.currency, 'thb');
-            done();
+            done(err);
           });
         });
       });
@@ -59,7 +59,7 @@ describe('Omise', function() {
         expect(resp.data).to.be.instanceof(Array);
         expect(resp.data[0].object, 'refund');
         refundId = resp.data[0].id;
-        done();
+        done(err);
       });
     });
 
@@ -70,7 +70,7 @@ describe('Omise', function() {
         expect(resp.id).to.match(/^rfnd_test/);
         expect(resp.charge).to.match(/^chrg_test/);
         expect(resp.transaction).to.match(/^trxn_test/);
-        done();
+        done(err);
       });
     });
   });

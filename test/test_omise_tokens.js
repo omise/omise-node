@@ -12,13 +12,13 @@ describe('Omise', function() {
     before(function(done) {
       var cardDetails = {
         'card': {
-          'name': 'JOHN DOE',
-          'city': 'Bangkok',
-          'postal_code': 10320,
-          'number': '4242424242424242',
+          'name':             'JOHN DOE',
+          'city':             'Bangkok',
+          'postal_code':      10320,
+          'number':           '4242424242424242',
           'expiration_month': 2,
-          'expiration_year': 2017,
-          'security_code': 123,
+          'expiration_year':  2017,
+          'security_code':    123,
         },
       };
       testHelper.setupMock('tokens_create');
@@ -29,7 +29,7 @@ describe('Omise', function() {
         should.exist(resp.card.id);
         var cardId = resp.card.id;
         expect(cardId).to.contains('card_test');
-        done();
+        done(err);
       });
     });
 
@@ -41,7 +41,7 @@ describe('Omise', function() {
         should.exist(resp.card.id);
         var cardId = resp.card.id;
         expect(cardId).to.contains('card_test');
-        done();
+        done(err);
       });
     });
   });

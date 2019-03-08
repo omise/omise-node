@@ -5,11 +5,11 @@ nock('https://api.omise.co')
   .persist()
   .intercept('/customers/' + custID + '/cards/' + cardID, 'DELETE')
   .reply(200, {
-    'object': 'card',
-    'id': cardID,
+    'object':   'card',
+    'id':       cardID,
     'livemode': false,
-    'deleted': true,
+    'deleted':  true,
   }, {
-    'server': 'nginx/1.1',
+    'server':       'nginx/1.1',
     'content-type': 'application/json',
   });

@@ -14,7 +14,7 @@ describe('Omise', function() {
         expect(resp).to.have.property('data');
         expect(resp.data).to.be.a('array');
         expect(resp.data[0].object, 'event');
-        done();
+        done(err);
       });
     });
 
@@ -25,7 +25,7 @@ describe('Omise', function() {
           expect(resp.object, 'event');
           expect(resp.id, 'evnt_test_52lfalk2p3ssnhwfoez');
           expect(resp.key, 'charge.create');
-          done();
+          done(err);
         }
       );
     });

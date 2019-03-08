@@ -9,10 +9,10 @@ describe('Omise', function() {
   describe('#Links', function() {
     it('should be able to create a link', function(done) {
       var link = {
-        'amount': 19000,
-        'currency': 'thb',
-        'multiple': false,
-        'title': 'Cappuccino',
+        'amount':      19000,
+        'currency':    'thb',
+        'multiple':    false,
+        'title':       'Cappuccino',
         'description': 'Freshly brewed coffee',
       };
       testHelper.setupMock('links_create');
@@ -20,7 +20,7 @@ describe('Omise', function() {
         expect(resp.object, 'link');
         expect(resp.amount, 19000);
         expect(resp.used, false);
-        done();
+        done(err);
       });
     });
 
@@ -37,7 +37,7 @@ describe('Omise', function() {
         expect(resp.data[0]).to.include.keys('multiple');
         expect(resp.data[0]).to.include.keys('charges');
         expect(resp.data[0]).to.include.keys('payment_uri');
-        done();
+        done(err);
       });
     });
   });
@@ -49,7 +49,7 @@ describe('Omise', function() {
       expect(resp.object, 'link');
       expect(resp).to.include.keys('amount');
       expect(resp.amount).not.be.nil;
-      done();
+      done(err);
     });
   });
 });
