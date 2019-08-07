@@ -24,11 +24,11 @@
     "@types/node": "^8.0.34",
     "bluebird": "^2.9.12",
     "https-proxy-agent": "^2.1.0",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "chai": "^2.0.0",
-    "eslint": "^5.15.1",
+    "eslint": "^5.16.0",
     "eslint-config-google": "^0.9.1",
     "mocha": "^5.2.0",
     "nock": "^9.3.3",
