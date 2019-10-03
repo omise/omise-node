@@ -7,7 +7,9 @@
   "scripts": {
     "jscs": "jscs *.js lib/*.js test/*.js",
     "test": "mocha test",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -24,7 +26,8 @@
     "@types/node": "^8.0.34",
     "bluebird": "^2.9.12",
     "https-proxy-agent": "^2.1.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "snyk": "^1.230.5"
   },
   "devDependencies": {
     "chai": "^2.0.0",
@@ -34,5 +37,6 @@
     "nock": "^9.3.3",
     "tslint": "^5.7.0",
     "typescript": "^2.5.3"
-  }
+  },
+  "snyk": true
 }
