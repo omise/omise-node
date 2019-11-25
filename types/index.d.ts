@@ -189,6 +189,7 @@ declare namespace Omise {
       email?: string;
       description?: string;
       card?: string;
+      metadata?: any;
     }
 
     interface ICustomer extends IBaseResponse {
@@ -197,6 +198,7 @@ declare namespace Omise {
       description: string;
       created: string;
       cards: Cards.ICardList;
+      metadata: {[key: string]: any};
     }
 
     interface ICustomerList extends IOccurrences {
