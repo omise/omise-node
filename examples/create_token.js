@@ -1,8 +1,8 @@
 'use strict';
 
 var omise = require('../index')({
-  'publicKey': 'pkey_test_1234',
-  'secretKey': 'skey_test_1234',
+  'publicKey': process.env.OMISE_PUBLIC_KEY,
+  'secretKey': process.env.OMISE_SECRET_KEY,
 });
 
 var cardDetails = {
@@ -23,10 +23,13 @@ omise.tokens.create(cardDetails, function(err, token) {
   }
 
   omise.charges.create({
-    'amount':     10000,
-    'currency':   'thb',
-    'return_uir': 'http://example.com',
-    'card':       token.id,
+    amount:     10000,
+    currency:   'thb',
+    return_uir: 'http://example.com',
+    card:       token.id,
+    metadata:   {
+      note:     'test card'
+    }
   }, function(err, charge) {
     if (err) {
       console.log('error', err);
