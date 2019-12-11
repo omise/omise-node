@@ -227,6 +227,8 @@ The following API methods are available. Please see [https://www.omise.co/docs](
   * `create(data)`
   * `destroy(scheduleId)`
   * `retrieve([scheduleId])`
+* search
+  * `list(data)`
 
 ## Testing
 
