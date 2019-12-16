@@ -1,6 +1,6 @@
 {
   "name": "omise",
-  "version": "0.5.8",
+  "version": "0.6.0",
   "description": "Omise Node.js bindings",
   "main": "index.js",
   "types": "types/index.d.ts",
@@ -23,7 +23,7 @@
     "@types/bluebird": "^3.5.15",
     "@types/node": "^8.0.34",
     "bluebird": "^2.9.12",
-    "https-proxy-agent": "^2.1.0",
+    "https-proxy-agent": "^2.2.4",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
