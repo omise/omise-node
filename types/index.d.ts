@@ -13,6 +13,7 @@ declare namespace Omise {
   export interface IOptions {
     publicKey: string;
     secretKey: string;
+    omiseVersion?: string;
   }
 
   export interface IOmise {
