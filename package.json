@@ -1,6 +1,6 @@
 {
   "name": "omise",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Omise Node.js bindings",
   "main": "index.js",
   "types": "types/index.d.ts",
@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/omise/omise-node",
   "dependencies": {
-    "@types/bluebird": "^3.5.15",
-    "@types/node": "^8.0.34",
+    "@types/bluebird": "^3.5.30",
+    "@types/node": "^8.10.60",
     "bluebird": "^2.9.12",
     "https-proxy-agent": "^2.2.4",
     "lodash": "^4.17.15"
@@ -30,9 +30,9 @@
     "chai": "^2.0.0",
     "eslint": "^5.16.0",
     "eslint-config-google": "^0.9.1",
-    "mocha": "^5.2.0",
-    "nock": "^9.3.3",
-    "tslint": "^5.7.0",
+    "mocha": "^7.1.1",
+    "nock": "^9.6.1",
+    "tslint": "^5.20.1",
     "typescript": "^2.5.3"
   }
 }
