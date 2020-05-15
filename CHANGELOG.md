@@ -2,6 +2,9 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.7.1 - 2020-05-15
+- Fix typo.
+
 ## 0.7.0 - 2020-05-15
 - Add support of capability API.
 
