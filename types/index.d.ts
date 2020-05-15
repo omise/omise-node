@@ -17,7 +17,7 @@ declare namespace Omise {
   }
 
   export interface IOmise {
-    accounts: Account.IAccountAPI;
+    account: Account.IAccountAPI;
     balances: Balance.IBalanceAPI;
     capability: Capability.ICapabilityAPI;
     charges: Charges.IChargesAPI;
