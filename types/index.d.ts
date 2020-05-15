@@ -19,6 +19,7 @@ declare namespace Omise {
   export interface IOmise {
     accounts: Account.IAccountAPI;
     balances: Balance.IBalanceAPI;
+    capabilities: Capability.ICapabilityAPI;
     charges: Charges.IChargesAPI;
     customers: Customers.ICustomersAPI;
     disputes: Disputes.IDisputesAPI;
@@ -54,6 +55,19 @@ declare namespace Omise {
       available: number;
       total: number;
       currency: string;
+    }
+  }
+
+  export namespace Capability {
+    interface ICapabilityAPI {
+      retrieve(callback?: ResponseCallback<ICapability>): Bluebird<ICapability>;
+    }
+
+    interface ICapability extends IBaseResponse {
+      banks: string[];
+      payment_methods: any[];
+      country: string;
+      zero_interest_installments: boolean;
     }
   }
 
