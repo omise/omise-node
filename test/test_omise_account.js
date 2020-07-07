@@ -21,8 +21,6 @@ describe('Omise', function () {
       omise.account.updateAccount({
         'webhook_uri': 'https://omise-flask-example.herokuapp.com/webhook',
       }, function (err, resp) {
-
-        console.log(err, resp);
         expect(resp.object, 'account');
         expect(resp.id, 'acct_123');
         expect(resp.email, 'test@omise.co');
