@@ -168,6 +168,7 @@ The following API methods are available. Please see [https://www.omise.co/docs](
 
 * account
   * `retrieve()`
+  * `update(data)`
 * balance
   * `retrieve()`
 * charges

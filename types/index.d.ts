@@ -36,6 +36,7 @@ declare namespace Omise {
   export namespace Account {
     interface IAccountAPI {
       retrieve(callback?: ResponseCallback<IAccount>): Bluebird<IAccount>;
+      updateAccount(req: IRequest, callback?: ResponseCallback<IAccount>): Bluebird<IAccount>;
     }
 
     interface IAccount extends IBaseResponse {
@@ -43,6 +44,14 @@ declare namespace Omise {
       currency: string;
       supported_currencies: string[];
       created: string;
+      webhook_uri: string;
+      team: string;
+      auto_activate_recipients: boolean;
+      chain_enabled: boolean;
+      chain_return_uri: string;
+      api_version: string;
+      country: string;
+      zero_interest_installments: boolean;
     }
   }
 
@@ -144,7 +153,7 @@ declare namespace Omise {
       ip: string;
       dispute: string;
       created: string;
-      metadata: {[key: string]: any};
+      metadata: { [key: string]: any };
       source?: Sources.ISource;
     }
 
@@ -196,7 +205,7 @@ declare namespace Omise {
         : Bluebird<Cards.ICardList>;
       retrieveCard(customerID: string, cardID: string, callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
       updateCard(customerID: string, cardID: string, details: Cards.ICardRequest,
-                 callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
+        callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
       destroyCard(customerID: string, cardID: string, callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
     }
 
@@ -213,7 +222,7 @@ declare namespace Omise {
       description: string;
       created: string;
       cards: Cards.ICardList;
-      metadata: {[key: string]: any};
+      metadata: { [key: string]: any };
     }
 
     interface ICustomerList extends IOccurrences {
@@ -415,11 +424,11 @@ declare namespace Omise {
     interface ICard {
       name: string;
       city: string;
-      postal_code: number|string;
+      postal_code: number | string;
       number: string;
       security_code: string;
-      expiration_month: number|string;
-      expiration_year: number|string;
+      expiration_month: number | string;
+      expiration_year: number | string;
     }
 
     interface IToken extends IBaseResponse {
