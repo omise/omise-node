@@ -179,6 +179,7 @@ The following API methods are available. Please see [https://www.omise.co/docs](
   * `createRefund(chargeId[, data])`
   * `update(chargeId[, data])`
   * `reverse(chargeId)`
+  * `expire(chargeId)`
   * `schedules([data])`
 * customers
   * `create(data)`
