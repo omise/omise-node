@@ -64,6 +64,15 @@ describe('Omise', function() {
       });
     });
 
+    it('should be able to expire a charge', function(done) {
+      testHelper.setupMock('charge_expire');
+      omise.charges.expire(chargeId, function(err, resp) {
+        expect(resp.object, 'charge');
+        expect(resp.expired).be.true;
+        done(err);
+      });
+    });
+
     it('should be able to list charges', function(done) {
       testHelper.setupMock('charges_list');
       omise.charges.list(function(err, resp) {
