@@ -24,7 +24,7 @@
     "@types/node": "^8.10.60",
     "bluebird": "^2.9.12",
     "https-proxy-agent": "^2.2.4",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.19"
   },
   "devDependencies": {
     "chai": "^2.0.0",

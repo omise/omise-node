@@ -118,6 +118,7 @@ declare namespace Omise {
       list(parameters?: Pagination.IRequest, callback?: ResponseCallback<IChargeList>): Bluebird<IChargeList>;
       capture(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
       reverse(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
+      expire(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
       createRefund(chargeID: string, callback?: ResponseCallback<IRefundResponse>): Bluebird<IRefundResponse>;
       listRefunds(chargeID: string, callback?: ResponseCallback<IListRefundResponse>): Bluebird<IListRefundResponse>;
       retrieveRefund(chargeID: string, refundID: string, callback?: ResponseCallback<IRefundResponse>): Bluebird<IRefundResponse>;
