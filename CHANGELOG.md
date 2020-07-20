@@ -2,8 +2,11 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.8.1 - 2020-07-20
+- Add `Charge.expire` API.
+
 ## 0.8.0 - 2020-07-08
-- Add Account update API.
+- Add `Account.update` API.
 
 ## 0.7.1 - 2020-05-15
 - Fix typo.
