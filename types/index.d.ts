@@ -53,6 +53,14 @@ declare namespace Omise {
       country: string;
       zero_interest_installments: boolean;
     }
+
+    interface IRequest {
+      chain_enabled?: boolean;
+      chain_return_uri?: string;
+      metadata_export_keys?: object;
+      webhook_uri?: string;
+      zero_interest_installments?: boolean;
+    }
   }
 
   export namespace Balance {
