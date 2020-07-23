@@ -127,7 +127,7 @@ declare namespace Omise {
       capture(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
       reverse(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
       expire(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
-      createRefund(chargeID: string, callback?: ResponseCallback<IRefundResponse>): Bluebird<IRefundResponse>;
+      createRefund(chargeID: string, req: IRefundRequest, callback?: ResponseCallback<IRefundResponse>): Bluebird<IRefundResponse>;
       listRefunds(chargeID: string, callback?: ResponseCallback<IListRefundResponse>): Bluebird<IListRefundResponse>;
       retrieveRefund(chargeID: string, refundID: string, callback?: ResponseCallback<IRefundResponse>): Bluebird<IRefundResponse>;
     }
@@ -174,6 +174,12 @@ declare namespace Omise {
       data: ICharge[];
     }
 
+    interface IRefundRequest {
+      amount: number;
+      metadata?: { [key: string]: any };
+      void?: boolean
+    }
+
     interface IRefundResponse extends IBaseResponse {
       amount: number;
       currency: string;
@@ -181,6 +187,7 @@ declare namespace Omise {
       transaction: string;
       created: string;
       voided: boolean;
+      metadata?: { [key: string]: any };
     }
   }
 
