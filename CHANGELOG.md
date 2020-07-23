@@ -2,6 +2,9 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.8.2 - 2020-07-23
+- Add missing typescript definitions.
+
 ## 0.8.1 - 2020-07-20
 - Add `Charge.expire` API.
 
