@@ -459,6 +459,7 @@ declare namespace Omise {
     interface ISchedulesAPI {
       create(options: ICreateSchedule, callback?: ResponseCallback<ISchedule>): Bluebird<ISchedule>;
       retrieve(scheduleID: string, callback?: ResponseCallback<ISchedule>): Bluebird<ISchedule>;
+      destroy(scheduleID: string, callback?: ResponseCallback<IDestroyResponse>): Bluebird<IDestroyResponse>;
     }
 
     interface IChargeSchedule extends ICreateSchedule {
