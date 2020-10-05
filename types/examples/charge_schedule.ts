@@ -1,4 +1,4 @@
-import omise = require('../index');
+import omise from '../index';
 
 const chargeEvery2Days = {
   every: 2,

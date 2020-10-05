@@ -51,19 +51,20 @@ describe('Omise', function() {
       });
     });
 
-    it('should be able to list all transfer schedules for a given recipient', function(done) {
-      testHelper.setupMock('recipients_schedules_list');
-      omise.recipients.schedules(recipientId, function(err, resp) {
-        expect(resp.object, 'list');
-        expect(resp.data).to.be.instanceof(Array);
-        expect(resp.data[0].object, 'schedule');
-        expect(resp.data[0]).include.keys('transfer');
-        expect(resp.data[0].transfer).not.be.nil;
-        resp.data[0].id.should.equal(transferScheduleId);
-        resp.data[0].transfer.recipient.should.equal(recipientId);
-        done(err);
+    it('should be able to list all transfer schedules for a given recipient',
+      function(done) {
+        testHelper.setupMock('recipients_schedules_list');
+        omise.recipients.schedules(recipientId, function(err, resp) {
+          expect(resp.object, 'list');
+          expect(resp.data).to.be.instanceof(Array);
+          expect(resp.data[0].object, 'schedule');
+          expect(resp.data[0]).include.keys('transfer');
+          expect(resp.data[0].transfer).not.be.nil;
+          resp.data[0].id.should.equal(transferScheduleId);
+          resp.data[0].transfer.recipient.should.equal(recipientId);
+          done(err);
+        });
       });
-    });
 
     it('should be able to retrieve a transfer schedule', function(done) {
       testHelper.setupMock('transfers_schedules_retrieve');
