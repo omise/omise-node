@@ -6,7 +6,7 @@ var config = require('./config');
 var omise = require('../index')(config);
 var testHelper = require('./testHelper');
 
-describe.skip('Omise', function() {
+describe('Omise', function() {
   describe('#Refunds', function() {
     var tokenId = '';
     var refundId = '';
