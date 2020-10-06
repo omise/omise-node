@@ -22,37 +22,37 @@ describe('Omise', function() {
       };
       var sourceId;
 
-      omise.sources.create(source, function(err, resp) {
+      omise.sources.create(source, function(_err, resp) {
         sourceId = resp.id;
-      });
 
-      var charge = {
-        'amount':     amount,
-        'currency':   currency,
-        'source':     sourceId,
-        'return_uri': 'https://omise.co',
-      };
+        var charge = {
+          'amount':     amount,
+          'currency':   currency,
+          'source':     sourceId,
+          'return_uri': 'https://omise.co',
+        };
 
-      omise.charges.create(charge, function(err, resp) {
-        expect(resp.object, 'charge');
+        omise.charges.create(charge, function(err, resp) {
+          expect(resp.object, 'charge');
 
-        var chargeId = resp.id;
-        expect(chargeId).to.match(/^chrg_test/);
+          var chargeId = resp.id;
+          expect(chargeId).to.match(/^chrg_test/);
 
-        expect(resp.amount, amount);
-        expect(resp.capture).be.false;
-        expect(resp.paid).be.false;
-        expect(resp.source.flow, 'redirect');
-        expect(resp.source.type, 'installment_scb');
-        expect(resp.source.charge_status, 'pending');
-        expect(resp.status, 'pending');
-        expect(
-          resp.authorize_uri,
-          'http://pay.lvh.me:3000/payments/pay2_test_5lfs9kcp8au03mdqedt/authorize'
-        );
-        expect(resp.return_uri, 'https://omise.co');
+          expect(resp.amount, amount);
+          expect(resp.capture).be.false;
+          expect(resp.paid).be.false;
+          expect(resp.source.flow, 'redirect');
+          expect(resp.source.type, 'installment_scb');
+          expect(resp.source.charge_status, 'pending');
+          expect(resp.status, 'pending');
+          expect(
+            resp.authorize_uri,
+            'http://pay.lvh.me:3000/payments/pay2_test_5lfs9kcp8au03mdqedt/authorize'
+          );
+          expect(resp.return_uri, 'https://omise.co');
 
-        done(err);
+          done(err);
+        });
       });
     });
   });
