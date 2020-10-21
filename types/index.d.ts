@@ -489,15 +489,23 @@ declare namespace Omise {
 
     interface ISchedule extends IBaseResponse {
       status: string;
+      active: boolean;
       every: number;
       period: string;
       on: Ion;
       in_words: string;
-      start_date: string;
-      end_date: string;
+      start_on: string;
+      end_on: string;
       occurrences: IOccurrences;
-      next_occurrence_dates: string[];
+      next_occurrences_on: string[];
       charge?: ICharge;
+      created_at: string;
+      ended_at: string;
+      deleted: boolean; 
+    }
+
+    interface ISchedulesList extends IOccurrences {
+      data: ISchedule[];
     }
   }
 
