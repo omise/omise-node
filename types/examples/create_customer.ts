@@ -1,4 +1,4 @@
-import omiseNode = require('../index');
+import omiseNode from '../index';
 
 const omise = omiseNode({
   publicKey: process.env.OMISE_PUBLIC_KEY,

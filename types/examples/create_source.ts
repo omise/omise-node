@@ -1,4 +1,4 @@
-import omiseNode = require('../index');
+import omiseNode from '../index';
 
 const amount = 500000;
 const currency = 'thb';

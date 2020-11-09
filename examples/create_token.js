@@ -28,8 +28,8 @@ omise.tokens.create(cardDetails, function(err, token) {
     return_uir: 'http://example.com',
     card:       token.id,
     metadata:   {
-      note:     'test card'
-    }
+      note: 'test card',
+    },
   }, function(err, charge) {
     if (err) {
       console.log('error', err);
