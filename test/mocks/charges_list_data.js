@@ -1,7 +1,7 @@
 var nock = require('nock');
 nock('https://api.omise.co')
   .persist()
-  .get('/charges')
+  .get('/charges?limit=1')
   .reply(200, {
     object: 'list',
     from:   '1970-01-01T00:00:00+00:00',

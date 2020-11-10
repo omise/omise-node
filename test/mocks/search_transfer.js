@@ -1,7 +1,7 @@
 var nock = require('nock');
 
 
-var url = '/search';
+var url = '/search?scope=transfer';
 nock('https://api.omise.co')
   .persist()
   .get(url)
