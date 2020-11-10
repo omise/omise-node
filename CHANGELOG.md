@@ -2,6 +2,9 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.8.4 - 2020-11-10
+- Fix GET/DELETE requests contain request body.
+
 ## 0.8.3 - 2020-08-13
 - Add destroy method TS definition for Schedules API
 
