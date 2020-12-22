@@ -200,6 +200,7 @@ declare namespace Omise {
       type: string;
       amount: number;
       currency: string;
+      phone_number?: string;
     }
 
     interface ISource extends IBaseResponse {
