@@ -496,12 +496,12 @@ declare namespace Omise {
       period: string;
       on: Ion;
       in_words: string;
-      start_on: string;
-      end_on: string;
+      start_date: string;
+      end_date: string;
       occurrences: IOccurrences;
-      next_occurrences_on: string[];
+      next_occurrence_dates: string[];
       charge?: ICharge;
-      created_at: string;
+      created: string;
       ended_at: string;
       deleted: boolean; 
     }
