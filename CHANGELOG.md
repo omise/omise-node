@@ -2,6 +2,10 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.8.5 - 2020-12-24
+- Add `phone_number` in source params (#147).
+- Fix authentication for customer schedules (#143).
+
 ## 0.8.4 - 2020-11-10
 - Fix GET/DELETE requests contain request body.
 
