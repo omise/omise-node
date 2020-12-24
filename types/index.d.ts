@@ -224,6 +224,8 @@ declare namespace Omise {
       updateCard(customerID: string, cardID: string, details: Cards.ICardRequest,
         callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
       destroyCard(customerID: string, cardID: string, callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
+      schedules(customerID: string, callback?: ResponseCallback<Schedules.ISchedulesList>)
+        : Bluebird<Schedules.ISchedulesList>;
     }
 
     interface IRequest {
@@ -491,6 +493,7 @@ declare namespace Omise {
 
     interface ISchedule extends IBaseResponse {
       status: string;
+      active: boolean;
       every: number;
       period: string;
       on: Ion;
@@ -500,6 +503,13 @@ declare namespace Omise {
       occurrences: IOccurrences;
       next_occurrence_dates: string[];
       charge?: ICharge;
+      created: string;
+      ended_at: string;
+      deleted: boolean; 
+    }
+
+    interface ISchedulesList extends IOccurrences {
+      data: ISchedule[];
     }
   }
 
