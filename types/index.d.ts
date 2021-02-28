@@ -4,6 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 import * as Bluebird from 'bluebird';
+import { SpawnSyncOptionsWithBufferEncoding } from 'child_process';
 
 declare function Omise(options: Omise.IOptions): Omise.IOmise;
 
@@ -36,7 +37,10 @@ declare namespace Omise {
   export namespace Account {
     interface IAccountAPI {
       retrieve(callback?: ResponseCallback<IAccount>): Bluebird<IAccount>;
-      updateAccount(req: IRequest, callback?: ResponseCallback<IAccount>): Bluebird<IAccount>;
+      updateAccount(
+        req: IRequest,
+        callback?: ResponseCallback<IAccount>
+      ): Bluebird<IAccount>;
     }
 
     interface IAccount extends IBaseResponse {
@@ -52,6 +56,15 @@ declare namespace Omise {
       api_version: string;
       country: string;
       zero_interest_installments: boolean;
+      created_at: string; // API 2019-05-29
+      metadata_export_keys: IMetadataExportKeys;
+    }
+
+    interface IMetadataExportKeys {
+      charge?: string[];
+      transfer?: string[];
+      refund?: string[];
+      dispute?: string[];
     }
 
     interface IRequest {
@@ -71,7 +84,10 @@ declare namespace Omise {
     interface IBalance extends IBaseResponse {
       available: number;
       total: number;
+      reserve: number;
+      transferable: number;
       currency: string;
+      created_at: string;
     }
   }
 
@@ -82,9 +98,16 @@ declare namespace Omise {
 
     interface ICapability extends IBaseResponse {
       banks: string[];
-      payment_methods: any[];
+      payment_methods: IPaymentMethod[];
       country: string;
       zero_interest_installments: boolean;
+    }
+
+    interface IPaymentMethod extends IBaseResponse {
+      name: string;
+      currencies: string[];
+      card_brands?: string[];
+      installment_terms?: number[];
     }
   }
 
@@ -120,16 +143,49 @@ declare namespace Omise {
 
   export namespace Charges {
     interface IChargesAPI {
-      create(req: IRequest, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
-      update(chargeID: string, req: IRequest, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
-      retrieve(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
-      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<IChargeList>): Bluebird<IChargeList>;
-      capture(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
-      reverse(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
-      expire(chargeID: string, callback?: ResponseCallback<ICharge>): Bluebird<ICharge>;
-      createRefund(chargeID: string, req: IRefundRequest, callback?: ResponseCallback<IRefundResponse>): Bluebird<IRefundResponse>;
-      listRefunds(chargeID: string, callback?: ResponseCallback<IListRefundResponse>): Bluebird<IListRefundResponse>;
-      retrieveRefund(chargeID: string, refundID: string, callback?: ResponseCallback<IRefundResponse>): Bluebird<IRefundResponse>;
+      create(
+        req: IRequest,
+        callback?: ResponseCallback<ICharge>
+      ): Bluebird<ICharge>;
+      update(
+        chargeID: string,
+        req: IRequest,
+        callback?: ResponseCallback<ICharge>
+      ): Bluebird<ICharge>;
+      retrieve(
+        chargeID: string,
+        callback?: ResponseCallback<ICharge>
+      ): Bluebird<ICharge>;
+      list(
+        parameters?: Pagination.IRequest,
+        callback?: ResponseCallback<IChargeList>
+      ): Bluebird<IChargeList>;
+      capture(
+        chargeID: string,
+        callback?: ResponseCallback<ICharge>
+      ): Bluebird<ICharge>;
+      reverse(
+        chargeID: string,
+        callback?: ResponseCallback<ICharge>
+      ): Bluebird<ICharge>;
+      expire(
+        chargeID: string,
+        callback?: ResponseCallback<ICharge>
+      ): Bluebird<ICharge>;
+      createRefund(
+        chargeID: string,
+        req: IRefundRequest,
+        callback?: ResponseCallback<IRefundResponse>
+      ): Bluebird<IRefundResponse>;
+      listRefunds(
+        chargeID: string,
+        callback?: ResponseCallback<IListRefundResponse>
+      ): Bluebird<IListRefundResponse>;
+      retrieveRefund(
+        chargeID: string,
+        refundID: string,
+        callback?: ResponseCallback<IRefundResponse>
+      ): Bluebird<IRefundResponse>;
     }
 
     interface IRequest {
@@ -140,28 +196,56 @@ declare namespace Omise {
       card?: string;
       customer?: string;
       return_uri?: string;
-      metadata?: any;
-      source?: string;
+      metadata?: { [key: string]: any };
+      source?: string | Sources.IRequest;
+      expires_at?: string;
+      ip?: string;
+      platform_fee?: IPlatformFee;
+      zero_interest_installments?: boolean;
     }
 
     interface ICharge extends IBaseResponse {
       amount: number;
       currency: string;
       description: string;
+      device: any;
+      disputable: boolean;
+      capturable: boolean;
       capture: boolean;
+      authorize_uri: string;
       authorized: boolean;
+      branch: any;
       reversed: boolean;
       paid: boolean;
-      transaction: string;
+      paid_at: string;
+      transaction: string | Transactions.ITransaction;
       refunded: number;
       refunds: IListRefundResponse;
       failure_code: string;
       failure_message: string;
       card: Cards.ICard;
-      customer: string;
+      created_at: string;
+      customer: string | Customers.ICustomer;
       ip: string;
-      dispute: string;
+      dispute: string | Disputes.IResponse;
+      expired: boolean;
+      expired_at: string;
+      expires_at: string;
+      interest: number;
+      interest_vat: number;
+      link: string | Links.ILink;
+      net: number;
+      platform_fee: IPlatformFee;
+      refundable: boolean;
+      refunded_amount: number;
+      return_uri: string;
+      reversed_at: string;
+      reversible: boolean;
+      schedule: string | Schedules.ISchedule;
+      terminal: any;
       created: string;
+      voided: boolean;
+      zero_interest_installments: boolean;
       metadata: { [key: string]: any };
       source?: Sources.ISource;
     }
@@ -177,7 +261,12 @@ declare namespace Omise {
     interface IRefundRequest {
       amount: number;
       metadata?: { [key: string]: any };
-      void?: boolean
+      void?: boolean;
+    }
+
+    interface IPlatformFee {
+      fixed: number;
+      percentage: number;
     }
 
     interface IRefundResponse extends IBaseResponse {
@@ -193,7 +282,10 @@ declare namespace Omise {
 
   export namespace Sources {
     interface ISourcesAPI {
-      create(req: IRequest, callback?: ResponseCallback<ISource>): Bluebird<ISource>;
+      create(
+        req: IRequest,
+        callback?: ResponseCallback<ISource>
+      ): Bluebird<ISource>;
     }
 
     interface IRequest {
@@ -201,6 +293,14 @@ declare namespace Omise {
       amount: number;
       currency: string;
       phone_number?: string;
+      barcode?: string;
+      email?: string;
+      installment_term?: number;
+      name?: string;
+      store_id?: string;
+      store_name?: string;
+      terminal_id?: string;
+      zero_interest_installments?: boolean;
     }
 
     interface ISource extends IBaseResponse {
@@ -208,31 +308,97 @@ declare namespace Omise {
       flow: string;
       amount: number;
       currency: string;
+      barcode?: string;
+      charge_status?: string;
+      created_at: string;
+      mobile_number: string;
+      phone_number: string;
+      email?: string;
+      installment_term?: number;
+      name?: string;
+      store_id?: string;
+      store_name?: string;
+      terminal_id?: string;
+      zero_interest_installments?: boolean;
+      scannable_code: IScannableCode;
+      references: IReferences;
+    }
+
+    interface IReferences {
+      expires_at: string;
+      device_id: string;
+      customer_amount: number;
+      customer_currency: string;
+      customer_exchange_rate: number;
+      omise_tax_id: string;
+      reference_number_1: string;
+      reference_number_2: string;
+      barcode: string;
+      payment_code: string;
+      va_code: string;
+    }
+
+    interface IScannableCode extends IBaseResponse {
+      type: string;
+      image: Disputes.IDocument;
     }
   }
 
   export namespace Customers {
     interface ICustomersAPI {
-      create(req: IRequest, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
-      retrieve(customerID: string, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
-      update(customerID: string, req: IRequest, callback?: ResponseCallback<ICustomer>): Bluebird<ICustomer>;
-      destroy(customerID: string, callback?: ResponseCallback<IDestroyResponse>): Bluebird<IDestroyResponse>;
-      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<ICustomerList>): Bluebird<ICustomerList>;
-      listCards(customerID: string, parameters?: Pagination.IRequest, callback?: ResponseCallback<Cards.ICardList>)
-        : Bluebird<Cards.ICardList>;
-      retrieveCard(customerID: string, cardID: string, callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
-      updateCard(customerID: string, cardID: string, details: Cards.ICardRequest,
-        callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
-      destroyCard(customerID: string, cardID: string, callback?: ResponseCallback<Cards.ICard>): Bluebird<Cards.ICard>;
-      schedules(customerID: string, callback?: ResponseCallback<Schedules.ISchedulesList>)
-        : Bluebird<Schedules.ISchedulesList>;
+      create(
+        req: IRequest,
+        callback?: ResponseCallback<ICustomer>
+      ): Bluebird<ICustomer>;
+      retrieve(
+        customerID: string,
+        callback?: ResponseCallback<ICustomer>
+      ): Bluebird<ICustomer>;
+      update(
+        customerID: string,
+        req: IRequest,
+        callback?: ResponseCallback<ICustomer>
+      ): Bluebird<ICustomer>;
+      destroy(
+        customerID: string,
+        callback?: ResponseCallback<IDestroyResponse>
+      ): Bluebird<IDestroyResponse>;
+      list(
+        parameters?: Pagination.IRequest,
+        callback?: ResponseCallback<ICustomerList>
+      ): Bluebird<ICustomerList>;
+      listCards(
+        customerID: string,
+        parameters?: Pagination.IRequest,
+        callback?: ResponseCallback<Cards.ICardList>
+      ): Bluebird<Cards.ICardList>;
+      retrieveCard(
+        customerID: string,
+        cardID: string,
+        callback?: ResponseCallback<Cards.ICard>
+      ): Bluebird<Cards.ICard>;
+      updateCard(
+        customerID: string,
+        cardID: string,
+        details: Cards.ICardRequest,
+        callback?: ResponseCallback<Cards.ICard>
+      ): Bluebird<Cards.ICard>;
+      destroyCard(
+        customerID: string,
+        cardID: string,
+        callback?: ResponseCallback<Cards.ICard>
+      ): Bluebird<Cards.ICard>;
+      schedules(
+        customerID: string,
+        callback?: ResponseCallback<Schedules.ISchedulesList>
+      ): Bluebird<Schedules.ISchedulesList>;
     }
 
     interface IRequest {
       email?: string;
       description?: string;
       card?: string;
-      metadata?: any;
+      metadata?: { [key: string]: any };
     }
 
     interface ICustomer extends IBaseResponse {
@@ -242,6 +408,8 @@ declare namespace Omise {
       created: string;
       cards: Cards.ICardList;
       metadata: { [key: string]: any };
+      deleted: boolean;
+      created_at: string;
     }
 
     interface ICustomerList extends IOccurrences {
@@ -251,12 +419,28 @@ declare namespace Omise {
 
   export namespace Disputes {
     interface IDisputesAPI {
-      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<IListResponse>): Bluebird<IListResponse>;
-      listClosed(callback?: ResponseCallback<IListResponse>): Bluebird<IListResponse>;
-      listOpen(callback?: ResponseCallback<IListResponse>): Bluebird<IListResponse>;
-      listPending(callback?: ResponseCallback<IListResponse>): Bluebird<IListResponse>;
-      retrieve(disputeID: string, callback?: ResponseCallback<IResponse>): Bluebird<IResponse>;
-      update(disputeID: string, req: IRequest, callback?: ResponseCallback<IResponse>): Bluebird<IResponse>;
+      list(
+        parameters?: Pagination.IRequest,
+        callback?: ResponseCallback<IListResponse>
+      ): Bluebird<IListResponse>;
+      listClosed(
+        callback?: ResponseCallback<IListResponse>
+      ): Bluebird<IListResponse>;
+      listOpen(
+        callback?: ResponseCallback<IListResponse>
+      ): Bluebird<IListResponse>;
+      listPending(
+        callback?: ResponseCallback<IListResponse>
+      ): Bluebird<IListResponse>;
+      retrieve(
+        disputeID: string,
+        callback?: ResponseCallback<IResponse>
+      ): Bluebird<IResponse>;
+      update(
+        disputeID: string,
+        req: IRequest,
+        callback?: ResponseCallback<IResponse>
+      ): Bluebird<IResponse>;
     }
 
     interface IRequest {
@@ -264,9 +448,11 @@ declare namespace Omise {
     }
 
     interface IResponse extends IBaseResponse {
+      admin_message: string;
       amount: number;
-      charge: string;
+      charge: string | Charges.ICharge;
       created: string;
+      created_at: string;
       closed_at: string;
       currency: string;
       message: string;
@@ -275,6 +461,10 @@ declare namespace Omise {
       reason_message: string;
       status: string;
       transaction: string;
+      funding_amount: number;
+      funding_currency: string;
+      metadata: { [key: string]: any };
+      transactions: Transactions.ITransaction[];
     }
 
     interface IListResponse extends IOccurrences {
@@ -284,6 +474,9 @@ declare namespace Omise {
     interface IDocument extends IBaseResponse {
       filename: string;
       created: string;
+      created_at: string;
+      deleted: boolean;
+      download_uri: string;
     }
 
     interface IDocumentsList extends IOccurrences {
@@ -293,26 +486,48 @@ declare namespace Omise {
 
   export namespace Events {
     interface IEventsAPI {
-      retrieve(eventID: string, callback?: ResponseCallback<IEvent>): Bluebird<IEvent>;
-      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<IEventList>): Bluebird<IEventList>;
+      retrieve(
+        eventID: string,
+        callback?: ResponseCallback<IEvent>
+      ): Bluebird<IEvent>;
+      list(
+        parameters?: Pagination.IRequest,
+        callback?: ResponseCallback<IEventList>
+      ): Bluebird<IEventList>;
     }
 
     interface IEvent extends IBaseResponse {
       key: string;
       created: string;
       data: any;
+      created_at: string;
+      webhook_deliveries: IWebhookDelivery[];
     }
 
     interface IEventList extends IOccurrences {
       data: IEvent[];
     }
+
+    interface IWebhookDelivery extends IBaseResponse {
+      uri: string;
+      status: number;
+    }
   }
 
   export namespace Links {
     interface ILinksAPI {
-      retrieve(linkID: string, callback?: ResponseCallback<ILink>): Bluebird<ILink>;
-      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<ILinkListResponse>): Bluebird<ILinkListResponse>;
-      create(req: IRequest, callback?: ResponseCallback<ILink>): Bluebird<ILink>;
+      retrieve(
+        linkID: string,
+        callback?: ResponseCallback<ILink>
+      ): Bluebird<ILink>;
+      list(
+        parameters?: Pagination.IRequest,
+        callback?: ResponseCallback<ILinkListResponse>
+      ): Bluebird<ILinkListResponse>;
+      create(
+        req: IRequest,
+        callback?: ResponseCallback<ILink>
+      ): Bluebird<ILink>;
     }
 
     interface IRequest {
@@ -333,6 +548,9 @@ declare namespace Omise {
       charges: Charges.IChargeList;
       payment_uri: string;
       created: string;
+      deleted: boolean;
+      deleted_at: string;
+      used_at: string;
     }
 
     interface ILinkListResponse extends IOccurrences {
@@ -342,11 +560,27 @@ declare namespace Omise {
 
   export namespace Recipients {
     interface IRecipientsAPI {
-      create(req: IRequest, callback?: ResponseCallback<IRecipient>): Bluebird<IRecipient>;
-      update(recipientID: string, req: IRequest, callback?: ResponseCallback<IRecipient>): Bluebird<IRecipient>;
-      retrieve(recipientID: string, callback?: ResponseCallback<IRecipient>): Bluebird<IRecipient>;
-      destroy(recipientID: string, callback?: ResponseCallback<IDestroyResponse>): Bluebird<IDestroyResponse>;
-      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<IRecipientList>): Bluebird<IRecipientList>;
+      create(
+        req: IRequest,
+        callback?: ResponseCallback<IRecipient>
+      ): Bluebird<IRecipient>;
+      update(
+        recipientID: string,
+        req: IRequest,
+        callback?: ResponseCallback<IRecipient>
+      ): Bluebird<IRecipient>;
+      retrieve(
+        recipientID: string,
+        callback?: ResponseCallback<IRecipient>
+      ): Bluebird<IRecipient>;
+      destroy(
+        recipientID: string,
+        callback?: ResponseCallback<IDestroyResponse>
+      ): Bluebird<IDestroyResponse>;
+      list(
+        parameters?: Pagination.IRequest,
+        callback?: ResponseCallback<IRecipientList>
+      ): Bluebird<IRecipientList>;
     }
 
     interface IRequest {
@@ -356,11 +590,16 @@ declare namespace Omise {
       type: string;
       tax_id?: string;
       back_account: IBankAccount;
+      metadata?: { [key: string]: any };
     }
 
     interface IRecipient extends IBaseResponse {
       verified: boolean;
+      verified_at: string;
       active: boolean;
+      activated_at: string;
+      default: boolean;
+      deleted: boolean;
       name: string;
       email: string;
       description: string;
@@ -369,6 +608,9 @@ declare namespace Omise {
       bank_account: IBankAccount;
       failure_code: string;
       created: string;
+      created_at: string;
+      metadata?: { [key: string]: any };
+      schedule?: string | Schedules.ISchedule;
     }
 
     interface IRecipientList extends IOccurrences {
@@ -378,8 +620,14 @@ declare namespace Omise {
 
   export namespace Transactions {
     interface ITransactionsAPI {
-      retrieve(transactionID: string, callback?: ResponseCallback<ITransaction>): Bluebird<ITransaction>;
-      list(parameters?: Pagination.IRequest, callback?: ResponseCallback<ITransactionList>): Bluebird<ITransactionList>;
+      retrieve(
+        transactionID: string,
+        callback?: ResponseCallback<ITransaction>
+      ): Bluebird<ITransaction>;
+      list(
+        parameters?: Pagination.IRequest,
+        callback?: ResponseCallback<ITransactionList>
+      ): Bluebird<ITransactionList>;
     }
 
     interface ITransaction extends IBaseResponse {
@@ -388,6 +636,11 @@ declare namespace Omise {
       currency: string;
       transferable: string;
       created: string;
+      direction: string;
+      key: string;
+      origin: string;
+      transferable_at: string;
+      created_at: string;
     }
 
     interface ITransactionList extends IOccurrences {
@@ -397,32 +650,60 @@ declare namespace Omise {
 
   export namespace Transfers {
     interface ITransfersAPI {
-      create(req: IRequest, callback?: ResponseCallback<ITransfer>): Bluebird<ITransfer>;
-      update(transferID: string, req: IRequest, callback?: ResponseCallback<ITransfer>): Bluebird<ITransfer>;
-      retrieve(transferID: string, callback?: ResponseCallback<ITransfer>): Bluebird<ITransfer>;
-      destroy(transferID: string, callback?: ResponseCallback<IDestroyResponse>): Bluebird<IDestroyResponse>;
-      list(parameters: Pagination.IRequest, callback?: ResponseCallback<ITransferList>): Bluebird<ITransferList>;
+      create(
+        req: IRequest,
+        callback?: ResponseCallback<ITransfer>
+      ): Bluebird<ITransfer>;
+      update(
+        transferID: string,
+        req: IRequest,
+        callback?: ResponseCallback<ITransfer>
+      ): Bluebird<ITransfer>;
+      retrieve(
+        transferID: string,
+        callback?: ResponseCallback<ITransfer>
+      ): Bluebird<ITransfer>;
+      destroy(
+        transferID: string,
+        callback?: ResponseCallback<IDestroyResponse>
+      ): Bluebird<IDestroyResponse>;
+      list(
+        parameters: Pagination.IRequest,
+        callback?: ResponseCallback<ITransferList>
+      ): Bluebird<ITransferList>;
     }
 
     interface IRequest {
       amount: number;
       recipient?: string;
       fail_fast?: boolean;
+      metadata?: { [key: string]: any };
     }
 
     interface ITransfer extends IBaseResponse {
-      recipient: string;
+      recipient: string | Recipients.IRecipient;
+      schedule: string | Schedules.ISchedule;
+      sendable: boolean;
       bank_account: IBankAccount;
       sent: boolean;
+      sent_at: string;
       paid: boolean;
+      paid_at: string;
       amount: number;
       currency: string;
       fee: number;
+      fee_vat: number;
+      net: number;
       fail_fast: boolean;
       failure_code: boolean;
       failure_message: string;
       transaction: string;
+      deleted: boolean;
       created: string;
+      created_at: string;
+      total_fee: number;
+      metadata?: { [key: string]: any };
+      transactions: Transactions.ITransaction[];
     }
 
     interface ITransferList extends IOccurrences {
@@ -432,8 +713,14 @@ declare namespace Omise {
 
   export namespace Tokens {
     interface ITokensAPI {
-      create(options: IRequest, callback?: ResponseCallback<IToken>): Bluebird<IToken>;
-      retrieve(tokenID: string, callback?: ResponseCallback<IToken>): Bluebird<IToken>;
+      create(
+        options: IRequest,
+        callback?: ResponseCallback<IToken>
+      ): Bluebird<IToken>;
+      retrieve(
+        tokenID: string,
+        callback?: ResponseCallback<IToken>
+      ): Bluebird<IToken>;
     }
 
     interface IRequest {
@@ -448,33 +735,47 @@ declare namespace Omise {
       security_code: string;
       expiration_month: number | string;
       expiration_year: number | string;
+      country?: string;
+      state?: string;
+      phone_number?: string;
+      street1?: string;
+      street2?: string;
     }
 
     interface IToken extends IBaseResponse {
       used: boolean;
       card: Cards.ICard;
       created: string;
+      created_at: string;
+      charge_status: string;
     }
   }
 
   export namespace Schedules {
-
     interface ISchedulesAPI {
-      create(options: ICreateSchedule, callback?: ResponseCallback<ISchedule>): Bluebird<ISchedule>;
-      retrieve(scheduleID: string, callback?: ResponseCallback<ISchedule>): Bluebird<ISchedule>;
-      destroy(scheduleID: string, callback?: ResponseCallback<IDestroyResponse>): Bluebird<IDestroyResponse>;
+      create(
+        options: ICreateSchedule,
+        callback?: ResponseCallback<ISchedule>
+      ): Bluebird<ISchedule>;
+      retrieve(
+        scheduleID: string,
+        callback?: ResponseCallback<ISchedule>
+      ): Bluebird<ISchedule>;
+      destroy(
+        scheduleID: string,
+        callback?: ResponseCallback<IDestroyResponse>
+      ): Bluebird<IDestroyResponse>;
     }
 
-    interface IChargeSchedule extends ICreateSchedule {
-      charge: ICharge;
-    }
-
-    interface ICharge {
+    interface IChargeScheduleResponse {
       amount: number;
       currency: string;
       description: string;
-      customer: string;
-      card: string;
+      customer: string | Customers.ICustomer;
+      card: string | Cards.ICard;
+      default_card: boolean;
+      created_at: string;
+      metadata?: { [key: string]: any };
     }
 
     interface ICreateSchedule {
@@ -483,6 +784,22 @@ declare namespace Omise {
       on?: Ion;
       start_date: string;
       end_date: string;
+      charge?: IChargeScheduleRequest;
+      transfer?: ITransferScheduleRequest;
+    }
+
+    interface IChargeScheduleRequest {
+      customer: string;
+      card?: string;
+      amount: number;
+      description: string;
+      metadata?: { [key: string]: any };
+    }
+
+    interface ITransferScheduleRequest {
+      recipient: string;
+      amount?: number;
+      percentage_of_balance?: number;
     }
 
     interface Ion {
@@ -497,15 +814,20 @@ declare namespace Omise {
       every: number;
       period: string;
       on: Ion;
+      start_on: string;
       in_words: string;
       start_date: string;
       end_date: string;
       occurrences: IOccurrences;
       next_occurrence_dates: string[];
-      charge?: ICharge;
+      next_occurrences_on: string[];
+      charge?: IChargeScheduleResponse;
       created: string;
+      created_at: string;
+      end_on: string;
       ended_at: string;
-      deleted: boolean; 
+      deleted: boolean;
+      transfer?: Transfers.ITransfer;
     }
 
     interface ISchedulesList extends IOccurrences {
