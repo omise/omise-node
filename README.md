@@ -17,7 +17,7 @@ The library has been tested with Node version 4.4.6.
 
 ## Code Status
 
-[![Build Status](https://circleci.com/gh/omise/omise-node.svg?style=svg)](https://circleci.com/gh/omise/omise-node)
+[![Node.js CI](https://github.com/omise/omise-node/actions/workflows/ci.yml/badge.svg)](https://github.com/omise/omise-node/actions/workflows/ci.yml)
 [![Code Climate](https://codeclimate.com/github/omise/omise-node/badges/gpa.svg)](https://codeclimate.com/github/omise/omise-node)
 
 ## Usage
