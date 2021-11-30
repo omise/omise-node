@@ -15,6 +15,8 @@ declare namespace Omise {
     publicKey: string;
     secretKey: string;
     omiseVersion?: string;
+    customApiHost?: string;
+    customVaultHost?: string;
   }
 
   export interface IOmise {
