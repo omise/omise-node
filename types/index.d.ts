@@ -12,6 +12,8 @@ export = Omise;
 
 declare namespace Omise {
   export interface IOptions {
+    host?: string;
+    vaultHost?: string;
     publicKey: string;
     secretKey: string;
     omiseVersion?: string;
@@ -284,6 +286,10 @@ declare namespace Omise {
     interface ISourcesAPI {
       create(
         req: IRequest,
+        callback?: ResponseCallback<ISource>
+      ): Bluebird<ISource>;
+      retrieve(
+        sourceID: string, 
         callback?: ResponseCallback<ISource>
       ): Bluebird<ISource>;
     }
