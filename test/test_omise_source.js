@@ -11,6 +11,7 @@ var testHelper = require('./testHelper');
 describe('Omise', function() {
   describe('#Sources', function() {
     var sourceParameters = {};
+    var sourceID = '';
 
     before(function() {
       testHelper.setupMock('sources_create');
@@ -23,9 +24,19 @@ describe('Omise', function() {
 
     it('should be able to create a source', function(done) {
       omise.sources.create(sourceParameters, function(err, resp) {
-        var sourceID = resp.id;
+        sourceID = resp.id;
         should.exist(sourceID);
         expect(sourceID).to.contains(('src_'));
+        done(err);
+      });
+    });
+
+    it('should be able to retrieve a source', function(done) {
+      testHelper.setupMock('sources_retrieve');
+      omise.sources.retrieve(sourceID, function(err, resp) {
+        expect(resp.object, 'source');
+        expect(resp).to.have.property('amount');
+        resp.amount.should.equal(500000);
         done(err);
       });
     });
