@@ -1,6 +1,6 @@
 {
   "name": "omise",
-  "version": "0.8.5",
+  "version": "0.9.0-alpha.0",
   "description": "Omise Node.js bindings",
   "main": "index.js",
   "types": "types/index.d.ts",
