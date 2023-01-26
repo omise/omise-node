@@ -17,6 +17,13 @@ declare namespace Omise {
     publicKey: string;
     secretKey: string;
     omiseVersion?: string;
+    secureProtocol?: SecureProtocol;
+    userAgent?: string;
+  }
+
+  export enum SecureProtocol {
+    Http = 'http',
+    Https = 'https'
   }
 
   export interface IOmise {
