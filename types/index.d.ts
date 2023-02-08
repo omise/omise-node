@@ -17,7 +17,7 @@ declare namespace Omise {
     publicKey: string;
     secretKey: string;
     omiseVersion?: string;
-    secureProtocol?: Scheme;
+    scheme?: Scheme;
     userAgent?: string;
   }
 
