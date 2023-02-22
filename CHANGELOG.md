@@ -2,6 +2,10 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.9.0 - 2023-02-21
+- Add support scheme in config [(#175)](https://github.com/omise/omise-node/pull/175)
+- Add support host in config [(#169)](https://github.com/omise/omise-node/pull/169)
+
 ## 0.8.5 - 2020-12-24
 - Add `phone_number` in source params (#147).
 - Fix authentication for customer schedules (#143).
