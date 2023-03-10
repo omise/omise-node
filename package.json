@@ -25,9 +25,7 @@
   },
   "homepage": "https://github.com/omise/omise-node",
   "dependencies": {
-    "@types/bluebird": "^3.5.30",
     "@types/node": "^8.10.60",
-    "bluebird": "^2.9.12",
     "https-proxy-agent": "^2.2.4",
     "lodash": "^4.17.19",
     "nyc": "^15.1.0"
