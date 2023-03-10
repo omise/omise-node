@@ -1,8 +1,8 @@
-var nock = require('nock');
+const nock = require('nock');
 
-var custID = 'cust_test_4z2owmajzsb3c527wj7';
-var cardID = 'card_test_4z2owrdmvbygi7ah0fu';
-var url    = '/customers/' + custID + '/cards/' + cardID;
+const custID = 'cust_test_4z2owmajzsb3c527wj7';
+const cardID = 'card_test_4z2owrdmvbygi7ah0fu';
+const url    = '/customers/' + custID + '/cards/' + cardID;
 nock('https://api.omise.co')
   .persist()
   .intercept(url, 'PATCH')

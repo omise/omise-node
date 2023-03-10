@@ -1,8 +1,8 @@
-var nock = require('nock');
+const nock = require('nock');
 
-var chargeID = 'chrg_test_4z429hvnv7ouolu6kmp';
-var refundID = 'rfnd_test_4z5xxgntg3pzhhynae4';
-var url      = '/charges/' + chargeID + '/refunds';
+const chargeID = 'chrg_test_4z429hvnv7ouolu6kmp';
+const refundID = 'rfnd_test_4z5xxgntg3pzhhynae4';
+const url      = '/charges/' + chargeID + '/refunds';
 nock('https://api.omise.co')
   .persist()
   .post(url)

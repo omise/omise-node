@@ -1,4 +1,4 @@
-var nock = require('nock');
+const nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .patch('/recipients/recp_test_5085pqoioecnxqz0zvi')

@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [12.x, 14.x, 16.x, 17.x, 18.x, 19.x]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -21,6 +21,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm test
+      - run: npm run lint
 
   publish-npm:
     needs: build

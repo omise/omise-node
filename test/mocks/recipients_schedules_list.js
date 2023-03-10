@@ -1,4 +1,4 @@
-var nock = require('nock');
+const nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .get('/recipients/recp_test_58dw0pqszjc9hlv8gbo/schedules')

@@ -1,9 +1,9 @@
 'use strict';
-var chai   = require('chai');
-var expect = chai.expect;
-var config = require('./config');
-var omise = require('../index')(config);
-var testHelper = require('./testHelper');
+const chai   = require('chai');
+const expect = chai.expect;
+const config = require('./config');
+const omise = require('../index')(config);
+const testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Disputes', function() {
@@ -64,7 +64,7 @@ describe('Omise', function() {
       it('should be able to update a dispute', function(done) {
         testHelper.setupMock('disputes_list_open');
         omise.disputes.listOpen(function(err, resp) {
-          var updateData = {'message': 'Unauthorized transaction'};
+          const updateData = {'message': 'Unauthorized transaction'};
           testHelper.setupMock('disputes_update');
           omise.disputes.update(resp.data[0].id, updateData,
             function(err, resp) {

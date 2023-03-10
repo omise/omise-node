@@ -1,14 +1,14 @@
 'use strict';
-var chai   = require('chai');
-var expect = chai.expect;
-var config = require('./config');
-var omise  = require('../index')(config);
-var testHelper = require('./testHelper');
+const chai   = require('chai');
+const expect = chai.expect;
+const config = require('./config');
+const omise  = require('../index')(config);
+const testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Links', function() {
     it('should be able to create a link', function(done) {
-      var link = {
+      const link = {
         'amount':      19000,
         'currency':    'thb',
         'multiple':    false,

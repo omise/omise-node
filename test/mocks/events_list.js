@@ -1,8 +1,8 @@
-var nock = require('nock');
+const nock = require('nock');
 
-var paymentID1 = 'paym_test_52znerilq91cgs39zfj';
-var paymentID2 = 'paym_test_52zxzow6kv0112r6ajo';
-var paymentURL = 'https://api-staging.omise.co/payments';
+const paymentID1 = 'paym_test_52znerilq91cgs39zfj';
+const paymentID2 = 'paym_test_52zxzow6kv0112r6ajo';
+const paymentURL = 'https://api-staging.omise.co/payments';
 nock('https://api.omise.co')
   .persist()
   .get('/events')

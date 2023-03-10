@@ -1,16 +1,16 @@
 'use strict';
-var chai = require('chai');
-var expect = chai.expect;
+const chai = require('chai');
+const expect = chai.expect;
 
-var config = require('./config');
-var omise = require('../index')(config);
-var testHelper = require('./testHelper');
+const config = require('./config');
+const omise = require('../index')(config);
+const testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Charge Schedules', function() {
-    var chargeScheduleId = 'schd_test_5aikygh29nc6u68xuib';
-    var customerId = 'cust_test_5a4j05pd5uuk0y6y6ls';
-    var amount = 200000;
+    const chargeScheduleId = 'schd_test_5aikygh29nc6u68xuib';
+    const customerId = 'cust_test_5a4j05pd5uuk0y6y6ls';
+    const amount = 200000;
 
     it('should be able to create a charge schedule', function(done) {
       testHelper.setupMock('charge_schedules_create');

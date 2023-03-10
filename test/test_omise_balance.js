@@ -1,14 +1,14 @@
-var chai   = require('chai');
-var expect = chai.expect;
-var config = require('./config');
-var omise  = require('../index')(config);
-var testHelper = require('./testHelper');
-var nock = require('nock');
+const chai   = require('chai');
+const expect = chai.expect;
+const config = require('./config');
+const omise  = require('../index')(config);
+const testHelper = require('./testHelper');
+const nock = require('nock');
 
 describe('Omise', function() {
   describe('#Balance', function() {
     it('should not raise exception connection to Omise is failed', function(done) {
-      nock('"https://api.omise.co')
+      nock('https://api.omise.co')
         .get('/balance')
         .reply(1001, 'DNS resolution error');
       try {

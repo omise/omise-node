@@ -1,20 +1,20 @@
-var chai   = require('chai');
-var expect = chai.expect;
-var should = chai.should();
+const chai   = require('chai');
+const expect = chai.expect;
+const should = chai.should();
 
-var config = require('./config');
-var omise = require('../index')(config);
-var testHelper = require('./testHelper');
+const config = require('./config');
+const omise = require('../index')(config);
+const testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Refunds', function() {
-    var tokenId = '';
-    var refundId = '';
-    var chargeId = '';
+    let tokenId = '';
+    let refundId = '';
+    let chargeId = '';
 
     it('should be able to create a refund', function(done) {
       testHelper.setupMock('tokens_create');
-      var cardDetails = {
+      const cardDetails = {
         'card': {
           'name':             'JOHN DOE',
           'city':             'Bangkok',
@@ -30,7 +30,7 @@ describe('Omise', function() {
         tokenId = resp.id;
         should.exist(resp.card.id);
         testHelper.setupMock('charges_create');
-        var charge = {
+        const charge = {
           'description': 'Charge for order 3947',
           'amount':      '100000',
           'currency':    'thb',
@@ -38,9 +38,9 @@ describe('Omise', function() {
         };
         omise.charges.create(charge, function(err, resp) {
           chargeId = resp.id;
-          var amount = resp.amount;
+          const amount = resp.amount;
           testHelper.setupMock('refunds_create');
-          var data = {'amount': amount};
+          const data = {'amount': amount};
           omise.charges.createRefund(chargeId, data, function(err, resp) {
             expect(resp.id).to.match(/^rfnd_test/);
             expect(resp.object, 'refund');

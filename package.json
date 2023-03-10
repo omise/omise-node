@@ -8,7 +8,11 @@
     "jscs": "jscs *.js lib/*.js test/*.js",
     "test": "mocha test",
     "test:coverage": "nyc --reporter=text mocha",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "format": "prettier-eslint --write",
+    "format:all": "prettier-eslint --write \"**/*.js\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -29,11 +33,12 @@
     "nyc": "^15.1.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "chai": "^2.0.0",
     "eslint": "^5.16.0",
     "eslint-config-google": "^0.9.1",
     "mocha": "^7.1.1",
-    "nock": "^9.6.1",
+    "nock": "^13.3.0",
     "tslint": "^5.20.1",
     "typescript": "^2.5.3"
   }

@@ -1,16 +1,16 @@
 'use strict';
-var chai = require('chai');
-var expect = chai.expect;
+const chai = require('chai');
+const expect = chai.expect;
 
-var config = require('./config');
-var omise = require('../index')(config);
-var testHelper = require('./testHelper');
+const config = require('./config');
+const omise = require('../index')(config);
+const testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Transfer Schedules', function() {
-    var transferScheduleId = 'schd_test_5cc9ygd384j50oxv2nw';
-    var recipientId = 'recp_test_58dw0pqszjc9hlv8gbo';
-    var amount = 100000;
+    const transferScheduleId = 'schd_test_5cc9ygd384j50oxv2nw';
+    const recipientId = 'recp_test_58dw0pqszjc9hlv8gbo';
+    const amount = 100000;
 
     it('should be able to create a transfer schedule', function(done) {
       testHelper.clean();
