@@ -1,6 +1,4 @@
-/// <reference path='../index.d.ts' />
-
-import omiseNode = require('../index');
+import omiseNode from '../index';
 
 const cardDetails = {
   card: {

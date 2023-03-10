@@ -11,8 +11,8 @@ declare namespace Omise {
   export interface IOptions {
     host?: string;
     vaultHost?: string;
-    publicKey: string;
-    secretKey: string;
+    publicKey?: string;
+    secretKey?: string;
     omiseVersion?: string;
     scheme?: Scheme;
     userAgent?: string;
