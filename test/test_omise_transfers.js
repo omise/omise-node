@@ -25,8 +25,8 @@ describe('Omise', function() {
       testHelper.setupMock('transfers_retrieve');
       omise.transfers.retrieve(transferId, function(err, resp) {
         expect(resp.object, 'transfer');
-        expect(resp.amount).not.nil;
-        done(err);
+        expect(resp.amount).not.null;
+        done();
       });
     });
 

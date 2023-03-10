@@ -32,7 +32,7 @@ describe('Omise', function() {
         expect(resp.data.length).to.equal(2);
         expect(resp.data[0].object, 'link');
         expect(resp.data[0]).to.include.keys('amount');
-        expect(resp.data[0].amount).not.be.nil;
+        expect(resp.data[0].amount).not.be.null;
         expect(resp.data[0]).to.include.keys('title');
         expect(resp.data[0]).to.include.keys('multiple');
         expect(resp.data[0]).to.include.keys('charges');
@@ -48,7 +48,7 @@ describe('Omise', function() {
       expect(resp.id, 'link_test_576mf2s2gwt0nmkmmf6');
       expect(resp.object, 'link');
       expect(resp).to.include.keys('amount');
-      expect(resp.amount).not.be.nil;
+      expect(resp.amount).not.be.null;
       done(err);
     });
   });

@@ -28,8 +28,8 @@ describe('Omise', function() {
       testHelper.setupMock('balance_retrieve');
       omise.balance.retrieve(function(err, resp) {
         expect(resp.object, 'balance');
-        expect(resp.available).not.be.nil;
-        expect(resp.total).not.be.nil;
+        expect(resp.available).not.be.null;
+        expect(resp.total).not.be.null;
         expect(resp.currency, 'thb');
         done(err);
       });

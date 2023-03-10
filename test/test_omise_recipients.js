@@ -38,7 +38,7 @@ describe('Omise', function() {
         expect(resp.data).to.be.instanceof(Array);
         expect(resp.data[0].object, 'recipient');
         expect(resp.data[0]).to.include.keys('type');
-        expect(resp.data[0].type).not.be.nil;
+        expect(resp.data[0].type).not.be.null;
         expect(resp.data[0]).to.include.keys('tax_id');
         expect(resp.data[0]).to.include.keys('bank_account');
         done(err);

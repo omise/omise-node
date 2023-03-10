@@ -44,7 +44,7 @@ describe('Omise', function() {
         expect(resp.data).to.be.instanceof(Array);
         expect(resp.data[0].object, 'schedule');
         expect(resp.data[0]).include.keys('transfer');
-        expect(resp.data[0].transfer).not.be.nil;
+        expect(resp.data[0].transfer).not.be.null;
         resp.data[0].id.should.equal(transferScheduleId);
         resp.data[0].transfer.recipient.should.equal(recipientId);
         done(err);
@@ -58,7 +58,7 @@ describe('Omise', function() {
         expect(resp.data).to.be.instanceof(Array);
         expect(resp.data[0].object, 'schedule');
         expect(resp.data[0]).include.keys('transfer');
-        expect(resp.data[0].transfer).not.be.nil;
+        expect(resp.data[0].transfer).not.be.null;
         resp.data[0].id.should.equal(transferScheduleId);
         resp.data[0].transfer.recipient.should.equal(recipientId);
         done(err);
