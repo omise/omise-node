@@ -1,4 +1,4 @@
-import omise from '../index';
+import omise = require('../index');
 
 let cardDetails: omise.Tokens.IRequest;
 cardDetails = {

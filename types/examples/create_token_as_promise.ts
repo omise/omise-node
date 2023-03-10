@@ -1,4 +1,4 @@
-import omiseNode from '../index';
+import omiseNode = require('../index');
 
 const cardDetails = {
   card: {
