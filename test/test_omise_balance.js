@@ -7,22 +7,23 @@ const nock = require('nock');
 
 describe('Omise', function() {
   describe('#Balance', function() {
-    it('should not raise exception connection to Omise is failed', function(done) {
-      nock('https://api.omise.co')
-        .get('/balance')
-        .reply(1001, 'DNS resolution error');
-      try {
-        omise.balance.retrieve(function(err) {
-          if (err) {
-            done();
-          } else {
-            done('Server is wrecked');
-          }
-        });
-      } catch (err) {
-        done(err);
-      }
-    });
+    it('should not raise exception connection to Omise is failed',
+      function(done) {
+        nock('https://api.omise.co')
+          .get('/balance')
+          .reply(1001, 'DNS resolution error');
+        try {
+          omise.balance.retrieve(function(err) {
+            if (err) {
+              done();
+            } else {
+              done('Server is wrecked');
+            }
+          });
+        } catch (err) {
+          done(err);
+        }
+      });
 
     it('should be able to retrieve a balance', function(done) {
       testHelper.setupMock('balance_retrieve');

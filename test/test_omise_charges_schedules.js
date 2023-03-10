@@ -64,22 +64,23 @@ describe('Omise', function() {
     });
 
 
-    it('should be able to list all charge schedules of customer', function(done) {
-      testHelper.setupMock('customer_schedules_list');
-      omise.customers.schedules(customerId, function(err, resp) {
-        expect(resp.object, 'list');
-        expect(resp.data).to.be.instanceof(Array);
-        expect(resp.data[0].object, 'schedule');
-        expect(resp.data[0]).to.include.keys('charge');
-        expect(resp.data[0].charge).not.be.null;
+    it('should be able to list all charge schedules of customer',
+      function(done) {
+        testHelper.setupMock('customer_schedules_list');
+        omise.customers.schedules(customerId, function(err, resp) {
+          expect(resp.object, 'list');
+          expect(resp.data).to.be.instanceof(Array);
+          expect(resp.data[0].object, 'schedule');
+          expect(resp.data[0]).to.include.keys('charge');
+          expect(resp.data[0].charge).not.be.null;
 
-        expect(resp.data[0].charge).to.have.property('amount');
-        expect(resp.data[0].charge).to.have.property('customer');
-        resp.data[0].charge.amount.should.equal(amount);
-        resp.data[0].charge.customer.should.equal(customerId);
-        done(err);
+          expect(resp.data[0].charge).to.have.property('amount');
+          expect(resp.data[0].charge).to.have.property('customer');
+          resp.data[0].charge.amount.should.equal(amount);
+          resp.data[0].charge.customer.should.equal(customerId);
+          done(err);
+        });
       });
-    });
 
     it('should be able to destroy a charge schedule', function(done) {
       testHelper.setupMock('charge_schedules_destroy');

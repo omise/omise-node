@@ -24,7 +24,8 @@ describe('Omise', function() {
         expect(resp.object, 'account');
         expect(resp.id, 'acct_123');
         expect(resp.email, 'test@omise.co');
-        expect(resp.webhook_uri, 'https://omise-flask-example.herokuapp.com/webhook');
+        expect(resp.webhook_uri,
+          'https://omise-flask-example.herokuapp.com/webhook');
         done(err);
       });
     });
