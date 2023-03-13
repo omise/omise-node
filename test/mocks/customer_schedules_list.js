@@ -1,5 +1,5 @@
-var nock = require('nock');
-var customerID = 'cust_test_5a4j05pd5uuk0y6y6ls';
+const nock = require('nock');
+const customerID = 'cust_test_5a4j05pd5uuk0y6y6ls';
 
 nock('https://api.omise.co')
   .persist()

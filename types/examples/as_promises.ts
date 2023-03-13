@@ -32,6 +32,6 @@ omiseStatic.tokens.create(cardDetails).then((token) => {
   });
 }).then((charge) => {
   console.log(charge);
-}).error((err) => {
+}).catch((err) => {
   console.log(err);
 });

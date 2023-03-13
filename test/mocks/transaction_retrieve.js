@@ -1,4 +1,4 @@
-var nock = require('nock');
+const nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .get('/transactions/trxn_test_4yygd35y1sqbahaqmit')

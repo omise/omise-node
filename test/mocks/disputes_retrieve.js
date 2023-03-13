@@ -1,4 +1,4 @@
-var nock = require('nock');
+const nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .get('/disputes/dspt_test_5086xrjkbpx9zeep33r')

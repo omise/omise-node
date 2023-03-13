@@ -3,9 +3,6 @@
 // Definitions by: Bhoomtawath Plinsut <https://github.com/varshard>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-import * as Bluebird from 'bluebird';
-import { SpawnSyncOptionsWithBufferEncoding } from 'child_process';
-
 declare function Omise(options: Omise.IOptions): Omise.IOmise;
 
 export = Omise;
@@ -14,8 +11,8 @@ declare namespace Omise {
   export interface IOptions {
     host?: string;
     vaultHost?: string;
-    publicKey: string;
-    secretKey: string;
+    publicKey?: string;
+    secretKey?: string;
     omiseVersion?: string;
     scheme?: Scheme;
     userAgent?: string;
@@ -45,11 +42,11 @@ declare namespace Omise {
 
   export namespace Account {
     interface IAccountAPI {
-      retrieve(callback?: ResponseCallback<IAccount>): Bluebird<IAccount>;
+      retrieve(callback?: ResponseCallback<IAccount>): Promise<IAccount>;
       updateAccount(
         req: IRequest,
         callback?: ResponseCallback<IAccount>
-      ): Bluebird<IAccount>;
+      ): Promise<IAccount>;
     }
 
     interface IAccount extends IBaseResponse {
@@ -87,7 +84,7 @@ declare namespace Omise {
 
   export namespace Balance {
     interface IBalanceAPI {
-      retrieve(callback?: ResponseCallback<IBalance>): Bluebird<IBalance>;
+      retrieve(callback?: ResponseCallback<IBalance>): Promise<IBalance>;
     }
 
     interface IBalance extends IBaseResponse {
@@ -102,7 +99,7 @@ declare namespace Omise {
 
   export namespace Capability {
     interface ICapabilityAPI {
-      retrieve(callback?: ResponseCallback<ICapability>): Bluebird<ICapability>;
+      retrieve(callback?: ResponseCallback<ICapability>): Promise<ICapability>;
     }
 
     interface ICapability extends IBaseResponse {
@@ -155,46 +152,46 @@ declare namespace Omise {
       create(
         req: IRequest,
         callback?: ResponseCallback<ICharge>
-      ): Bluebird<ICharge>;
+      ): Promise<ICharge>;
       update(
         chargeID: string,
         req: IRequest,
         callback?: ResponseCallback<ICharge>
-      ): Bluebird<ICharge>;
+      ): Promise<ICharge>;
       retrieve(
         chargeID: string,
         callback?: ResponseCallback<ICharge>
-      ): Bluebird<ICharge>;
+      ): Promise<ICharge>;
       list(
         parameters?: Pagination.IRequest,
         callback?: ResponseCallback<IChargeList>
-      ): Bluebird<IChargeList>;
+      ): Promise<IChargeList>;
       capture(
         chargeID: string,
         callback?: ResponseCallback<ICharge>
-      ): Bluebird<ICharge>;
+      ): Promise<ICharge>;
       reverse(
         chargeID: string,
         callback?: ResponseCallback<ICharge>
-      ): Bluebird<ICharge>;
+      ): Promise<ICharge>;
       expire(
         chargeID: string,
         callback?: ResponseCallback<ICharge>
-      ): Bluebird<ICharge>;
+      ): Promise<ICharge>;
       createRefund(
         chargeID: string,
         req: IRefundRequest,
         callback?: ResponseCallback<IRefundResponse>
-      ): Bluebird<IRefundResponse>;
+      ): Promise<IRefundResponse>;
       listRefunds(
         chargeID: string,
         callback?: ResponseCallback<IListRefundResponse>
-      ): Bluebird<IListRefundResponse>;
+      ): Promise<IListRefundResponse>;
       retrieveRefund(
         chargeID: string,
         refundID: string,
         callback?: ResponseCallback<IRefundResponse>
-      ): Bluebird<IRefundResponse>;
+      ): Promise<IRefundResponse>;
     }
 
     interface IRequest {
@@ -294,11 +291,11 @@ declare namespace Omise {
       create(
         req: IRequest,
         callback?: ResponseCallback<ISource>
-      ): Bluebird<ISource>;
+      ): Promise<ISource>;
       retrieve(
         sourceID: string, 
         callback?: ResponseCallback<ISource>
-      ): Bluebird<ISource>;
+      ): Promise<ISource>;
     }
 
     interface IRequest {
@@ -362,49 +359,49 @@ declare namespace Omise {
       create(
         req: IRequest,
         callback?: ResponseCallback<ICustomer>
-      ): Bluebird<ICustomer>;
+      ): Promise<ICustomer>;
       retrieve(
         customerID: string,
         callback?: ResponseCallback<ICustomer>
-      ): Bluebird<ICustomer>;
+      ): Promise<ICustomer>;
       update(
         customerID: string,
         req: IRequest,
         callback?: ResponseCallback<ICustomer>
-      ): Bluebird<ICustomer>;
+      ): Promise<ICustomer>;
       destroy(
         customerID: string,
         callback?: ResponseCallback<IDestroyResponse>
-      ): Bluebird<IDestroyResponse>;
+      ): Promise<IDestroyResponse>;
       list(
         parameters?: Pagination.IRequest,
         callback?: ResponseCallback<ICustomerList>
-      ): Bluebird<ICustomerList>;
+      ): Promise<ICustomerList>;
       listCards(
         customerID: string,
         parameters?: Pagination.IRequest,
         callback?: ResponseCallback<Cards.ICardList>
-      ): Bluebird<Cards.ICardList>;
+      ): Promise<Cards.ICardList>;
       retrieveCard(
         customerID: string,
         cardID: string,
         callback?: ResponseCallback<Cards.ICard>
-      ): Bluebird<Cards.ICard>;
+      ): Promise<Cards.ICard>;
       updateCard(
         customerID: string,
         cardID: string,
         details: Cards.ICardRequest,
         callback?: ResponseCallback<Cards.ICard>
-      ): Bluebird<Cards.ICard>;
+      ): Promise<Cards.ICard>;
       destroyCard(
         customerID: string,
         cardID: string,
         callback?: ResponseCallback<Cards.ICard>
-      ): Bluebird<Cards.ICard>;
+      ): Promise<Cards.ICard>;
       schedules(
         customerID: string,
         callback?: ResponseCallback<Schedules.ISchedulesList>
-      ): Bluebird<Schedules.ISchedulesList>;
+      ): Promise<Schedules.ISchedulesList>;
     }
 
     interface IRequest {
@@ -435,25 +432,25 @@ declare namespace Omise {
       list(
         parameters?: Pagination.IRequest,
         callback?: ResponseCallback<IListResponse>
-      ): Bluebird<IListResponse>;
+      ): Promise<IListResponse>;
       listClosed(
         callback?: ResponseCallback<IListResponse>
-      ): Bluebird<IListResponse>;
+      ): Promise<IListResponse>;
       listOpen(
         callback?: ResponseCallback<IListResponse>
-      ): Bluebird<IListResponse>;
+      ): Promise<IListResponse>;
       listPending(
         callback?: ResponseCallback<IListResponse>
-      ): Bluebird<IListResponse>;
+      ): Promise<IListResponse>;
       retrieve(
         disputeID: string,
         callback?: ResponseCallback<IResponse>
-      ): Bluebird<IResponse>;
+      ): Promise<IResponse>;
       update(
         disputeID: string,
         req: IRequest,
         callback?: ResponseCallback<IResponse>
-      ): Bluebird<IResponse>;
+      ): Promise<IResponse>;
     }
 
     interface IRequest {
@@ -502,11 +499,11 @@ declare namespace Omise {
       retrieve(
         eventID: string,
         callback?: ResponseCallback<IEvent>
-      ): Bluebird<IEvent>;
+      ): Promise<IEvent>;
       list(
         parameters?: Pagination.IRequest,
         callback?: ResponseCallback<IEventList>
-      ): Bluebird<IEventList>;
+      ): Promise<IEventList>;
     }
 
     interface IEvent extends IBaseResponse {
@@ -532,15 +529,15 @@ declare namespace Omise {
       retrieve(
         linkID: string,
         callback?: ResponseCallback<ILink>
-      ): Bluebird<ILink>;
+      ): Promise<ILink>;
       list(
         parameters?: Pagination.IRequest,
         callback?: ResponseCallback<ILinkListResponse>
-      ): Bluebird<ILinkListResponse>;
+      ): Promise<ILinkListResponse>;
       create(
         req: IRequest,
         callback?: ResponseCallback<ILink>
-      ): Bluebird<ILink>;
+      ): Promise<ILink>;
     }
 
     interface IRequest {
@@ -576,24 +573,24 @@ declare namespace Omise {
       create(
         req: IRequest,
         callback?: ResponseCallback<IRecipient>
-      ): Bluebird<IRecipient>;
+      ): Promise<IRecipient>;
       update(
         recipientID: string,
         req: IRequest,
         callback?: ResponseCallback<IRecipient>
-      ): Bluebird<IRecipient>;
+      ): Promise<IRecipient>;
       retrieve(
         recipientID: string,
         callback?: ResponseCallback<IRecipient>
-      ): Bluebird<IRecipient>;
+      ): Promise<IRecipient>;
       destroy(
         recipientID: string,
         callback?: ResponseCallback<IDestroyResponse>
-      ): Bluebird<IDestroyResponse>;
+      ): Promise<IDestroyResponse>;
       list(
         parameters?: Pagination.IRequest,
         callback?: ResponseCallback<IRecipientList>
-      ): Bluebird<IRecipientList>;
+      ): Promise<IRecipientList>;
     }
 
     interface IRequest {
@@ -636,11 +633,11 @@ declare namespace Omise {
       retrieve(
         transactionID: string,
         callback?: ResponseCallback<ITransaction>
-      ): Bluebird<ITransaction>;
+      ): Promise<ITransaction>;
       list(
         parameters?: Pagination.IRequest,
         callback?: ResponseCallback<ITransactionList>
-      ): Bluebird<ITransactionList>;
+      ): Promise<ITransactionList>;
     }
 
     interface ITransaction extends IBaseResponse {
@@ -666,24 +663,24 @@ declare namespace Omise {
       create(
         req: IRequest,
         callback?: ResponseCallback<ITransfer>
-      ): Bluebird<ITransfer>;
+      ): Promise<ITransfer>;
       update(
         transferID: string,
         req: IRequest,
         callback?: ResponseCallback<ITransfer>
-      ): Bluebird<ITransfer>;
+      ): Promise<ITransfer>;
       retrieve(
         transferID: string,
         callback?: ResponseCallback<ITransfer>
-      ): Bluebird<ITransfer>;
+      ): Promise<ITransfer>;
       destroy(
         transferID: string,
         callback?: ResponseCallback<IDestroyResponse>
-      ): Bluebird<IDestroyResponse>;
+      ): Promise<IDestroyResponse>;
       list(
         parameters: Pagination.IRequest,
         callback?: ResponseCallback<ITransferList>
-      ): Bluebird<ITransferList>;
+      ): Promise<ITransferList>;
     }
 
     interface IRequest {
@@ -729,11 +726,11 @@ declare namespace Omise {
       create(
         options: IRequest,
         callback?: ResponseCallback<IToken>
-      ): Bluebird<IToken>;
+      ): Promise<IToken>;
       retrieve(
         tokenID: string,
         callback?: ResponseCallback<IToken>
-      ): Bluebird<IToken>;
+      ): Promise<IToken>;
     }
 
     interface IRequest {
@@ -769,15 +766,15 @@ declare namespace Omise {
       create(
         options: ICreateSchedule,
         callback?: ResponseCallback<ISchedule>
-      ): Bluebird<ISchedule>;
+      ): Promise<ISchedule>;
       retrieve(
         scheduleID: string,
         callback?: ResponseCallback<ISchedule>
-      ): Bluebird<ISchedule>;
+      ): Promise<ISchedule>;
       destroy(
         scheduleID: string,
         callback?: ResponseCallback<IDestroyResponse>
-      ): Bluebird<IDestroyResponse>;
+      ): Promise<IDestroyResponse>;
     }
 
     interface IChargeScheduleResponse {

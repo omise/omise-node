@@ -1,15 +1,15 @@
 'use strict';
 
-var config = {
+const config = {
   publicKey:    process.env.OMISE_PUBLIC_KEY,
   secretKey:    process.env.OMISE_SECRET_KEY,
   omiseVersion: '2015-09-10',
 };
 
 if (process.env.NOCK_OFF && (!config['publicKey'] || !config['secretKey'])) {
-  var msg = 'Please set OMISE_PUBLIC_KEY and OMISE_SECRET_KEY env vars ' +
+  const msg = 'Please set OMISE_PUBLIC_KEY and OMISE_SECRET_KEY env consts ' +
     'for public key and secret key respectively.';
-  console.log(msg);
+  console.log(msg); // eslint-disable-line
   process.exit(2);
 }
 

@@ -1,8 +1,8 @@
-var nock = require('nock');
+const nock = require('nock');
 
-var custID  = 'cust_test_4z2owmajzsb3c527wj7';
-var cardID  = 'card_test_4z2owrdmvbygi7ah0fu';
-var cardURL = '/customers/' + custID + '/cards';
+const custID  = 'cust_test_4z2owmajzsb3c527wj7';
+const cardID  = 'card_test_4z2owrdmvbygi7ah0fu';
+const cardURL = '/customers/' + custID + '/cards';
 nock('https://api.omise.co')
   .persist()
   .get(cardURL)

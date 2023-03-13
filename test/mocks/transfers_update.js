@@ -1,4 +1,4 @@
-var nock = require('nock');
+const nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .intercept('/transfers/trsf_test_4z4cw3ku87retguciji', 'PATCH')

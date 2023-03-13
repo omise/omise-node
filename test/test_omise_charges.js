@@ -1,19 +1,19 @@
 'use strict';
-var chai   = require('chai');
-var expect = chai.expect;
-var should = chai.should();
+const chai   = require('chai');
+const expect = chai.expect;
+const should = chai.should();
 
-var config = require('./config');
-var omise  = require('../index')(config);
-var testHelper = require('./testHelper');
+const config = require('./config');
+const omise  = require('../index')(config);
+const testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Charges', function() {
-    var tokenId  = '';
-    var chargeId = '';
+    let tokenId  = '';
+    let chargeId = '';
     before(function(done) {
       testHelper.setupMock('tokens_create');
-      var cardDetails = {
+      const cardDetails = {
         'card': {
           'name':             'JOHN DOE',
           'city':             'Bangkok',
@@ -29,7 +29,7 @@ describe('Omise', function() {
         tokenId = resp.id;
         expect(tokenId).to.contains('tokn_test');
         should.exist(resp.card.id);
-        var cardId = resp.card.id;
+        const cardId = resp.card.id;
         expect(cardId).to.contains('card_test');
         done(err);
       });
@@ -37,7 +37,7 @@ describe('Omise', function() {
 
     it('should be able to create a charge', function(done) {
       testHelper.setupMock('charges_create');
-      var charge = {
+      const charge = {
         'description': 'Charge for order 3947',
         'amount':      '100000',
         'currency':    'thb',
@@ -58,7 +58,7 @@ describe('Omise', function() {
       testHelper.setupMock('charges_reverse');
       omise.charges.reverse(chargeId, function(err, resp) {
         expect(resp.object, 'charge');
-        var reversed = resp.reversed;
+        const reversed = resp.reversed;
         reversed.should.be.true;
         done(err);
       });
@@ -106,10 +106,10 @@ describe('Omise', function() {
 
     it('should be able to update a charge', function(done) {
       testHelper.setupMock('charges_update');
-      var data = {description: 'test description'};
+      const data = {description: 'test description'};
       omise.charges.update(chargeId, data, function(err, resp) {
         expect(resp.object, 'charge');
-        var chargeId = resp.id;
+        const chargeId = resp.id;
         expect(chargeId).to.match(/^chrg_test/);
         expect(resp.description, 'test description');
         done(err);
@@ -120,7 +120,7 @@ describe('Omise', function() {
       testHelper.setupMock('charges_capture');
       omise.charges.capture(chargeId, function(err, resp) {
         expect(resp.object, 'charge');
-        var paid = resp.paid;
+        const paid = resp.paid;
         paid.should.be.true;
         done(err);
       });

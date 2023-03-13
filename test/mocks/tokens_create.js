@@ -1,4 +1,4 @@
-var nock = require('nock');
+const nock = require('nock');
 nock('https://vault.omise.co')
   .persist()
   .post('/tokens')

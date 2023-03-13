@@ -1,14 +1,14 @@
 'use strict';
-var chai   = require('chai');
-var expect = chai.expect;
-var config = require('./config');
-var omise = require('../index')(config);
-var testHelper = require('./testHelper');
+const chai   = require('chai');
+const expect = chai.expect;
+const config = require('./config');
+const omise = require('../index')(config);
+const testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Recipients', function() {
     it('should be able to create a recipient', function(done) {
-      var recipient = {
+      const recipient = {
         'name':         'John Doe',
         'description':  'John Doe (id: 30)',
         'email':        'john.doe@example.com',
@@ -38,7 +38,7 @@ describe('Omise', function() {
         expect(resp.data).to.be.instanceof(Array);
         expect(resp.data[0].object, 'recipient');
         expect(resp.data[0]).to.include.keys('type');
-        expect(resp.data[0].type).not.be.nil;
+        expect(resp.data[0].type).not.be.null;
         expect(resp.data[0]).to.include.keys('tax_id');
         expect(resp.data[0]).to.include.keys('bank_account');
         done(err);
@@ -48,8 +48,8 @@ describe('Omise', function() {
     it('should be able to update the recipient', function(done) {
       testHelper.setupMock('recipients_list');
       omise.recipients.list(function(err, resp) {
-        var recipientId = resp.data[0].id;
-        var updateData = {
+        const recipientId = resp.data[0].id;
+        const updateData = {
           'name':   'Di Di',
           'email':  'di@omise.co',
           'tax_id': '9876543210',
@@ -67,7 +67,7 @@ describe('Omise', function() {
     it('should be able to retrieve the recipient', function(done) {
       testHelper.setupMock('recipients_list');
       omise.recipients.list(function(err, resp) {
-        var recipientId = resp.data[0].id;
+        const recipientId = resp.data[0].id;
         testHelper.setupMock('recipients_retrieve');
         omise.recipients.retrieve(recipientId, function(err, resp) {
           expect(resp.id, recipientId);
@@ -79,14 +79,14 @@ describe('Omise', function() {
     it('should be able to destroy the recipient', function(done) {
       testHelper.setupMock('recipients_list');
       omise.recipients.list(function(err, resp) {
-        var recipients = resp.data;
+        const recipients = resp.data;
         expect(resp.data).to.be.instanceof(Array);
         // atm, the first recipient is always a default, but cannot destroy
         expect(omise.recipients.destroy).instanceof(Function);
         if (recipients.length < 1) {
           done(err);
         }
-        var recipientId = recipients[recipients.length - 1].id;
+        const recipientId = recipients[recipients.length - 1].id;
         testHelper.setupMock('recipients_destroy');
         omise.recipients.destroy(recipientId, function(err, resp) {
           expect(resp.id, recipientId);
