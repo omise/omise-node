@@ -1,13 +1,13 @@
 'use strict';
 
 // More information: https://www.omise.co/charge-schedules-api
-var omise = require('../index')({
+let omise = require('../index')({
   'publicKey': 'pkey_test_1234',
   'secretKey': 'skey_test_1234',
 });
 
 // Charge every 2 days
-var chargeEvery2Days = {
+let chargeEvery2Days = {
   every:      2,
   period:     'day',
   start_date: '2018-01-01',
@@ -31,7 +31,7 @@ omise.schedules.create(chargeEvery2Days, function(err, schedule) {
 });
 
 // Charge on eery Monday and Friday
-var monthlyCharge = {
+let monthlyCharge = {
   every:      1,
   period:     'month',
   start_date: '2018-01-01',
