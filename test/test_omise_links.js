@@ -1,14 +1,14 @@
 'use strict';
-var chai   = require('chai');
-var expect = chai.expect;
-var config = require('./config');
-var omise  = require('../index')(config);
-var testHelper = require('./testHelper');
+const chai   = require('chai');
+const expect = chai.expect;
+const config = require('./config');
+const omise  = require('../index')(config);
+const testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Links', function() {
     it('should be able to create a link', function(done) {
-      var link = {
+      const link = {
         'amount':      19000,
         'currency':    'thb',
         'multiple':    false,
@@ -32,7 +32,7 @@ describe('Omise', function() {
         expect(resp.data.length).to.equal(2);
         expect(resp.data[0].object, 'link');
         expect(resp.data[0]).to.include.keys('amount');
-        expect(resp.data[0].amount).not.be.nil;
+        expect(resp.data[0].amount).not.be.null;
         expect(resp.data[0]).to.include.keys('title');
         expect(resp.data[0]).to.include.keys('multiple');
         expect(resp.data[0]).to.include.keys('charges');
@@ -48,7 +48,7 @@ describe('Omise', function() {
       expect(resp.id, 'link_test_576mf2s2gwt0nmkmmf6');
       expect(resp.object, 'link');
       expect(resp).to.include.keys('amount');
-      expect(resp.amount).not.be.nil;
+      expect(resp.amount).not.be.null;
       done(err);
     });
   });

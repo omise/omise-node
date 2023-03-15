@@ -1,12 +1,12 @@
-var chai   = require('chai');
-var expect = chai.expect;
-var config = require('./config');
-var omise  = require('../index')(config);
-var testHelper = require('./testHelper');
+const chai   = require('chai');
+const expect = chai.expect;
+const config = require('./config');
+const omise  = require('../index')(config);
+const testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Transactions', function() {
-    var transactionId = '';
+    let transactionId = '';
     it('should be able to list all transactions', function(done) {
       testHelper.setupMock('transactions_list');
       omise.transactions.list(function(err, resp) {

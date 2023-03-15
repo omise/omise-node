@@ -1,5 +1,3 @@
-/// <reference path='../index.d.ts' />
-
 import omiseNode = require('../index');
 
 const cardDetails = {

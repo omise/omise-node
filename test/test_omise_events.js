@@ -1,9 +1,9 @@
-var chai   = require('chai');
-var expect = chai.expect;
+const chai   = require('chai');
+const expect = chai.expect;
 
-var config = require('./config');
-var omise = require('../index')(config);
-var testHelper = require('./testHelper');
+const config = require('./config');
+const omise = require('../index')(config);
+const testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Events', function() {

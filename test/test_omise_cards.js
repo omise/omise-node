@@ -1,20 +1,20 @@
-var chai   = require('chai');
-var expect = chai.expect;
-var should = chai.should();
+const chai   = require('chai');
+const expect = chai.expect;
+const should = chai.should();
 
-var config = require('./config');
-var omise = require('../index')(config);
-var testHelper = require('./testHelper');
+const config = require('./config');
+const omise = require('../index')(config);
+const testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Cards', function() {
-    var tokenId = '';
-    var customerId = '';
-    var cardId = '';
+    let tokenId = '';
+    let customerId = '';
+    let cardId = '';
 
     before(function(done) {
       testHelper.setupMock('tokens_create');
-      var cardDetails = {
+      const cardDetails = {
         'card': {
           'name':             'JOHN DOE',
           'city':             'Bangkok',
@@ -30,7 +30,7 @@ describe('Omise', function() {
         tokenId = resp.id;
         expect(tokenId).to.contains('tokn_test');
         should.exist(resp.card.id);
-        var cardId = resp.card.id;
+        const cardId = resp.card.id;
         expect(cardId).to.contains('card_test');
         done(err);
       });
@@ -38,7 +38,7 @@ describe('Omise', function() {
 
     it('should be able to create a customer', function(done) {
       testHelper.setupMock('customers_create');
-      var data = {
+      const data = {
         email:       'john.doe@example.com',
         description: 'John Doe (id: 30)',
         card:        tokenId,
@@ -46,9 +46,9 @@ describe('Omise', function() {
       omise.customers.create(data, function(err, resp) {
         customerId = resp.id;
         expect(customerId).to.contains('cust_test');
-        var obj = resp.object;
+        const obj = resp.object;
         obj.should.equal('customer');
-        var email = resp.email;
+        const email = resp.email;
         email.should.equal('john.doe@example.com');
         done(err);
       });
@@ -77,7 +77,7 @@ describe('Omise', function() {
 
     it('should be able to update a card', function(done) {
       testHelper.setupMock('card_update');
-      var data = {'expiration_year': 2022};
+      const data = {'expiration_year': 2022};
       omise.customers.updateCard(customerId, cardId, data, function(err, resp) {
         expect(resp.object, 'card');
         expect(resp.id, 'card_test_4z2owrdmvbygi7ah0fu');

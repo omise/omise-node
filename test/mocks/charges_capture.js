@@ -1,10 +1,10 @@
-var nock = require('nock');
+const nock = require('nock');
 
-var chargeID   = 'chrg_test_4z429hvnv7ouolu6kmp';
-var chargeURL  = '/charges/' + chargeID;
-var paymentID  = 'paym_4z5goqdw6rblbxztm4c';
-var captureURL = chargeURL + '/capture';
-var paymentURL = 'https://api.omise.co/payments/' + paymentID + '/authorize';
+const chargeID   = 'chrg_test_4z429hvnv7ouolu6kmp';
+const chargeURL  = '/charges/' + chargeID;
+const paymentID  = 'paym_4z5goqdw6rblbxztm4c';
+const captureURL = chargeURL + '/capture';
+const paymentURL = 'https://api.omise.co/payments/' + paymentID + '/authorize';
 nock('https://api.omise.co')
   .persist()
   .post(captureURL)

@@ -1,8 +1,8 @@
-var nock = require('nock');
+const nock = require('nock');
 
-var chargeID   = 'chrg_test_4z429hvnv7ouolu6kmp';
-var paymentID  = 'paym_4z429hvmrk381n4q8xc';
-var paymentURL = 'https://api.omise.co/payments/' + paymentID + '/authorize';
+const chargeID   = 'chrg_test_4z429hvnv7ouolu6kmp';
+const paymentID  = 'paym_4z429hvmrk381n4q8xc';
+const paymentURL = 'https://api.omise.co/payments/' + paymentID + '/authorize';
 nock('https://api.omise.co')
   .persist()
   .get('/charges/' + chargeID)

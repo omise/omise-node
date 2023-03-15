@@ -1,16 +1,16 @@
 'use strict';
-var chai = require('chai');
-var expect = chai.expect;
+const chai = require('chai');
+const expect = chai.expect;
 
-var config = require('./config');
-var omise = require('../index')(config);
-var testHelper = require('./testHelper');
+const config = require('./config');
+const omise = require('../index')(config);
+const testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Transfer Schedules', function() {
-    var transferScheduleId = 'schd_test_5cc9ygd384j50oxv2nw';
-    var recipientId = 'recp_test_58dw0pqszjc9hlv8gbo';
-    var amount = 100000;
+    const transferScheduleId = 'schd_test_5cc9ygd384j50oxv2nw';
+    const recipientId = 'recp_test_58dw0pqszjc9hlv8gbo';
+    const amount = 100000;
 
     it('should be able to create a transfer schedule', function(done) {
       testHelper.clean();
@@ -44,26 +44,27 @@ describe('Omise', function() {
         expect(resp.data).to.be.instanceof(Array);
         expect(resp.data[0].object, 'schedule');
         expect(resp.data[0]).include.keys('transfer');
-        expect(resp.data[0].transfer).not.be.nil;
+        expect(resp.data[0].transfer).not.be.null;
         resp.data[0].id.should.equal(transferScheduleId);
         resp.data[0].transfer.recipient.should.equal(recipientId);
         done(err);
       });
     });
 
-    it('should be able to list all transfer schedules for a given recipient', function(done) {
-      testHelper.setupMock('recipients_schedules_list');
-      omise.recipients.schedules(recipientId, function(err, resp) {
-        expect(resp.object, 'list');
-        expect(resp.data).to.be.instanceof(Array);
-        expect(resp.data[0].object, 'schedule');
-        expect(resp.data[0]).include.keys('transfer');
-        expect(resp.data[0].transfer).not.be.nil;
-        resp.data[0].id.should.equal(transferScheduleId);
-        resp.data[0].transfer.recipient.should.equal(recipientId);
-        done(err);
+    it('should be able to list all transfer schedules for a given recipient',
+      function(done) {
+        testHelper.setupMock('recipients_schedules_list');
+        omise.recipients.schedules(recipientId, function(err, resp) {
+          expect(resp.object, 'list');
+          expect(resp.data).to.be.instanceof(Array);
+          expect(resp.data[0].object, 'schedule');
+          expect(resp.data[0]).include.keys('transfer');
+          expect(resp.data[0].transfer).not.be.null;
+          resp.data[0].id.should.equal(transferScheduleId);
+          resp.data[0].transfer.recipient.should.equal(recipientId);
+          done(err);
+        });
       });
-    });
 
     it('should be able to retrieve a transfer schedule', function(done) {
       testHelper.setupMock('transfers_schedules_retrieve');

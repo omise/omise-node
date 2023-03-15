@@ -1,11 +1,11 @@
 'use strict';
 
-var omise = require('../index')({
+let omise = require('../index')({
   'publicKey': process.env.OMISE_PUBLIC_KEY,
   'secretKey': process.env.OMISE_SECRET_KEY,
 });
 
-var cardDetails = {
+let cardDetails = {
   card: {
     'name':             'JOHN DOE',
     'city':             'Bangkok',

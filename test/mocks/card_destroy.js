@@ -1,6 +1,6 @@
-var nock = require('nock');
-var custID = 'cust_test_4z2owmajzsb3c527wj7';
-var cardID = 'card_test_4z2owrdmvbygi7ah0fu';
+const nock = require('nock');
+const custID = 'cust_test_4z2owmajzsb3c527wj7';
+const cardID = 'card_test_4z2owrdmvbygi7ah0fu';
 nock('https://api.omise.co')
   .persist()
   .intercept('/customers/' + custID + '/cards/' + cardID, 'DELETE')

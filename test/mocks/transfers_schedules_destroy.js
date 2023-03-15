@@ -1,4 +1,4 @@
-var nock = require('nock');
+const nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .intercept('/schedules/schd_test_5cc9ygd384j50oxv2nw', 'DELETE')

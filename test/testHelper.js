@@ -8,7 +8,7 @@ module.exports = {
   },
   clean: function() {
     if (process.env.NOCK_OFF !== 'true') {
-      var nock = require('nock');
+      const nock = require('nock');
       nock.cleanAll();
     }
   },

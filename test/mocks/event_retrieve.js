@@ -1,4 +1,4 @@
-var nock = require('nock');
+const nock = require('nock');
 nock('https://api.omise.co')
   .persist()
   .get('/events/evnt_test_52lfalk2p3ssnhwfoez')

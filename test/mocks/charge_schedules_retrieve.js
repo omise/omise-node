@@ -1,5 +1,5 @@
-var nock = require('nock');
-var chargeScheduleID = 'schd_test_5aikygh29nc6u68xuib';
+const nock = require('nock');
+const chargeScheduleID = 'schd_test_5aikygh29nc6u68xuib';
 
 nock('https://api.omise.co')
   .persist()

@@ -1,16 +1,16 @@
-var chai   = require('chai');
-var expect = chai.expect;
-var should = chai.should();
+const chai   = require('chai');
+const expect = chai.expect;
+const should = chai.should();
 
-var config = require('./config');
-var omise  = require('../index')(config);
-var testHelper = require('./testHelper');
+const config = require('./config');
+const omise  = require('../index')(config);
+const testHelper = require('./testHelper');
 
 describe('Omise', function() {
   describe('#Tokens', function() {
-    var tokenId = '';
+    let tokenId = '';
     before(function(done) {
-      var cardDetails = {
+      const cardDetails = {
         'card': {
           'name':             'JOHN DOE',
           'city':             'Bangkok',
@@ -27,7 +27,7 @@ describe('Omise', function() {
         tokenId = resp.id;
         expect(tokenId).to.contains('tokn_test');
         should.exist(resp.card.id);
-        var cardId = resp.card.id;
+        const cardId = resp.card.id;
         expect(cardId).to.contains('card_test');
         done(err);
       });
@@ -39,7 +39,7 @@ describe('Omise', function() {
         should.exist(resp.id);
         expect(resp.id).to.match(/^tokn_test/);
         should.exist(resp.card.id);
-        var cardId = resp.card.id;
+        const cardId = resp.card.id;
         expect(cardId).to.contains('card_test');
         done(err);
       });
