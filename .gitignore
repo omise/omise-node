@@ -17,4 +17,3 @@ build/Release
 node_modules
 .nyc_output
 test.js
-package-lock.json
