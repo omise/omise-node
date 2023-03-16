@@ -32,6 +32,6 @@ omise.tokens.create(cardDetails).then(function(token) {
   });
 }).then(function(charge) {
   console.log(charge);
-}).error(function(err) {
+}).catch(function(err) {
   console.log(err);
-}).done();
+}).finally();
