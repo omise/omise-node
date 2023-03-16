@@ -1,7 +1,4 @@
-'use strict';
-const chai = require('chai');
-const expect = chai.expect;
-
+const {expect, assert} = require('chai');
 const config = require('./config');
 const omise = require('../index')(config);
 const testHelper = require('./testHelper');
@@ -29,25 +26,27 @@ describe('Omise', function() {
           'description': 'schedule transfer id:1',
         },
       }, function(err, resp) {
-        expect(resp.object, 'schedule');
+        if (err) done(err);
+        assert.equal(resp.object, 'schedule');
         expect(resp).to.have.property('transfer');
         expect(resp.transfer).to.have.property('amount');
         resp.transfer.amount.should.equal(amount);
-        done(err);
+        done();
       });
     });
 
     it('should be able to list all transfer schedules', function(done) {
       testHelper.setupMock('transfers_schedules_list');
       omise.transfers.schedules(function(err, resp) {
-        expect(resp.object, 'list');
+        if (err) done(err);
+        assert.equal(resp.object, 'list');
         expect(resp.data).to.be.instanceof(Array);
-        expect(resp.data[0].object, 'schedule');
+        assert.equal(resp.data[0].object, 'schedule');
         expect(resp.data[0]).include.keys('transfer');
         expect(resp.data[0].transfer).not.be.null;
         resp.data[0].id.should.equal(transferScheduleId);
         resp.data[0].transfer.recipient.should.equal(recipientId);
-        done(err);
+        done();
       });
     });
 
@@ -55,38 +54,41 @@ describe('Omise', function() {
       function(done) {
         testHelper.setupMock('recipients_schedules_list');
         omise.recipients.schedules(recipientId, function(err, resp) {
-          expect(resp.object, 'list');
+          if (err) done(err);
+          assert.equal(resp.object, 'list');
           expect(resp.data).to.be.instanceof(Array);
-          expect(resp.data[0].object, 'schedule');
+          assert.deepEqual(resp.data[0].object, 'schedule');
           expect(resp.data[0]).include.keys('transfer');
           expect(resp.data[0].transfer).not.be.null;
           resp.data[0].id.should.equal(transferScheduleId);
           resp.data[0].transfer.recipient.should.equal(recipientId);
-          done(err);
+          done();
         });
       });
 
     it('should be able to retrieve a transfer schedule', function(done) {
       testHelper.setupMock('transfers_schedules_retrieve');
       omise.schedules.retrieve(transferScheduleId, function(err, resp) {
-        expect(resp.object, 'schedule');
+        if (err) done(err);
+        assert.equal(resp.object, 'schedule');
         expect(resp).to.have.property('transfer');
         expect(resp.transfer).to.have.property('amount');
         resp.transfer.amount.should.equal(amount);
-        done(err);
+        done();
       });
     });
 
     it('should be able to destroy a transfer schedule', function(done) {
       testHelper.setupMock('transfers_schedules_destroy');
       omise.schedules.destroy(transferScheduleId, function(err, resp) {
-        expect(resp.object, 'schedule');
+        if (err) done(err);
+        assert.equal(resp.object, 'schedule');
         expect(resp).to.have.property('transfer');
         expect(resp).to.have.property('status');
         expect(resp.transfer).to.have.property('amount');
         resp.transfer.amount.should.equal(amount);
         resp.status.should.equal('deleted');
-        done(err);
+        done();
       });
     });
   });

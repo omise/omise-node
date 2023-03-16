@@ -1,5 +1,4 @@
-const chai = require('chai');
-const expect = chai.expect;
+const {assert} = require('chai');
 const config = require('./config');
 const omise = require('../index')(config);
 const testHelper = require('./testHelper');
@@ -10,9 +9,10 @@ describe('Omise', function() {
       testHelper.setupMock('search_transfer');
       const data = {'scope': 'transfer'};
       omise.search.list(data, function(err, resp) {
-        expect(resp.object, 'search');
-        expect(resp.scope, 'transfer');
-        done(err);
+        if (err) done(err);
+        assert.equal(resp.object, 'search');
+        assert.equal(resp.scope, 'transfer');
+        done();
       });
     });
   });

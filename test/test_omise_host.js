@@ -1,5 +1,4 @@
-const chai = require('chai');
-const expect = chai.expect;
+const {assert} = require('chai');
 const config = require('./config');
 const omise = require('../index');
 const testHelper = require('./testHelper');
@@ -17,17 +16,18 @@ describe('Omise', function() {
     it('Correct Host should be able to retrieve an account', function(done) {
       testHelper.setupMock('account_retrieve');
       omiseWithCorrectHost.account.retrieve(function(err, resp) {
-        expect(resp.object, 'account');
-        expect(resp.id, 'acct_123');
-        expect(resp.email, 'test@omise.co');
-        done(err);
+        if (err) done(err);
+        assert.equal(resp.object, 'account');
+        assert.equal(resp.id, 'acct_123');
+        assert.equal(resp.email, 'test@omise.co');
+        done();
       });
     });
 
     it('Wrong Host should return error', function(done) {
       testHelper.setupMock('account_retrieve');
       omiseWithWrongHost.account.retrieve(function(err, resp) {
-        expect(err.object, 'error');
+        assert.typeOf(err, 'Error');
         done();
       });
     });
