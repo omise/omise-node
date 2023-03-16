@@ -4,7 +4,7 @@ const omise = require('../index')(config);
 const testHelper = require('./testHelper');
 
 describe('Omise', function() {
-  describe('#Promises', function() {
+  describe('#Account', function() {
     it('should be able to retrieve an account using async await', async () => {
       testHelper.setupMock('account_retrieve');
       let resp = await omise.account.retrieve();
