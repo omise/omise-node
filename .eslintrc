@@ -55,6 +55,8 @@
     ],
     "no-console": "warn",
     "require-jsdoc": "off",
+    "no-invalid-this" : "off",
+    "no-extend-native" : "off",
     "key-spacing": [
       "warn",
       {

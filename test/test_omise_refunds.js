@@ -1,7 +1,4 @@
-const chai   = require('chai');
-const expect = chai.expect;
-const should = chai.should();
-
+const {assert, expect, should} = require('chai');
 const config = require('./config');
 const omise = require('../index')(config);
 const testHelper = require('./testHelper');
@@ -27,8 +24,9 @@ describe('Omise', function() {
       };
 
       omise.tokens.create(cardDetails, function(err, resp) {
+        if (err) done(err);
         tokenId = resp.id;
-        should.exist(resp.card.id);
+        should().exist(resp.card.id);
         testHelper.setupMock('charges_create');
         const charge = {
           'description': 'Charge for order 3947',
@@ -37,16 +35,18 @@ describe('Omise', function() {
           'card':        tokenId,
         };
         omise.charges.create(charge, function(err, resp) {
+          if (err) done(err);
           chargeId = resp.id;
           const amount = resp.amount;
           testHelper.setupMock('refunds_create');
           const data = {'amount': amount};
           omise.charges.createRefund(chargeId, data, function(err, resp) {
+            if (err) done(err);
             expect(resp.id).to.match(/^rfnd_test/);
-            expect(resp.object, 'refund');
-            expect(resp.amount, data['amount']);
-            expect(resp.currency, 'thb');
-            done(err);
+            assert.equal(resp.object, 'refund');
+            assert.equal(resp.amount, data['amount']);
+            assert.equal(resp.currency, 'thb');
+            done();
           });
         });
       });
@@ -55,22 +55,23 @@ describe('Omise', function() {
     it('should be able to list refunds', function(done) {
       testHelper.setupMock('refunds_list');
       omise.charges.listRefunds(chargeId, function(err, resp) {
-        expect(resp.object, 'list');
+        if (err) done(err);
+        assert.equal(resp.object, 'list');
         expect(resp.data).to.be.instanceof(Array);
-        expect(resp.data[0].object, 'refund');
+        assert.equal(resp.data[0].object, 'refund');
         refundId = resp.data[0].id;
-        done(err);
+        done();
       });
     });
 
     it('should be able to retrieve a refund', function(done) {
       testHelper.setupMock('refunds_retrieve');
       omise.charges.retrieveRefund(chargeId, refundId, function(err, resp) {
-        expect(resp.object, 'refund');
+        assert.equal(resp.object, 'refund');
         expect(resp.id).to.match(/^rfnd_test/);
         expect(resp.charge).to.match(/^chrg_test/);
         expect(resp.transaction).to.match(/^trxn_test/);
-        done(err);
+        done();
       });
     });
   });

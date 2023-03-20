@@ -1,7 +1,4 @@
-'use strict';
-const chai = require('chai');
-const expect = chai.expect;
-
+const {expect, assert} = require('chai');
 const config = require('./config');
 const omise = require('../index')(config);
 const testHelper = require('./testHelper');
@@ -30,36 +27,39 @@ describe('Omise', function() {
           'description': 'schedule charge id:1',
         },
       }, function(err, resp) {
-        expect(resp.object, 'schedule');
+        if (err) done(err);
+        assert.equal(resp.object, 'schedule');
         expect(resp).to.have.property('charge');
         expect(resp.charge).to.have.property('amount');
         resp.charge.amount.should.equal(amount);
-        done(err);
+        done();
       });
     });
 
     it('should be able to list all charge schedules', function(done) {
       testHelper.setupMock('charge_schedules_list');
       omise.charges.schedules(function(err, resp) {
-        expect(resp.object, 'list');
+        if (err) done(err);
+        assert.equal(resp.object, 'list');
+        assert.equal(resp.data[0].object, 'schedule');
         expect(resp.data).to.be.instanceof(Array);
-        expect(resp.data[0].object, 'schedule');
         expect(resp.data[0]).to.include.keys('charge');
         expect(resp.data[0].charge).not.be.null;
         resp.data[0].id.should.equal(chargeScheduleId);
         resp.data[0].charge.customer.should.equal(customerId);
-        done(err);
+        done();
       });
     });
 
     it('should be able to retrieve a charge schedule', function(done) {
       testHelper.setupMock('charge_schedules_retrieve');
       omise.schedules.retrieve(chargeScheduleId, function(err, resp) {
-        expect(resp.object, 'schedule');
+        if (err) done(err);
+        assert.equal(resp.object, 'schedule');
         expect(resp).to.have.property('charge');
         expect(resp.charge).to.have.property('amount');
         resp.charge.amount.should.equal(amount);
-        done(err);
+        done();
       });
     });
 
@@ -68,9 +68,10 @@ describe('Omise', function() {
       function(done) {
         testHelper.setupMock('customer_schedules_list');
         omise.customers.schedules(customerId, function(err, resp) {
-          expect(resp.object, 'list');
+          if (err) done(err);
+          assert.equal(resp.object, 'list');
+          assert.equal(resp.data[0].object, 'schedule');
           expect(resp.data).to.be.instanceof(Array);
-          expect(resp.data[0].object, 'schedule');
           expect(resp.data[0]).to.include.keys('charge');
           expect(resp.data[0].charge).not.be.null;
 
@@ -78,20 +79,21 @@ describe('Omise', function() {
           expect(resp.data[0].charge).to.have.property('customer');
           resp.data[0].charge.amount.should.equal(amount);
           resp.data[0].charge.customer.should.equal(customerId);
-          done(err);
+          done();
         });
       });
 
     it('should be able to destroy a charge schedule', function(done) {
       testHelper.setupMock('charge_schedules_destroy');
       omise.schedules.destroy(chargeScheduleId, function(err, resp) {
-        expect(resp.object, 'schedule');
+        if (err) done(err);
+        assert.equal(resp.object, 'schedule');
         expect(resp).to.have.property('charge');
         expect(resp).to.have.property('status');
         expect(resp.charge).to.have.property('amount');
         resp.charge.amount.should.equal(amount);
         resp.status.should.equal('deleted');
-        done(err);
+        done();
       });
     });
   });

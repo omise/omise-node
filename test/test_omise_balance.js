@@ -1,5 +1,4 @@
-const chai   = require('chai');
-const expect = chai.expect;
+const {expect, assert} = require('chai');
 const config = require('./config');
 const omise  = require('../index')(config);
 const testHelper = require('./testHelper');
@@ -28,11 +27,12 @@ describe('Omise', function() {
     it('should be able to retrieve a balance', function(done) {
       testHelper.setupMock('balance_retrieve');
       omise.balance.retrieve(function(err, resp) {
-        expect(resp.object, 'balance');
+        if (err) done(err);
+        assert.equal(resp.object, 'balance');
         expect(resp.available).not.be.null;
         expect(resp.total).not.be.null;
-        expect(resp.currency, 'thb');
-        done(err);
+        assert.equal(resp.currency, 'thb');
+        done();
       });
     });
   });

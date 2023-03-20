@@ -145,7 +145,7 @@ omise.tokens.retrieve('tokn_test_4xs9408a642a1htto8z', function(error, token) {
 
   // This function will be called after a charge is created.
 
-}).then(function(err) {
+}).catch(function(err) {
 
   // Put error handling code here.
 
