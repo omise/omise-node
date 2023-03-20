@@ -2,6 +2,11 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.10.0 - 2023-03-21
+- Fixed security risk on logging [(#185)](https://github.com/omise/omise-node/pull/185)
+- Fixed sonarcloud issue [(#184)](https://github.com/omise/omise-node/pull/184)
+- Added coding standard and replace bluebird with build in promise [(#183)](https://github.com/omise/omise-node/pull/183)
+
 ## 0.9.0 - 2023-02-21
 - Add support scheme in config [(#175)](https://github.com/omise/omise-node/pull/175)
 - Add support host in config [(#169)](https://github.com/omise/omise-node/pull/169)
