@@ -2,6 +2,9 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.10.1 - 2023-04-20
+- Fixed Next.js build issue [(#190)](https://github.com/omise/omise-node/pull/190)
+
 ## 0.10.0 - 2023-03-21
 - Fixed security risk on logging [(#185)](https://github.com/omise/omise-node/pull/185)
 - Fixed sonarcloud issue [(#184)](https://github.com/omise/omise-node/pull/184)
