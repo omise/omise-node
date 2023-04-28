@@ -6,7 +6,7 @@ nock('https://api.omise.co')
     'object':      'account',
     'id':          'acct_123',
     'email':       'test@omise.co',
-    'webhook_uri': 'https://omise-flask-example.herokuapp.com/webhook',
+    'webhook_uri': 'https://omise.co/webhook',
     'created':     '2015-02-02T13:19:17Z',
   }, {
     'server':       'nginx/1.1',
