@@ -19,14 +19,14 @@ describe('Omise', function() {
     it('should be able to update an account', function(done) {
       testHelper.setupMock('account_update');
       omise.account.updateAccount({
-        'webhook_uri': 'https://omise-flask-example.herokuapp.com/webhook',
+        'webhook_uri': 'https://omise.co/webhook',
       }, function(err, resp) {
         if (err) done(err);
         assert.equal(resp.object, 'account');
         assert.equal(resp.id, 'acct_123');
         assert.equal(resp.email, 'test@omise.co');
         assert.equal(resp.webhook_uri,
-          'https://omise-flask-example.herokuapp.com/webhook');
+          'https://omise.co/webhook');
         done();
       });
     });
