@@ -599,7 +599,7 @@ declare namespace Omise {
       description?: string;
       type: string;
       tax_id?: string;
-      back_account: IBankAccount;
+      bank_account: IBankAccount;
       metadata?: { [key: string]: any };
     }
 
