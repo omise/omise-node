@@ -230,17 +230,6 @@ The following API methods are available. Please see [https://www.omise.co/docs](
 * search
   * `list(data)`
 
-## Network retries
-
-To enable automatic network retries, set the `maxNetworkRetries` configuration option. Requests will be retried with exponential backoff if there are intermittent network issues.
-
-```
-var omise = require('omise')({
-  ...
-  maxNetworkRetries : 2
-});
-```
-
 ## Testing
 
 There are two modes of testing, to test without connecting to remote API server:
