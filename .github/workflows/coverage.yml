@@ -31,3 +31,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           token: ${{ secrets.SONARCLOUD_TOKEN }}
+        with:
+          args: >
+            -Dsonar.python.coverage.reportPaths=./coverage/lcov.info
