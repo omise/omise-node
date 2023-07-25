@@ -23,5 +23,11 @@ jobs:
       - run: npm ci
       - run: npx tsc --noEmit --lib es2015 types/index.d.ts
       - run: npm run build --if-present
-      - run: npm test
       - run: npm run lint
+      - run: npm run test:coverage
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.SONARCLOUD_TOKEN }}
