@@ -7,7 +7,7 @@
   "scripts": {
     "jscs": "jscs *.js lib/*.js test/*.js",
     "test": "mocha test",
-    "test:coverage": "nyc --reporter=text mocha",
+    "test:coverage": "nyc --reporter=lcov mocha",
     "test:watch": "npm test -- --watch",
     "format": "prettier-eslint --write",
     "format:all": "prettier-eslint --write \"**/*.js\"",
