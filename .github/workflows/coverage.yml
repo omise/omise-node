@@ -17,11 +17,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
+      - run: npm install
       - run: npx tsc --noEmit --lib es2015 types/index.d.ts
       - run: npm run build --if-present
       - run: npm run lint
       - run: npm run test:coverage
+
+      - name: Fix Code Coverage Paths
+        run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage/lcov.info
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
