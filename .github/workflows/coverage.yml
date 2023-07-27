@@ -23,9 +23,6 @@ jobs:
       - run: npm run lint
       - run: npm run test:coverage
 
-      - name: Fix Code Coverage Paths
-        run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage/lcov.info
-
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
