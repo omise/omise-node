@@ -23,6 +23,11 @@ declare namespace Omise {
     Https = 'https'
   }
 
+  export enum AuthType {
+    PreAuth = "pre_auth",
+    FinalAuth = "final_auth",
+  }
+
   export interface IOmise {
     account: Account.IAccountAPI;
     balances: Balance.IBalanceAPI;
@@ -168,6 +173,7 @@ declare namespace Omise {
       ): Promise<IChargeList>;
       capture(
         chargeID: string,
+        req?: ICaptureRequest,
         callback?: ResponseCallback<ICharge>
       ): Promise<ICharge>;
       reverse(
@@ -198,6 +204,7 @@ declare namespace Omise {
       description?: string;
       amount: number;
       currency: string;
+      authorization_type?: AuthType;
       capture?: boolean;
       card?: string;
       customer?: string;
@@ -210,9 +217,16 @@ declare namespace Omise {
       zero_interest_installments?: boolean;
     }
 
+    interface ICaptureRequest {
+      capture_amount: number;
+    }
+
     interface ICharge extends IBaseResponse {
       amount: number;
       currency: string;
+      authorization_type: AuthType;
+      authorized_amount: number;
+      captured_amount: number;
       description: string;
       device: any;
       disputable: boolean;
