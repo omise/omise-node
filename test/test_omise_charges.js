@@ -127,5 +127,20 @@ describe('Omise', function() {
         done();
       });
     });
+
+    it('should be able to partially capture a charge', function(done) {
+      testHelper.setupMock('charges_partial_capture');
+      const captureAmount = 5000;
+      omise.charges.capture(chargeId, {'capture_amount': captureAmount},
+        function(err, resp) {
+          if (err) done(err);
+          assert.equal(resp.object, 'charge');
+          assert.equal(resp.captured_amount, captureAmount);
+          assert.equal(resp.authorization_type, 'pre_auth');
+          assert.equal(resp.authorized_amount, 10000);
+          resp.paid.should.be.true;
+          done();
+        });
+    });
   });
 });
