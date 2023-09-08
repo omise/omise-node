@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "jscs": "jsesc *.js lib/*.js test/*.js",
+    "jsesc": "jsesc *.js lib/*.js test/*.js",
     "test": "mocha test",
     "test:coverage": "nyc --reporter=lcov mocha",
     "test:watch": "npm test -- --watch",
