@@ -2,6 +2,8 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.11.0 - 2023-09-11
+- Added support for partial capture [(#203)](https://github.com/omise/omise-node/pull/203)
 ## 0.10.1 - 2023-04-20
 - Fixed Next.js build issue [(#190)](https://github.com/omise/omise-node/pull/190)
 
