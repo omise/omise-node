@@ -215,6 +215,7 @@ declare namespace Omise {
       ip?: string;
       platform_fee?: IPlatformFee;
       zero_interest_installments?: boolean;
+      webhook_endpoints?: [string, string?];
     }
 
     interface ICaptureRequest {
