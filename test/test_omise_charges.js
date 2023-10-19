@@ -35,11 +35,12 @@ describe('Omise', function() {
     it('should be able to create a charge', function(done) {
       testHelper.setupMock('charges_create');
       const charge = {
-        'description': 'Charge for order 3947',
-        'amount':      '100000',
-        'currency':    'thb',
-        'capture':     false,
-        'card':        tokenId,
+        'description':       'Charge for order 3947',
+        'amount':            '100000',
+        'currency':          'thb',
+        'capture':           false,
+        'card':              tokenId,
+        'webhook_endpoints': ['https://abc.com/webhook'],
       };
       omise.charges.create(charge, function(err, resp) {
         if (err) done(err);
