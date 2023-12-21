@@ -67,7 +67,7 @@ The token creation method in the library should only be used either with fake da
 You must achieve and maintain PCI compliance at all times following [Security Best Practices](https://www.pcisecuritystandards.org/documents/PCI_DSS_V3.0_Best_Practices_for_Maintaining_PCI_DSS_Compliance.pdf)
 
 So, we recommended that you create a token using the `omise.js` library that runs on the browser.
-It uses Javascript to send the credit card data on the client side to Opn Payments. You can then populate the form with a unique one-time used token, which can be used later on with `omise-node` or [Omise.js](https://docs.opn.ooo/omise-js). By using this library, you can build a credit card payment form window and create a card token, which you can use to create a charge with `omise-node`.
+It uses Javascript to send the credit card data on the client side to Opn Payments. You can then populate the form with a unique one-time use token, which can be used later on with `omise-node` or [Omise.js](https://docs.opn.ooo/omise-js). By using this library, you can build a credit card payment form window and create a card token, which you can use to create a charge with `omise-node`.
 
 For both methods, the client will directly send the card information to the Opn Payments gateway; your servers don't have to deal with card information at all. The library reduces the risk of supporting card payments.
 
