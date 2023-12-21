@@ -61,7 +61,7 @@ Please see [Opn Payments Documentation](https://docs.opn.ooo/) for more informat
 
 ### Important Note:
 
-**Full Credit Card data should never touch or go through your servers. That means, Do not send the credit card data to Opn Payments from your servers directly unless you are PCI-DSS compliant.**
+**Full Credit Card data should never touch or go through your servers. That means, do not send credit card data to Opn Payments from your servers directly unless you are PCI-DSS compliant.**
 
 The token creation method in the library should only be used either with fake data in test mode (e.g.: quickly creating some fake data, testing our API from a terminal, etc.), or if you are PCI-DSS compliant, send card data from your server.
 You must achieve and maintain PCI compliance at all times following [Security Best Practices](https://www.pcisecuritystandards.org/documents/PCI_DSS_V3.0_Best_Practices_for_Maintaining_PCI_DSS_Compliance.pdf)
