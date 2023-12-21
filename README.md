@@ -25,7 +25,7 @@ The library has been tested with Node version 4.4.6.
 ### Flow
 
 1. User enters the credit card information on your website or application using a form.
-2. The card information is sent via HTTPS directly from the client to Omise Servers using Omise.js, Card.js or Omise-iOS SDK.
+2. The card information is sent via HTTPS directly from the client to Opn Payment Servers using Omise.js, Card.js or Omise-iOS SDK.
 3. If the card passes the authorization, then your frontend will send the token to `omise-node` backend to finally capture the charge with Omise-node.
 
 ### The code
@@ -61,13 +61,13 @@ Please see [Opn Payments Documentation](https://docs.opn.ooo/) for more informat
 
 ### Important Note:
 
-**Full Credit Card data should never touch or go through your servers. That means, Do not send the credit card data to Opn Payments from your servers directly.**
+**Full Credit Card data should never touch or go through your servers. That means, Do not send the credit card data to Opn Payments from your servers directly unless you are PCI-DSS compliant.**
 
-The token creation method in the library should only be used either with fake data in test mode (e.g.: quickly creating some fake data, testing our API from a terminal, etc.), or if you do and you are PCI-DSS compliant, sending card data from server requires a valid PCI-DSS certification.
-that said, you must achieve and maintain PCI compliance at all times following [Security Best Practices](https://www.pcisecuritystandards.org/documents/PCI_DSS_V3.0_Best_Practices_for_Maintaining_PCI_DSS_Compliance.pdf)
+The token creation method in the library should only be used either with fake data in test mode (e.g.: quickly creating some fake data, testing our API from a terminal, etc.), or if you are PCI-DSS compliant, send card data from your server.
+You must achieve and maintain PCI compliance at all times following [Security Best Practices](https://www.pcisecuritystandards.org/documents/PCI_DSS_V3.0_Best_Practices_for_Maintaining_PCI_DSS_Compliance.pdf)
 
-So, we recommended you to create a token using the `omise.js` library that runs on the browser.
-It uses Javascript to send the credit card data on the client side to Opn Payments. You can then populate the form with a unique one-time used token, which can be used later on with `omise-node` or [Omise.js](https://docs.opn.ooo/omise-js). By using this library, you can build a credit card payment form window and creates a card token, which you can use to create a charge with `omise-node`.
+So, we recommended that you create a token using the `omise.js` library that runs on the browser.
+It uses Javascript to send the credit card data on the client side to Opn Payments. You can then populate the form with a unique one-time used token, which can be used later on with `omise-node` or [Omise.js](https://docs.opn.ooo/omise-js). By using this library, you can build a credit card payment form window and create a card token, which you can use to create a charge with `omise-node`.
 
 For both methods, the client will directly send the card information to the Opn Payments gateway; your servers don't have to deal with card information at all. The library reduces the risk of supporting card payments.
 
@@ -155,11 +155,11 @@ omise.tokens.retrieve('tokn_test_4xs9408a642a1htto8z', function(error, token) {
 
 ## Error Handling
 
-To handle an invalid request, it is required to check any error via an `Error` object
+To handle an invalid request, it is required to check any error using an `Error` object
 that includes `code` and `message` attributes as stated in [Errors](https://www.omise.co/api/errors).
 However, for any valid request, checking `failure_code` and `failure_message` is required, for example:
 If you'd like to create a `Charge` or a `Transfer` with a valid request,
-A sucessful charge or tranfer happens only when there are no failutes - that means both `failure_code` and `failure_message` must be `null`.
+a sucessful charge or tranfer happens only when there are no failutes - that means both `failure_code` and `failure_message` must be `null`.
 
 ## Resource methods
 
@@ -251,14 +251,14 @@ $ NOCK_OFF=true npm test
 
 ## Contributions
 
-Before submitting a pull request, please run `jscs` to verify coding styles and ensure that all test pass:
+Before submitting a pull request, please run `jscs` to verify coding styles and ensure that all tests pass:
 
 ```console
 $ npm run jscs
 $ npm test
 ```
 
-You could use also use a git pre-commit hook to do this automatically by aliasing `pre-commit.sh` to the Git pre-commit hook:
+You could use also use a Git pre-commit hook to do this automatically by aliasing `pre-commit.sh` to the Git pre-commit hook:
 
 ```
 ln -s ./pre-commit.sh .git/hooks/pre-commit
