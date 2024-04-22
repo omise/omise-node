@@ -1,7 +1,7 @@
 omise-node
 ==========
 
-Please contact [support@omise.co](support@omise.co) if you have any question regarding this library and the functionality it provides.
+Please contact [support@opn.ooo](support@opn.ooo) if you have any question regarding this library and the functionality it provides.
 
 Omise Node.js bindings.
 
@@ -25,16 +25,16 @@ The library has been tested with Node version 4.4.6.
 ### Flow
 
 1. User enters the credit card information on your website or application using a form.
-2. The card information is sent via HTTPS directly from the client to Omise Servers using Omise.js, Card.js or Omise-iOS SDK.
+2. The card information is sent via HTTPS directly from the client to Opn Payment Servers using Omise.js, Card.js or Omise-iOS SDK.
 3. If the card passes the authorization, then your frontend will send the token to `omise-node` backend to finally capture the charge with Omise-node.
 
 ### The code
 
 After you have implemented `Omise.js` on your frontend.
-Then you can charge the card by passing the token ( if `card.security_code_check` is true ) to `omise-node` backend.
+You can charge the card by passing the token ( if `card.security_code_check` is true ) to `omise-node` backend.
 
-In order to implement `omise-node` as your backend code.
-First, you have to configure the library by passing the secret key from `https://dashboard.omise.co/` to `omise` export, for example:
+To implement `omise-node` as your backend code.
+You have to configure the library by passing the secret key from `https://dashboard.omise.co/` to `omise` export, for example:
 
 ```javascript
 var omise = require('omise')({
@@ -57,26 +57,27 @@ omise.charges.create({
 });
 ```
 
-Please see [Omise Documentation](https://www.omise.co/docs) for more information on how to use the library.
+Please see [Opn Payments Documentation](https://docs.opn.ooo/) for more information on how to use the library.
 
 ### Important Note:
 
-**Full Credit Card data should never touch or go through your servers. That means, Do not send the credit card data to Omise from your servers directly.**
+**Full Credit Card data should never touch or go through your servers. That means, do not send credit card data to Opn Payments from your servers directly unless you are PCI-DSS compliant.**
 
-The token creation method in the library should only be used either with fake data in test mode (e.g.: quickly creating some fake data, testing our API from a terminal, etc.), or if you do and you are PCI-DSS compliant, sending card data from server requires a valid PCI-DSS certification.
-that said, you must achieve, maintain PCI compliance at all times and do following a [Security Best Practices](https://www.pcisecuritystandards.org/documents/PCI_DSS_V3.0_Best_Practices_for_Maintaining_PCI_DSS_Compliance.pdf)
+The token creation method in the library should only be used either with fake data in test mode (e.g.: quickly creating some fake data, testing our API from a terminal, etc.), or if you are PCI-DSS compliant, send card data from your server.
+You must achieve and maintain PCI compliance at all times following [Security Best Practices](https://www.pcisecuritystandards.org/documents/PCI_DSS_V3.0_Best_Practices_for_Maintaining_PCI_DSS_Compliance.pdf)
 
-So, we recommended you to create a token using omise.js library which runs on browser.
-It uses Javascript to send the credit card data on client side, send it to Omise, and then you can populate the form with a unique one-time used token which can be used later on with `omise-node` or [Card.js](https://www.omise.co/card-js-api), by using it you can let it builds a credit card payment form window and creates a card token that you can use to create a charge with `omise-node`.
-For both methods, the client will directly send the card information to Omise gateway, your servers don't have to deal with card information at all and you don't need to deal with credit card data hassle, it reduces risk.
+So, we recommended that you create a token using the `omise.js` library that runs on the browser.
+It uses Javascript to send the credit card data on the client side to Opn Payments. You can then populate the form with a unique one-time use token, which can be used later on with `omise-node` or [Omise.js](https://docs.opn.ooo/omise-js). By using this library, you can build a credit card payment form window and create a card token, which you can use to create a charge with `omise-node`.
 
-**Please read https://www.omise.co/collecting-card-information/ regarding how to collecting card information.**
+For both methods, the client will directly send the card information to the Opn Payments gateway; your servers don't have to deal with card information at all. The library reduces the risk of supporting card payments.
+
+**Please read [Collecting card information](https://docs.opn.ooo/collecting-card-information) for an explanation on collecting card information.**
 
 ## Examples
 
 ### Create a customer with card associated to it
 
-Creating a customer can be done by using `omise.customers.create` which accepts an optional `card` argument. When you pass in a `tokenId` retrieve from omise.js, the card associated to that token will be associated to the customer.
+Creating a customer can be done by using `omise.customers.create` that accepts an optional `card` argument. When you pass in a `tokenId` retrieved from omise.js, the card associated to that token will be associated to the customer.
 
 ```javascript
 omise.customers.create({
@@ -91,7 +92,7 @@ omise.customers.create({
 
 ### List all customers
 
-After customers are created, you can list them with `customer.customers.list` and passing a callback to it. The object returned from a list API will be a `list` object, which you can access the raw data via `data` attribute:
+After customers are created, you can list them with `customer.customers.list` by passing a callback to it. The object returned from the list API will be a `list` object. You can then access the raw data using the `data` attribute:
 
 ```javascript
 omise.customers.list(function(err, list) {
@@ -111,7 +112,7 @@ omise.customers.retrieve(customerId, function(err, resp) {
 
 ### Updating a Customer
 
-The same with customer updating, which could be done using `omise.customers.update` with a customer ID and an object containing changes:
+To update customer information, use `omise.customers.update` and pass a customer ID and an object containing changes:
 
 ```javascript
 omise.customers.update(customerId, {
@@ -154,15 +155,15 @@ omise.tokens.retrieve('tokn_test_4xs9408a642a1htto8z', function(error, token) {
 
 ## Error Handling
 
-To handle an invalid request, it is required to check any error via an `Error` object
-that includes `code` and `message` attributes as stated in https://www.omise.co/api/errors.
-But, for any valid request, checking `failure_code` and `failure_message` is required, for example:
+To handle an invalid request, it is required to check any error using an `Error` object
+that includes `code` and `message` attributes as stated in [Errors](https://www.omise.co/api/errors).
+However, for any valid request, checking `failure_code` and `failure_message` is required, for example:
 If you'd like to create a `Charge` or a `Transfer` with a valid request,
-A sucessfully charge or tranfer happens only when none of failure exists that means both `failure_code` and `failure_message` must be `null`.
+a sucessful charge or tranfer happens only when there are no failutes - that means both `failure_code` and `failure_message` must be `null`.
 
 ## Resource methods
 
-The following API methods are available. Please see [https://www.omise.co/docs](https://www.omise.co/docs) for more details.
+The following API methods are available. Please read [Opn Payments documentation](https://docs.opn.ooo/) for details.
 
 * account
   * `retrieve()`
@@ -232,13 +233,15 @@ The following API methods are available. Please see [https://www.omise.co/docs](
 
 ## Testing
 
-There are two modes of testing, to test without connecting to remote API server:
+There are two modes of testing.
+
+To test without connecting to the remote API server:
 
 ```console
 $ npm test
 ```
 
-If you want to test by connecting to actual API server, you must first obtain a public and secret keys and export it:
+To test by connecting to the actual API server, you must first obtain public and secret keys and export them:
 
 ```console
 $ export OMISE_PUBLIC_KEY=<test public key>
@@ -248,14 +251,14 @@ $ NOCK_OFF=true npm test
 
 ## Contributions
 
-Before submitting a pull request, please run jscs to verify coding styles and ensure all test passed:
+Before submitting a pull request, please run `jscs` to verify coding styles and ensure that all tests pass:
 
 ```console
 $ npm run jscs
 $ npm test
 ```
 
-You could use also use a git pre-commit hook to do this automatically by aliasing the `pre-commit.sh` to Git pre-commit hook:
+You could use also use a Git pre-commit hook to do this automatically by aliasing `pre-commit.sh` to the Git pre-commit hook:
 
 ```
 ln -s ./pre-commit.sh .git/hooks/pre-commit
@@ -263,7 +266,7 @@ ln -s ./pre-commit.sh .git/hooks/pre-commit
 
 ### Adding new resources
 
-Resources are handled via `apiResource`. Adding new resource could be done by creating a new resource file as `lib/resourceName.js` with the following content:
+Resources are handled via `apiResource`. To add a new resource, create a new resource file named `lib/resourceName.js` with the following content:
 
 ```javascript
 var resource = require('../apiResources');
@@ -278,7 +281,7 @@ var resourceName = function(config) {
 module.exports = resourceName;
 ```
 
-Then register the newly created resource to `lib/apiResources.js` as e.g. `resourceName('resourceName')`. Pre-built actions are: create, list, retrieve, destroy and update.
+Then register the newly created resource to `lib/apiResources.js` as e.g. `resourceName('resourceName')`. Pre-built actions are: `create`, `list`, `retrieve`, `destroy` and `update`.
 
 ### Requests mocking
 
