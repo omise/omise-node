@@ -222,6 +222,9 @@ declare namespace Omise {
       capture_amount: number;
     }
 
+    // Source: https://docs.opn.ooo/charges-api
+    type ChargeStatus = "failed" | "reversed" | "expired" | "pending" | "successful";
+
     interface ICharge extends IBaseResponse {
       amount: number;
       currency: string;
@@ -269,6 +272,7 @@ declare namespace Omise {
       zero_interest_installments: boolean;
       metadata: { [key: string]: any };
       source?: Sources.ISource;
+      status: ChargeStatus;
     }
 
     interface IListRefundResponse extends IOccurrences {
