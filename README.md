@@ -75,9 +75,9 @@ For both methods, the client will directly send the card information to the Opn 
 
 ## Examples
 
-### Create a customer with card associated to it
+### Create a customer with card associated with it
 
-Creating a customer can be done by using `omise.customers.create` that accepts an optional `card` argument. When you pass in a `tokenId` retrieved from omise.js, the card associated to that token will be associated to the customer.
+Creating a customer can be done by using `omise.customers.create` that accepts an optional `card` argument. When you pass in a `tokenId` retrieved from omise.js, the card associated with that token will be associated with the customer.
 
 ```javascript
 omise.customers.create({
