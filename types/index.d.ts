@@ -223,7 +223,7 @@ declare namespace Omise {
     }
 
     // Source: https://docs.opn.ooo/charges-api
-    type ChargeStatus = | "failed" | "reversed" | "expired" | "pending" | "successful";
+    type ChargeStatus = "failed" | "reversed" | "expired" | "pending" | "successful";
 
     interface ICharge extends IBaseResponse {
       amount: number;
