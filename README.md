@@ -159,7 +159,7 @@ To handle an invalid request, it is required to check any error using an `Error`
 that includes `code` and `message` attributes as stated in [Errors](https://www.omise.co/api/errors).
 However, for any valid request, checking `failure_code` and `failure_message` is required, for example:
 If you'd like to create a `Charge` or a `Transfer` with a valid request,
-a sucessful charge or tranfer happens only when there are no failutes - that means both `failure_code` and `failure_message` must be `null`.
+a sucessful charge or transfer happens only when there are no failutes - that means both `failure_code` and `failure_message` must be `null`.
 
 ## Resource methods
 
