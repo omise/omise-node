@@ -2,6 +2,9 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 0.12.1 - 2024-05-23
+- Status added to ICharge interface. [(#213)](https://github.com/omise/omise-node/pull/213)
+
 ## 0.12.0 - 2023-10-24
 - Added support for dynamic webhook [(#207)](https://github.com/omise/omise-node/pull/207)
 - Updated api version in readme [(#205)](https://github.com/omise/omise-node/pull/205)
