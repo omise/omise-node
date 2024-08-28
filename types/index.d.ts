@@ -58,7 +58,6 @@ declare namespace Omise {
       email: string;
       currency: string;
       supported_currencies: string[];
-      created: string;
       webhook_uri: string;
       team: string;
       auto_activate_recipients: boolean;
@@ -67,7 +66,6 @@ declare namespace Omise {
       api_version: string;
       country: string;
       zero_interest_installments: boolean;
-      created_at: string; // API 2019-05-29
       metadata_export_keys: IMetadataExportKeys;
     }
 
@@ -98,7 +96,6 @@ declare namespace Omise {
       reserve: number;
       transferable: number;
       currency: string;
-      created_at: string;
     }
   }
 
@@ -248,7 +245,6 @@ declare namespace Omise {
       failure_code: string;
       failure_message: string;
       card: Cards.ICard;
-      created_at: string;
       customer: string | Customers.ICustomer;
       ip: string;
       dispute: string | Disputes.IResponse;
@@ -339,7 +335,6 @@ declare namespace Omise {
       currency: string;
       barcode?: string;
       charge_status?: string;
-      created_at: string;
       mobile_number: string;
       phone_number: string;
       email?: string;
@@ -438,7 +433,6 @@ declare namespace Omise {
       cards: Cards.ICardList;
       metadata: { [key: string]: any };
       deleted: boolean;
-      created_at: string;
     }
 
     interface ICustomerList extends IOccurrences {
@@ -481,7 +475,6 @@ declare namespace Omise {
       amount: number;
       charge: string | Charges.ICharge;
       created: string;
-      created_at: string;
       closed_at: string;
       currency: string;
       message: string;
@@ -503,7 +496,6 @@ declare namespace Omise {
     interface IDocument extends IBaseResponse {
       filename: string;
       created: string;
-      created_at: string;
       deleted: boolean;
       download_uri: string;
     }
@@ -529,7 +521,6 @@ declare namespace Omise {
       key: string;
       created: string;
       data: any;
-      created_at: string;
       webhook_deliveries: IWebhookDelivery[];
     }
 
@@ -618,7 +609,7 @@ declare namespace Omise {
       description?: string;
       type: string;
       tax_id?: string;
-      bank_account: IBankAccount;
+      bank_account: IBankAccountRequest;
       metadata?: { [key: string]: any };
     }
 
@@ -634,10 +625,9 @@ declare namespace Omise {
       description: string;
       type: string;
       tax_id: string;
-      bank_account: IBankAccount;
+      bank_account: IBankAccountResponse;
       failure_code: string;
       created: string;
-      created_at: string;
       metadata?: { [key: string]: any };
       schedule?: string | Schedules.ISchedule;
     }
@@ -669,7 +659,6 @@ declare namespace Omise {
       key: string;
       origin: string;
       transferable_at: string;
-      created_at: string;
     }
 
     interface ITransactionList extends IOccurrences {
@@ -713,7 +702,7 @@ declare namespace Omise {
       recipient: string | Recipients.IRecipient;
       schedule: string | Schedules.ISchedule;
       sendable: boolean;
-      bank_account: IBankAccount;
+      bank_account: IBankAccountResponse;
       sent: boolean;
       sent_at: string;
       paid: boolean;
@@ -729,7 +718,6 @@ declare namespace Omise {
       transaction: string;
       deleted: boolean;
       created: string;
-      created_at: string;
       total_fee: number;
       metadata?: { [key: string]: any };
       transactions: Transactions.ITransaction[];
@@ -775,7 +763,6 @@ declare namespace Omise {
       used: boolean;
       card: Cards.ICard;
       created: string;
-      created_at: string;
       charge_status: string;
     }
   }
@@ -803,7 +790,6 @@ declare namespace Omise {
       customer: string | Customers.ICustomer;
       card: string | Cards.ICard;
       default_card: boolean;
-      created_at: string;
       metadata?: { [key: string]: any };
     }
 
@@ -852,7 +838,6 @@ declare namespace Omise {
       next_occurrences_on: string[];
       charge?: IChargeScheduleResponse;
       created: string;
-      created_at: string;
       end_on: string;
       ended_at: string;
       deleted: boolean;
@@ -887,19 +872,30 @@ declare namespace Omise {
     location?: string;
   }
 
-  interface IBankAccount {
-    object: string;
+  interface IBankAccountResponse extends IBaseResponse{
+    name: string;
+    account_number: string;
+    bank_code: string;
     brand: string;
     last_digits: string;
+    type?: string;
+    branch_code?: string;
+  }
+
+  interface IBankAccountRequest {
     name: string;
-    created: string;
+    number: string;
+    bank_code: string;
+    branch_code?: string;
+    type?: string; // normal | current
   }
 
   interface IBaseResponse {
     object: string;
-    id: string;
+    id?: string;
     livemode?: boolean;
     location?: string;
+    created_at: string;
   }
 
   interface IDestroyResponse extends IBaseResponse {
