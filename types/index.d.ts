@@ -30,7 +30,7 @@ declare namespace Omise {
 
   export interface IOmise {
     account: Account.IAccountAPI;
-    balances: Balance.IBalanceAPI;
+    balance: Balance.IBalanceAPI;
     capability: Capability.ICapabilityAPI;
     charges: Charges.IChargesAPI;
     customers: Customers.ICustomersAPI;
@@ -91,7 +91,6 @@ declare namespace Omise {
     }
 
     interface IBalance extends IBaseResponse {
-      available: number;
       total: number;
       reserve: number;
       transferable: number;
