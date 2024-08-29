@@ -24,7 +24,7 @@ nock('https://api.omise.co')
       'reversed':    false,
       'paid':        true,
       'transaction': 'trxn_test_4yygd35y1sqbahaqmit',
-      'refunded':    0,
+      'refunded_amount':    0,
       'refunds':     {
         'object': 'list',
         'from':   '1970-01-01T00:00:00+00:00',
@@ -61,7 +61,7 @@ nock('https://api.omise.co')
       'reversed':    false,
       'paid':        true,
       'transaction': 'trxn_test_4z429hw7a8x76nuxrc5',
-      'refunded':    0,
+      'refunded_amount':    0,
       'refunds':     {
         'object': 'list',
         'from':   '1970-01-01T00:00:00+00:00',

@@ -195,7 +195,6 @@ declare namespace Omise {
         callback?: ResponseCallback<IRefundResponse>
       ): Promise<IRefundResponse>;
     }
-
     interface IRequest {
       description?: string;
       amount: number;
@@ -212,12 +211,17 @@ declare namespace Omise {
       platform_fee?: IPlatformFee;
       zero_interest_installments?: boolean;
       webhook_endpoints?: [string, string?];
+      recurring_reason?: RecurringReason;
+      linked_account?: string;
+      first_charge?: string;
+      transaction_indicator?: "MIT" | "CIT";
     }
 
     interface ICaptureRequest {
       capture_amount: number;
     }
 
+    type RecurringReason = "" | "unscheduled" | "standing_order" | "subscription" | "installment" | "partial_shipment" | "delayed_charge" | "no_show" | "resubmission";
     // Source: https://docs.opn.ooo/charges-api
     type ChargeStatus = "failed" | "reversed" | "expired" | "pending" | "successful";
 
@@ -239,7 +243,6 @@ declare namespace Omise {
       paid: boolean;
       paid_at: string;
       transaction: string | Transactions.ITransaction;
-      refunded: number;
       refunds: IListRefundResponse;
       failure_code: string;
       failure_message: string;
@@ -268,6 +271,7 @@ declare namespace Omise {
       metadata: { [key: string]: any };
       source?: Sources.ISource;
       status: ChargeStatus;
+      linked_account?: string;
     }
 
     interface IListRefundResponse extends IOccurrences {
@@ -325,6 +329,10 @@ declare namespace Omise {
       store_name?: string;
       terminal_id?: string;
       zero_interest_installments?: boolean;
+      billing?: IBillingShipping;
+      shipping?: IBillingShipping;
+      promotion_code?: string;
+      items?: IItem[];
     }
 
     interface ISource extends IBaseResponse {
@@ -345,6 +353,10 @@ declare namespace Omise {
       zero_interest_installments?: boolean;
       scannable_code: IScannableCode;
       references: IReferences;
+      billing?: IBillingShipping;
+      shipping?: IBillingShipping;
+      promotion_code?: string;
+      items: IItem[];
     }
 
     interface IReferences {
@@ -364,6 +376,17 @@ declare namespace Omise {
     interface IScannableCode extends IBaseResponse {
       type: string;
       image: Disputes.IDocument;
+    }
+
+    interface IItem {
+      amount?: number;
+      sku?: string;
+      name?: string;
+      quantity?: string;
+      category?: string;
+      brand?: string;
+      item_uri?: string;
+      image_uri?: string;
     }
   }
 
@@ -895,6 +918,15 @@ declare namespace Omise {
     livemode?: boolean;
     location?: string;
     created_at: string;
+  }
+
+  interface IBillingShipping {
+    country: string;
+    city: string;
+    postal_code: string;
+    state: string;
+    street1: string;
+    street2: string;
   }
 
   interface IDestroyResponse extends IBaseResponse {
