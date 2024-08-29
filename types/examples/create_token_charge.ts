@@ -14,6 +14,7 @@ const cardDetails = {
         expiration_month: 2,
         expiration_year: 2017,
         security_code: '123',
+        email: 'test@example.com'
     },
 };
 

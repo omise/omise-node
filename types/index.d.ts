@@ -718,6 +718,8 @@ declare namespace Omise {
       recipient?: string;
       fail_fast?: boolean;
       metadata?: { [key: string]: any };
+      split_transfer?: boolean;
+      idemp_key?: string;
     }
 
     interface ITransfer extends IBaseResponse {
@@ -779,6 +781,7 @@ declare namespace Omise {
       phone_number?: string;
       street1?: string;
       street2?: string;
+      email?: string;
     }
 
     interface IToken extends IBaseResponse {
