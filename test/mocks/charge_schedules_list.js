@@ -57,7 +57,7 @@ nock('https://api.omise.co')
               'status':        'successful',
               'message':       null,
               'result':        'chrg_test_5ath86asi8q61o7ip6u',
-              'created':       '2018-01-04T04:55:30Z',
+              'created_at':    '2018-01-04T04:55:30Z',
             },
             {
               'object':        'occurrence',
@@ -71,7 +71,7 @@ nock('https://api.omise.co')
               'status':        'failed',
               'message':       'charge could not be captured',
               'result':        'chrg_test_5b4fize4x5ee79adawo',
-              'created':       '2018-02-01T01:31:53Z',
+              'created_at':    '2018-02-01T01:31:53Z',
             },
             {
               'object':        'occurrence',
@@ -85,7 +85,7 @@ nock('https://api.omise.co')
               'status':        'failed',
               'message':       'charge could not be captured',
               'result':        'chrg_test_5b4tnbjlgzqajw79r8y',
-              'created':       '2018-03-01T01:35:51Z',
+              'created_at':    '2018-03-01T01:35:51Z',
             },
           ],
         },
@@ -102,7 +102,7 @@ nock('https://api.omise.co')
           '2018-12-01',
           '2019-01-01',
         ],
-        'created': '2018-01-04T04:55:30Z',
+        'created_at': '2018-01-04T04:55:30Z',
       },
       {
         'object':   'schedule',
@@ -149,7 +149,7 @@ nock('https://api.omise.co')
               'status':        'successful',
               'message':       null,
               'result':        'chrg_test_5ath86b1hnbp8c3thpo',
-              'created':       '2018-01-04T04:55:30Z',
+              'created_at':    '2018-01-04T04:55:30Z',
             },
             {
               'object':        'occurrence',
@@ -163,7 +163,7 @@ nock('https://api.omise.co')
               'status':        'failed',
               'message':       'charge could not be captured',
               'result':        'chrg_test_5b4fizdvmm57lwa0v1q',
-              'created':       '2018-02-01T01:31:53Z',
+              'created_at':    '2018-02-01T01:31:53Z',
             },
             {
               'object':        'occurrence',
@@ -177,7 +177,7 @@ nock('https://api.omise.co')
               'status':        'failed',
               'message':       'charge could not be captured',
               'result':        'chrg_test_5b4tnbjb0qlv4kv8n4z',
-              'created':       '2018-03-01T01:35:51Z',
+              'created_at':    '2018-03-01T01:35:51Z',
             },
           ],
         },
@@ -194,7 +194,7 @@ nock('https://api.omise.co')
           '2018-12-01',
           '2019-01-01',
         ],
-        'created': '2018-01-04T04:55:30Z',
+        'created_at': '2018-01-04T04:55:30Z',
       },
     ],
   }, {

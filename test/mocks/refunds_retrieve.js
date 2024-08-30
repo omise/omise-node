@@ -14,7 +14,7 @@ nock('https://api.omise.co')
     'currency':    'thb',
     'charge':      chargeID,
     'transaction': 'trxn_test_4z5xxgnzst7caoa8f79',
-    'created':     '2015-02-24T10:39:26Z',
+    'created_at':  '2015-02-24T10:39:26Z',
   }, {
     'server':       'nginx/1.1',
     'content-type': 'application/json',

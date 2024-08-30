@@ -13,7 +13,7 @@ nock('https://api.omise.co')
     'default_card': cardID,
     'email':        'john.doe@example.com',
     'description':  'John Doe (id: 30)',
-    'created':      '2015-02-16T03:26:19Z',
+    'created_at':   '2015-02-16T03:26:19Z',
     'cards':        {
       'object': 'list',
       'from':   '1970-01-01T00:00:00+00:00',
@@ -37,7 +37,7 @@ nock('https://api.omise.co')
         'fingerprint':         'umrBpbHRuc8vstbcNEZPbnKkIycR/gvI6ivW9AshKCw=',
         'name':                'JOHN DOE',
         'security_code_check': true,
-        'created':             '2015-02-16T03:26:53Z',
+        'created_at':          '2015-02-16T03:26:53Z',
       }],
       'location': '/customers/' + custID + '/cards',
     },

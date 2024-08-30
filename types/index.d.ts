@@ -132,7 +132,6 @@ declare namespace Omise {
       fingerprint: string;
       name: string;
       security_code_check: boolean;
-      created: string;
     }
 
     interface ICardRequest {
@@ -265,7 +264,6 @@ declare namespace Omise {
       reversible: boolean;
       schedule: string | Schedules.ISchedule;
       terminal: any;
-      created: string;
       voided: boolean;
       zero_interest_installments: boolean;
       metadata: { [key: string]: any };
@@ -298,7 +296,6 @@ declare namespace Omise {
       currency: string;
       charge: string;
       transaction: string;
-      created: string;
       voided: boolean;
       metadata?: { [key: string]: any };
     }
@@ -451,7 +448,6 @@ declare namespace Omise {
       default_card: string;
       email: string;
       description: string;
-      created: string;
       cards: Cards.ICardList;
       metadata: { [key: string]: any };
       deleted: boolean;
@@ -496,7 +492,6 @@ declare namespace Omise {
       admin_message: string;
       amount: number;
       charge: string | Charges.ICharge;
-      created: string;
       closed_at: string;
       currency: string;
       message: string;
@@ -517,7 +512,6 @@ declare namespace Omise {
 
     interface IDocument extends IBaseResponse {
       filename: string;
-      created: string;
       deleted: boolean;
       download_uri: string;
     }
@@ -541,7 +535,6 @@ declare namespace Omise {
 
     interface IEvent extends IBaseResponse {
       key: string;
-      created: string;
       data: any;
       webhook_deliveries: IWebhookDelivery[];
     }
@@ -589,7 +582,6 @@ declare namespace Omise {
       description: string;
       charges: Charges.IChargeList;
       payment_uri: string;
-      created: string;
       deleted: boolean;
       deleted_at: string;
       used_at: string;
@@ -649,7 +641,6 @@ declare namespace Omise {
       tax_id: string;
       bank_account: IBankAccountResponse;
       failure_code: string;
-      created: string;
       metadata?: { [key: string]: any };
       schedule?: string | Schedules.ISchedule;
     }
@@ -676,7 +667,6 @@ declare namespace Omise {
       amount: number;
       currency: string;
       transferable: string;
-      created: string;
       direction: string;
       key: string;
       origin: string;
@@ -741,7 +731,6 @@ declare namespace Omise {
       failure_message: string;
       transaction: string;
       deleted: boolean;
-      created: string;
       total_fee: number;
       metadata?: { [key: string]: any };
       transactions: Transactions.ITransaction[];
@@ -787,7 +776,6 @@ declare namespace Omise {
     interface IToken extends IBaseResponse {
       used: boolean;
       card: Cards.ICard;
-      created: string;
       charge_status: string;
     }
   }
@@ -862,7 +850,6 @@ declare namespace Omise {
       next_occurrence_dates: string[];
       next_occurrences_on: string[];
       charge?: IChargeScheduleResponse;
-      created: string;
       end_on: string;
       ended_at: string;
       deleted: boolean;

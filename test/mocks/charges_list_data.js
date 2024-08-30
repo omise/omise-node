@@ -32,7 +32,7 @@ nock('https://api.omise.co')
       customer:        null,
       ip:              null,
       dispute:         null,
-      created:         '2015-08-11T10:08:19Z',
+      created_at:      '2015-08-11T10:08:19Z',
     }],
   }, {
     'server':       'nginx/1.1',
