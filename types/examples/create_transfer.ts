@@ -1,17 +1,13 @@
-import omiseNode, { Transfers } from '../index'
-
-const omise = omiseNode({
-    publicKey: process.env.OMISE_PUBLIC_KEY,
-    secretKey: process.env.OMISE_SECRET_KEY,
-});
+import omise from "./index";
+import { Transfers } from "../index";
 
 const reqBody: Transfers.IRequest = {
   amount: 40000,
-  recipient: 'recp_60w95drhxsfzbkr89c4',
+  recipient: 'recp_60vh0g90jhbsg9afu5c',
   fail_fast: true
 };
 
-omise.transfers.create(reqBody, (err, resp: Transfers.ITransfer) => {
+omise.transfers.create(reqBody, (err: Error | null, resp: Transfers.ITransfer) => {
   if (err) {
     console.log(err)
   }

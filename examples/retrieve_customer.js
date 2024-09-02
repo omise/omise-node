@@ -1,10 +1,7 @@
 'use strict';
 
-let omise = require('../index')({
-  'publicKey': process.env.OMISE_PUBLIC_KEY,
-  'secretKey': process.env.OMISE_SECRET_KEY,
-});
+const omise = require('./index');
 
-omise.customers.retrieve('cust_test_4z33o46lqreryhqua8w', function(err, resp) {
+omise.customers.retrieve('cust_60dw2h7vc8pwuiy9hag', function(err, resp) {
   console.log(resp);
 });

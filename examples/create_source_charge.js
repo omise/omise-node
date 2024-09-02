@@ -1,13 +1,9 @@
 'use strict';
 
-exports.__esModule = true;
+const omise = require('./index');
+
 let amount = 500000;
 let currency = 'thb';
-let omise = require('../index')({
-  'publicKey': process.env.OMISE_PUBLIC_KEY,
-  'secretKey': process.env.OMISE_SECRET_KEY,
-});
-
 let source = {
   'type':     'internet_banking_bbl',
   'amount':   500000,

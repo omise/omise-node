@@ -1,4 +1,5 @@
-import omiseNode = require('../index');
+import omise from "./index";
+import { Tokens } from "../index";
 
 const cardDetails = {
   card: {
@@ -8,15 +9,15 @@ const cardDetails = {
     number: '4242424242424242',
     security_code: '123',
     expiration_month: '8',
-    expiration_year: '2019',
+    expiration_year: '2029',
   },
 };
 
-const omise = omiseNode({
-  publicKey: process.env.OMISE_PUBLIC_KEY,
-  secretKey: process.env.OMISE_SECRET_KEY,
-});
-
-omise.tokens.create(cardDetails).then((token: omiseNode.Tokens.IToken) => {
-  console.log(token);
-});
+omise.tokens
+  .create(cardDetails)
+  .then((token: Tokens.IToken) => {
+    console.log(token);
+  })
+  .catch((err: Error | null) => {
+    console.log(err);
+  });

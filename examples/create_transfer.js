@@ -1,10 +1,6 @@
 'use strict';
 
-let omise = require('../index')({
-  'publicKey': 'pkey_test_1234',
-  'secretKey': 'skey_test_1234',
-});
-
+const omise = require('./index');
 
 const reqBody = {
   amount: 40000,

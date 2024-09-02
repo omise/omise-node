@@ -1,10 +1,10 @@
 'use strict';
 
-let omise = require('../index')({
-  'publicKey': process.env.OMISE_PUBLIC_KEY,
-  'secretKey': process.env.OMISE_SECRET_KEY,
-});
+const omise = require('./index');
 
-omise.customers.destroy('cust_test_4yxn6vblxh83h605oxz', function(err, resp) {
+omise.customers.destroy('cust_60458v5p9fhyx3z4yp7', function(err, resp) {
+  if (err) {
+    console.log(err);
+  }
   console.log(resp);
 });

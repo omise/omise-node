@@ -1,10 +1,12 @@
-import omiseNode = require('../index');
+import omise from "./index";
+import { Charges } from "../index";
 
-const omise = omiseNode({
-    publicKey: process.env.OMISE_PUBLIC_KEY,
-    secretKey: process.env.OMISE_SECRET_KEY,
-});
-
-omise.charges.list({limit: 2}, (err, resp) => {
-    console.log(resp);
-});
+omise.charges.list(
+  { limit: 2 },
+  (err: Error | null, resp: Charges.IChargeList) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(resp)
+  }
+);

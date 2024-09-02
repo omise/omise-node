@@ -1,9 +1,5 @@
-import omiseNode, { Recipients } from '../index'
-
-const omise = omiseNode({
-  publicKey: process.env.OMISE_PUBLIC_KEY,
-  secretKey: process.env.OMISE_SECRET_KEY,
-});
+import omise from './index';
+import { Recipients } from '../index';
 
 const recipientBody: Recipients.IRequest = {
   name: 'Recipient name',
@@ -15,7 +11,7 @@ const recipientBody: Recipients.IRequest = {
     name: 'Reci Pient',
   },
 };
-omise.recipients.create(recipientBody, (err, resp: Recipients.IRecipient) => {
+omise.recipients.create(recipientBody, (err: Error | null, resp: Recipients.IRecipient) => {
   if (err) {
     console.log(err)
   }

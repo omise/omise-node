@@ -1,10 +1,9 @@
-import omiseNode = require('../index');
+import omise from "./index";
+import { Customers } from "../index";
 
-const omise = omiseNode({
-    publicKey: process.env.OMISE_PUBLIC_KEY,
-    secretKey: process.env.OMISE_SECRET_KEY,
-});
-
-omise.customers.list({}, (err, resp) => {
-    console.log(resp);
+omise.customers.list({}, (err: Error | null, resp: Customers.ICustomerList) => {
+  if (err) {
+    console.log(err);
+  }
+  console.log(resp);
 });

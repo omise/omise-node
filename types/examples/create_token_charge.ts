@@ -1,40 +1,36 @@
-import omiseNode = require('../index');
-
-const omise = omiseNode({
-    publicKey: process.env.OMISE_PUBLIC_KEY,
-    secretKey: process.env.OMISE_SECRET_KEY,
-});
+import omise from "./index";
+import { Charges, Tokens } from "../index";
 
 const cardDetails = {
-    card: {
-        name: 'JOHN DOE',
-        city: 'Bangkok',
-        postal_code: 10320,
-        number: '4242424242424242',
-        expiration_month: 2,
-        expiration_year: 2017,
-        security_code: '123',
-        email: 'test@example.com'
-    },
+  card: {
+    name: "Gaurav",
+    number: "4242424242424242",
+    expiration_month: 2,
+    expiration_year: 2025,
+    security_code: "123",
+  },
 };
 
-omise.tokens.create(cardDetails, (err, token) => {
-    if (err) {
-        console.log('error', err);
+omise.tokens.create(cardDetails, (err: Error | null, token: Tokens.IToken) => {
+  if (err) {
+    console.log("Token error", err);
+    return;
+  }
+
+  omise.charges.create(
+    {
+      amount: 100000,
+      currency: "thb",
+      return_uri: "http://example.com",
+      card: token.id,
+    },
+    function (err: Error | null, charge: Charges.ICharge) {
+      if (err) {
+        console.log("Charge error", err);
         return;
+      }
+
+      console.log("charge", charge);
     }
-
-    omise.charges.create({
-        amount: 10000,
-        currency: 'thb',
-        return_uri: 'http://example.com',
-        card: token.id,
-    }, function(err, charge) {
-        if (err) {
-            console.log('error', err);
-            return;
-        }
-
-        console.log('charge', charge);
-    })
+  );
 });

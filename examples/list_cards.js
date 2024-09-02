@@ -1,12 +1,14 @@
-'use strict';
+"use strict";
 
-let omise = require('../index')({
-  'publicKey': process.env.OMISE_PUBLIC_KEY,
-  'secretKey': process.env.OMISE_SECRET_KEY,
-});
+const omise = require("./index");
 
-omise.customers.listCards('cust_test_53reuowpjglur236wm7',
-  {'order': 'reverse_chronological'},
-  function(e, resp) {
+omise.customers.listCards(
+  "cust_60dw2h7vc8pwuiy9hag",
+  { order: "reverse_chronological" },
+  function (err, resp) {
+    if (err) {
+      console.log(err);
+    }
     console.log(resp);
-  });
+  }
+);

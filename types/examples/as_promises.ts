@@ -1,11 +1,11 @@
-import omise = require('../index');
+import { Charges, Customers, Tokens } from "../index";
+import omise from "./index";
 
-let cardDetails: omise.Tokens.IRequest;
-cardDetails = {
+const cardDetails:Tokens.IRequest = {
   card: {
     city: 'Bangkok',
     expiration_month: 2,
-    expiration_year: 2017,
+    expiration_year: 2027,
     name: 'JOHN DOE',
     number: '4242424242424242',
     postal_code: '10320',
@@ -13,25 +13,20 @@ cardDetails = {
   },
 };
 
-const omiseStatic = omise({
-  publicKey: process.env.OMISE_PUBLIC_KEY,
-  secretKey: process.env.OMISE_SECRET_KEY,
-});
-
-omiseStatic.tokens.create(cardDetails).then((token) => {
-  return omiseStatic.customers.create({
+omise.tokens.create(cardDetails).then((token: Tokens.IToken) => {
+  return omise.customers.create({
     card: token.id,
     description: 'John Doe (id: 30)',
     email: 'john.doe@example.com',
   });
-}).then((customer) => {
-  return omiseStatic.charges.create({
+}).then((customer: Customers.ICustomer) => {
+  return omise.charges.create({
     amount: 10000,
     currency: 'thb',
     customer: customer.id,
   });
-}).then((charge) => {
+}).then((charge: Charges.ICharge) => {
   console.log(charge);
-}).catch((err) => {
+}).catch((err: Error | null) => {
   console.log(err);
 });

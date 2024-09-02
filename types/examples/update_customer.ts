@@ -1,13 +1,9 @@
-import omiseNode = require('../index');
-
-const omise = omiseNode({
-    publicKey: process.env.OMISE_PUBLIC_KEY,
-    secretKey: process.env.OMISE_SECRET_KEY,
-});
+import omise from "./index";
+import { Customers } from "../index";
 
 const updateParams = {description: 'the other description'};
 
-omise.customers.update('cust_test_4z2owmajzsb3c527wj7', updateParams,
-  (err, resp) => {
+omise.customers.update('cust_60dw2h7vc8pwuiy9hag', updateParams,
+  (err: Error | null, resp: Customers.ICustomer) => {
     console.log(resp);
   });
