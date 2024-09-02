@@ -847,7 +847,6 @@ declare namespace Omise {
       start_date: string;
       end_date: string;
       occurrences: IOccurrences;
-      next_occurrence_dates: string[];
       next_occurrences_on: string[];
       charge?: IChargeScheduleResponse;
       end_on: string;
