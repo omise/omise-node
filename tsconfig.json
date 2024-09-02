@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2020",                    
+    "module": "commonjs",                  
+    "moduleResolution": "node",            
+    "esModuleInterop": true,               
+    "allowJs": true,                      
+    "strict": true,                       
+    "baseUrl": "./",                      
+    "paths": {
+      "*": ["node_modules/*"]             
+    }
+  },
+  "include": [
+    "types/**/*.ts",                      
+    "types/examples/**/*.ts"              
+  ],
+  "exclude": [
+    "node_modules",                       
+    "dist"                                
+  ]
+}
