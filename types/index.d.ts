@@ -903,7 +903,7 @@ declare namespace Omise {
 
   interface IBaseResponse {
     object: string;
-    id?: string;
+    id: string;
     livemode?: boolean;
     location?: string;
     created_at: string;
