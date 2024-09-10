@@ -1,5 +1,5 @@
 import omise from "./index";
-import { Customers } from "../index";
+import { Customers } from "../../types";
 
 omise.customers.retrieve(
   "cust_60dw2h7vc8pwuiy9hag",

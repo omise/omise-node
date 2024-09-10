@@ -1,5 +1,5 @@
 import omise from "./index";
-import { Cards } from "../index";
+import { Cards } from "../../types";
 
 omise.customers.listCards(
   "cust_60dw2h7vc8pwuiy9hag",

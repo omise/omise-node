@@ -1,5 +1,5 @@
 import omise from "./index";
-import { Customers } from "../index";
+import { Customers } from "../../types";
 
 omise.customers.destroy(
   "cust_60458v5p9fhyx3z4yp7",

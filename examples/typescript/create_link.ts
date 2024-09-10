@@ -1,5 +1,5 @@
 import omise from "./index";
-import { Links } from "../index";
+import { Links } from "../../types";
 
 const link = {
   amount: 19000,

@@ -1,5 +1,5 @@
 import omise from "./index";
-import { Charges } from "../index";
+import { Charges } from "../../types";
 
 omise.charges.list(
   { limit: 2 },

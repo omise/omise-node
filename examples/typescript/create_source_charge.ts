@@ -1,5 +1,5 @@
 import omise from "./index";
-import { Charges, Sources } from "../index";
+import { Charges, Sources } from "../../types";
 
 const amount = 500000;
 const currency = 'thb';

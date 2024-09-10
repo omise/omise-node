@@ -1,5 +1,5 @@
 import omise from "./index";
-import { Charges, Tokens } from "../index";
+import { Charges, Tokens } from "../../types";
 
 const cardDetails = {
   card: {

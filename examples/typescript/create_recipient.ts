@@ -1,5 +1,5 @@
 import omise from './index';
-import { Recipients } from '../index';
+import { Recipients } from '../../types';
 
 const recipientBody: Recipients.IRequest = {
   name: 'Recipient name',

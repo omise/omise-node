@@ -1,5 +1,5 @@
 import omise from "./index";
-import { Customers } from "../index";
+import { Customers } from "../../types";
 
 const updateParams = {description: 'the other description'};
 

@@ -1,5 +1,5 @@
 import omise from "./index";
-import { Customers } from "../index";
+import { Customers } from "../../types";
 
 const customer = {
   description: 'John Doe (id: 30)',
