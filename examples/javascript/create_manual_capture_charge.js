@@ -23,6 +23,7 @@ omise.tokens.create(cardDetails, function(err, token) {
     currency:   'thb',
     return_uir: 'http://example.com',
     card:       token.id,
+    capture: false,
   }, function(err, charge) {
     if (err) {
       console.log('error', err);

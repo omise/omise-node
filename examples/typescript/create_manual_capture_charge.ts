@@ -1,6 +1,5 @@
-'use strict';
-
-const omise = require('./index');
+import omise from './index';
+import { Charges, Tokens } from '../../types';
 
 let cardDetails = {
   card: {
@@ -12,18 +11,21 @@ let cardDetails = {
   },
 };
 
-omise.tokens.create(cardDetails, function(err, token) {
+omise.tokens.create(cardDetails, function(err: Error | null, token: Tokens.IToken) {
   if (err) {
     console.log('error', err);
     return;
   }
 
-  omise.charges.create({
+  const chargePayload: Charges.IRequest = {
     amount:     900000,
     currency:   'thb',
-    return_uir: 'http://example.com',
+    return_uri: 'http://example.com',
     card:       token.id,
-  }, function(err, charge) {
+    capture: false,
+  }
+
+  omise.charges.create(chargePayload, function(err: Error | null, charge: Charges.ICharge) {
     if (err) {
       console.log('error', err);
       return;
