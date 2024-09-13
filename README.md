@@ -13,12 +13,23 @@ From NPM
 $ npm install omise
 ```
 
-The library has been tested with Node version 4.4.6.
-
 ## Code Status
 
 [![Node.js CI](https://github.com/omise/omise-node/actions/workflows/ci.yml/badge.svg)](https://github.com/omise/omise-node/actions/workflows/ci.yml)
 [![Code Climate](https://codeclimate.com/github/omise/omise-node/badges/gpa.svg)](https://codeclimate.com/github/omise/omise-node)
+
+## Version Guidance
+
+This library offers maintenance support for 0.x and active development for 1.x. Please refer to the table for specific version compatibility and requirements.
+
+| Version | Support                 | Omise API Version |        
+| --------| ----------------------- | ------------------| 
+| 0.x     | Maintenance Mode        | <= 2017-11-02     |           
+| 1.x     | Active                  | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2019-05-29     |   
+
+This library is designed to work with Node.js versions that are actively maintained by the Node.js project. We recommend following the official [Node.js Releases](https://nodejs.org/en/about/releases/) for selecting a Node.js version. 
+
+<sup><b>*Maintenance mode means bug fixes and security patches only</b></sup>
 
 ## Usage
 
@@ -74,6 +85,12 @@ For both methods, the client will directly send the card information to the Opn 
 **Please read [Collecting card information](https://docs.opn.ooo/collecting-card-information) for an explanation on collecting card information.**
 
 ## Examples
+
+You can find example usage of this library inside the examples folder located at the root of the repository.
+- **JavaScript Examples**: See the [examples/javascript](./examples/javascript) directory for examples written in JavaScript.
+- **TypeScript Examples**: See the [examples/typescript](./examples/typescript) directory for examples written in TypeScript.
+
+Some examples of library usage are also listed below:
 
 ### Create a customer with card associated to it
 
