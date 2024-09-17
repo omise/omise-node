@@ -29,7 +29,7 @@ This library offers maintenance support for 0.x and active development for 1.x. 
 
 This library is designed to work with Node.js versions that are actively maintained by the Node.js project. We recommend following the official [Node.js Releases](https://nodejs.org/en/about/releases/) for selecting a Node.js version. 
 
-<sup><b>*Maintenance mode means bug fixes and security patches only</b></sup>
+<sup><b>*Maintenance mode means bug fixes and security patches only.</b></sup>
 
 ## Usage
 
@@ -90,7 +90,7 @@ You can find example usage of this library inside the examples folder located at
 - **JavaScript Examples**: See the [examples/javascript](./examples/javascript) directory for examples written in JavaScript.
 - **TypeScript Examples**: See the [examples/typescript](./examples/typescript) directory for examples written in TypeScript.
 
-Some examples of library usage are also listed below:
+Some examples of library usage are also listed as follows:
 
 ### Create a customer with card associated to it
 
