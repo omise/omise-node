@@ -23,9 +23,9 @@ nock('https://vault.omise.co')
       'fingerprint':         'umrBpbHRuc8vstbcNEZPbnKkIycR/gvI6ivW9AshKCw=',
       'name':                'Somchai Prasert',
       'security_code_check': true,
-      'created':             '2015-02-25T06:52:15Z',
+      'created_at':          '2015-02-25T06:52:15Z',
     },
-    'created': '2015-02-25T06:52:15Z',
+    'created_at': '2015-02-25T06:52:15Z',
   }, {
     'server':       'nginx/1.1',
     'content-type': 'application/json',

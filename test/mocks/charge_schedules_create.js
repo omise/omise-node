@@ -52,11 +52,11 @@ nock('https://api.omise.co')
           'status':        'successful',
           'message':       null,
           'result':        'chrg_test_5ath86asi8q61o7ip6u',
-          'created':       '2018-01-04T04:55:30Z',
+          'created_at':    '2018-01-04T04:55:30Z',
         },
       ],
     },
-    'next_occurrence_dates': [
+    'next_occurrences_on': [
       '2018-03-01',
       '2018-04-01',
       '2018-05-01',
@@ -69,7 +69,7 @@ nock('https://api.omise.co')
       '2018-12-01',
       '2019-01-01',
     ],
-    'created': '2018-01-04T04:55:30Z',
+    'created_at': '2018-01-04T04:55:30Z',
   }, {
     'server':       'nginx/1.1',
     'content-type': 'application/json',

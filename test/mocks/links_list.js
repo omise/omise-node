@@ -35,7 +35,7 @@ nock('https://api.omise.co')
           'data':     [],
         },
         'payment_uri': 'http://link.example.com/407385D0',
-        'created':     '2017-03-03T12:10:32Z',
+        'created_at':  '2017-03-03T12:10:32Z',
       },
       {
         'object':      'link',
@@ -60,7 +60,7 @@ nock('https://api.omise.co')
           'data':     [],
         },
         'payment_uri': 'http://link.example.com/0BB268C6',
-        'created':     '2017-03-03T12:16:48Z',
+        'created_at':  '2017-03-03T12:16:48Z',
       },
     ],
   }, {

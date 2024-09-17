@@ -47,7 +47,7 @@ nock('https://api.omise.co')
 
           ],
         },
-        'next_occurrence_dates': [
+        'next_occurrences_on': [
           '2018-07-01',
           '2018-08-01',
           '2018-09-01',
@@ -61,7 +61,7 @@ nock('https://api.omise.co')
           '2019-05-01',
           '2019-06-01',
         ],
-        'created': '2018-06-21T03:57:29Z',
+        'created_at': '2018-06-21T03:57:29Z',
       },
     ],
   });

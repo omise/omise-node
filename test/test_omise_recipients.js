@@ -13,9 +13,9 @@ describe('Omise', function() {
         'type':         'individual',
         'tax_id':       1234567890,
         'bank_account': {
-          'brand':  'bbl',
-          'number': '1234567890',
-          'name':   'John Doe',
+          'bank_code': 'bbl',
+          'number':    '1234567890',
+          'name':      'John Doe',
         },
       };
       testHelper.setupMock('recipients_create');
@@ -26,6 +26,7 @@ describe('Omise', function() {
         assert.equal(resp.tax_id, 1234567890);
         expect(resp).to.include.keys('bank_account');
         assert.equal(resp.bank_account.last_digits, 7890);
+        assert.equal(resp.bank_account.brand, 'Bangkok Bank');
         done();
       });
     });

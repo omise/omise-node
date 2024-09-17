@@ -30,7 +30,7 @@ declare namespace Omise {
 
   export interface IOmise {
     account: Account.IAccountAPI;
-    balances: Balance.IBalanceAPI;
+    balance: Balance.IBalanceAPI;
     capability: Capability.ICapabilityAPI;
     charges: Charges.IChargesAPI;
     customers: Customers.ICustomersAPI;
@@ -58,7 +58,6 @@ declare namespace Omise {
       email: string;
       currency: string;
       supported_currencies: string[];
-      created: string;
       webhook_uri: string;
       team: string;
       auto_activate_recipients: boolean;
@@ -67,7 +66,6 @@ declare namespace Omise {
       api_version: string;
       country: string;
       zero_interest_installments: boolean;
-      created_at: string; // API 2019-05-29
       metadata_export_keys: IMetadataExportKeys;
     }
 
@@ -93,12 +91,10 @@ declare namespace Omise {
     }
 
     interface IBalance extends IBaseResponse {
-      available: number;
       total: number;
       reserve: number;
       transferable: number;
       currency: string;
-      created_at: string;
     }
   }
 
@@ -136,7 +132,6 @@ declare namespace Omise {
       fingerprint: string;
       name: string;
       security_code_check: boolean;
-      created: string;
     }
 
     interface ICardRequest {
@@ -199,7 +194,6 @@ declare namespace Omise {
         callback?: ResponseCallback<IRefundResponse>
       ): Promise<IRefundResponse>;
     }
-
     interface IRequest {
       description?: string;
       amount: number;
@@ -216,12 +210,17 @@ declare namespace Omise {
       platform_fee?: IPlatformFee;
       zero_interest_installments?: boolean;
       webhook_endpoints?: [string, string?];
+      recurring_reason?: RecurringReason;
+      linked_account?: string;
+      first_charge?: string;
+      transaction_indicator?: "MIT" | "CIT";
     }
 
     interface ICaptureRequest {
       capture_amount: number;
     }
 
+    type RecurringReason = "" | "unscheduled" | "standing_order" | "subscription" | "installment" | "partial_shipment" | "delayed_charge" | "no_show" | "resubmission";
     // Source: https://docs.opn.ooo/charges-api
     type ChargeStatus = "failed" | "reversed" | "expired" | "pending" | "successful";
 
@@ -243,12 +242,10 @@ declare namespace Omise {
       paid: boolean;
       paid_at: string;
       transaction: string | Transactions.ITransaction;
-      refunded: number;
       refunds: IListRefundResponse;
       failure_code: string;
       failure_message: string;
       card: Cards.ICard;
-      created_at: string;
       customer: string | Customers.ICustomer;
       ip: string;
       dispute: string | Disputes.IResponse;
@@ -267,12 +264,12 @@ declare namespace Omise {
       reversible: boolean;
       schedule: string | Schedules.ISchedule;
       terminal: any;
-      created: string;
       voided: boolean;
       zero_interest_installments: boolean;
       metadata: { [key: string]: any };
       source?: Sources.ISource;
       status: ChargeStatus;
+      linked_account?: string;
     }
 
     interface IListRefundResponse extends IOccurrences {
@@ -299,7 +296,6 @@ declare namespace Omise {
       currency: string;
       charge: string;
       transaction: string;
-      created: string;
       voided: boolean;
       metadata?: { [key: string]: any };
     }
@@ -330,6 +326,10 @@ declare namespace Omise {
       store_name?: string;
       terminal_id?: string;
       zero_interest_installments?: boolean;
+      billing?: IBillingShipping;
+      shipping?: IBillingShipping;
+      promotion_code?: string;
+      items?: IItem[];
     }
 
     interface ISource extends IBaseResponse {
@@ -339,7 +339,6 @@ declare namespace Omise {
       currency: string;
       barcode?: string;
       charge_status?: string;
-      created_at: string;
       mobile_number: string;
       phone_number: string;
       email?: string;
@@ -351,6 +350,10 @@ declare namespace Omise {
       zero_interest_installments?: boolean;
       scannable_code: IScannableCode;
       references: IReferences;
+      billing?: IBillingShipping;
+      shipping?: IBillingShipping;
+      promotion_code?: string;
+      items: IItem[];
     }
 
     interface IReferences {
@@ -370,6 +373,17 @@ declare namespace Omise {
     interface IScannableCode extends IBaseResponse {
       type: string;
       image: Disputes.IDocument;
+    }
+
+    interface IItem {
+      amount?: number;
+      sku?: string;
+      name?: string;
+      quantity?: string;
+      category?: string;
+      brand?: string;
+      item_uri?: string;
+      image_uri?: string;
     }
   }
 
@@ -434,11 +448,9 @@ declare namespace Omise {
       default_card: string;
       email: string;
       description: string;
-      created: string;
       cards: Cards.ICardList;
       metadata: { [key: string]: any };
       deleted: boolean;
-      created_at: string;
     }
 
     interface ICustomerList extends IOccurrences {
@@ -480,8 +492,6 @@ declare namespace Omise {
       admin_message: string;
       amount: number;
       charge: string | Charges.ICharge;
-      created: string;
-      created_at: string;
       closed_at: string;
       currency: string;
       message: string;
@@ -502,8 +512,6 @@ declare namespace Omise {
 
     interface IDocument extends IBaseResponse {
       filename: string;
-      created: string;
-      created_at: string;
       deleted: boolean;
       download_uri: string;
     }
@@ -527,9 +535,7 @@ declare namespace Omise {
 
     interface IEvent extends IBaseResponse {
       key: string;
-      created: string;
       data: any;
-      created_at: string;
       webhook_deliveries: IWebhookDelivery[];
     }
 
@@ -576,7 +582,6 @@ declare namespace Omise {
       description: string;
       charges: Charges.IChargeList;
       payment_uri: string;
-      created: string;
       deleted: boolean;
       deleted_at: string;
       used_at: string;
@@ -618,7 +623,7 @@ declare namespace Omise {
       description?: string;
       type: string;
       tax_id?: string;
-      bank_account: IBankAccount;
+      bank_account: IBankAccountRequest;
       metadata?: { [key: string]: any };
     }
 
@@ -634,10 +639,8 @@ declare namespace Omise {
       description: string;
       type: string;
       tax_id: string;
-      bank_account: IBankAccount;
+      bank_account: IBankAccountResponse;
       failure_code: string;
-      created: string;
-      created_at: string;
       metadata?: { [key: string]: any };
       schedule?: string | Schedules.ISchedule;
     }
@@ -664,12 +667,10 @@ declare namespace Omise {
       amount: number;
       currency: string;
       transferable: string;
-      created: string;
       direction: string;
       key: string;
       origin: string;
       transferable_at: string;
-      created_at: string;
     }
 
     interface ITransactionList extends IOccurrences {
@@ -707,13 +708,15 @@ declare namespace Omise {
       recipient?: string;
       fail_fast?: boolean;
       metadata?: { [key: string]: any };
+      split_transfer?: boolean;
+      idemp_key?: string;
     }
 
     interface ITransfer extends IBaseResponse {
       recipient: string | Recipients.IRecipient;
       schedule: string | Schedules.ISchedule;
       sendable: boolean;
-      bank_account: IBankAccount;
+      bank_account: IBankAccountResponse;
       sent: boolean;
       sent_at: string;
       paid: boolean;
@@ -728,8 +731,6 @@ declare namespace Omise {
       failure_message: string;
       transaction: string;
       deleted: boolean;
-      created: string;
-      created_at: string;
       total_fee: number;
       metadata?: { [key: string]: any };
       transactions: Transactions.ITransaction[];
@@ -769,13 +770,12 @@ declare namespace Omise {
       phone_number?: string;
       street1?: string;
       street2?: string;
+      email?: string;
     }
 
     interface IToken extends IBaseResponse {
       used: boolean;
       card: Cards.ICard;
-      created: string;
-      created_at: string;
       charge_status: string;
     }
   }
@@ -803,7 +803,6 @@ declare namespace Omise {
       customer: string | Customers.ICustomer;
       card: string | Cards.ICard;
       default_card: boolean;
-      created_at: string;
       metadata?: { [key: string]: any };
     }
 
@@ -848,11 +847,8 @@ declare namespace Omise {
       start_date: string;
       end_date: string;
       occurrences: IOccurrences;
-      next_occurrence_dates: string[];
       next_occurrences_on: string[];
       charge?: IChargeScheduleResponse;
-      created: string;
-      created_at: string;
       end_on: string;
       ended_at: string;
       deleted: boolean;
@@ -887,12 +883,22 @@ declare namespace Omise {
     location?: string;
   }
 
-  interface IBankAccount {
-    object: string;
+  interface IBankAccountResponse extends IBaseResponse{
+    name: string;
+    account_number: string;
+    bank_code: string;
     brand: string;
     last_digits: string;
+    type?: string;
+    branch_code?: string;
+  }
+
+  interface IBankAccountRequest {
     name: string;
-    created: string;
+    number: string;
+    bank_code: string;
+    branch_code?: string;
+    type?: string; // normal | current
   }
 
   interface IBaseResponse {
@@ -900,6 +906,16 @@ declare namespace Omise {
     id: string;
     livemode?: boolean;
     location?: string;
+    created_at: string;
+  }
+
+  interface IBillingShipping {
+    country: string;
+    city: string;
+    postal_code: string;
+    state: string;
+    street1: string;
+    street2: string;
   }
 
   interface IDestroyResponse extends IBaseResponse {

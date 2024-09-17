@@ -24,7 +24,7 @@ nock('https://api.omise.co')
       reversed:        false,
       paid:            true,
       transaction:     'trxn_test_50zn6xotiaabible1cx',
-      refunded:        0,
+      refunded_amount:        0,
       refunds:         [Object],
       failure_code:    null,
       failure_message: null,
@@ -32,7 +32,7 @@ nock('https://api.omise.co')
       customer:        null,
       ip:              null,
       dispute:         null,
-      created:         '2015-08-11T10:08:19Z',
+      created_at:      '2015-08-11T10:08:19Z',
     }],
   }, {
     'server':       'nginx/1.1',
