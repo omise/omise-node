@@ -35,6 +35,9 @@ nock('https://api.omise.co')
     'authorize_uri':   paymentURL,
     'failure_code':    null,
     'failure_message': null,
+    'merchant_advice': null,
+    'merchant_advice_code': null,
+    'missing_3ds_fields': [],
     'card':            {
       'object':              'card',
       'id':                  'card_test_4z429c7a9vibxg2vzp0',

@@ -245,6 +245,9 @@ declare namespace Omise {
       refunds: IListRefundResponse;
       failure_code: string;
       failure_message: string;
+      merchant_advice: string | null;
+      merchant_advice_code: string | null;
+      missing_3ds_fields: string[];
       card: Cards.ICard;
       customer: string | Customers.ICustomer;
       ip: string;
@@ -308,7 +311,7 @@ declare namespace Omise {
         callback?: ResponseCallback<ISource>
       ): Promise<ISource>;
       retrieve(
-        sourceID: string, 
+        sourceID: string,
         callback?: ResponseCallback<ISource>
       ): Promise<ISource>;
     }
