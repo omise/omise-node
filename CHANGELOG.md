@@ -2,6 +2,11 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 1.0.0 - 2025-04-23
+- Fix warning from nyc package. [(#219)](https://github.com/omise/omise-node/pull/219)
+- Upgrade omise-node api to v2019 [(#220)](https://github.com/omise/omise-node/pull/220)
+- Add support for merchant advice and missing 3ds fields [(#223)](https://github.com/omise/omise-node/pull/223)
+
 ## 0.12.1 - 2024-05-23
 - Status added to ICharge interface. [(#213)](https://github.com/omise/omise-node/pull/213)
 
