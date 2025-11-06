@@ -1,0 +1,19 @@
+{
+  "name": "omise-example-typescript",
+  "version": "1.0.0",
+  "description": "Omise Node.js Typescript examples",
+  "license": "MIT",
+  "author": "Omise <support@omise.co> (https://omise.co/)",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "run:example": "node --loader ts-node/esm"
+  },
+  "dependencies": {
+    "omise": "file:../../"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
