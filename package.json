@@ -38,6 +38,8 @@
     "eslint-config-google": "^0.9.1",
     "mocha": "^11.7.5",
     "nock": "^13.3.0",
-    "nyc": "^17.0.0"
+    "nyc": "^17.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
   }
 }
