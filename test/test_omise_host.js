@@ -8,7 +8,7 @@ const omiseWithCorrectHost = omise({
 });
 
 const omiseWithWrongHost = omise({
-  ...config, host: 'api.xxxxx.co',
+  ...config, host: 'api.wrong-host.co',
 });
 
 describe('Omise', function() {
