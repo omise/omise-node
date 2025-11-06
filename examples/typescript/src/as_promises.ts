@@ -1,4 +1,4 @@
-import { Charges, Customers, Tokens } from "../../types";
+import { Charges, Customers, Tokens } from "omise";
 import omise from "./index";
 
 const cardDetails:Tokens.IRequest = {

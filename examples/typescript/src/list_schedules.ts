@@ -1,4 +1,4 @@
-import { Schedules } from "../../types";
+import { Schedules } from "omise";
 import omise from "./index";
 
 omise.schedules.retrieve((err: Error | null, resp: Schedules.ISchedulesList) => {

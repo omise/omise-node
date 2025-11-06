@@ -1,8 +1,8 @@
 import omise from "./index";
-import { Customers } from "../../types";
+import { Customers } from "omise";
 
-omise.customers.destroy(
-  "cust_60458v5p9fhyx3z4yp7",
+omise.customers.retrieve(
+  "cust_60dw2h7vc8pwuiy9hag",
   (err: Error | null, resp: Customers.ICustomer) => {
     if (err) {
       console.log(err);

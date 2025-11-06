@@ -1,5 +1,5 @@
 import omise from "./index";
-import { Transfers } from "../../types";
+import { Transfers } from "omise";
 
 const reqBody: Transfers.IRequest = {
   amount: 40000,

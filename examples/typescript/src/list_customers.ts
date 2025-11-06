@@ -1,5 +1,5 @@
 import omise from "./index";
-import { Customers } from "../../types";
+import { Customers } from "omise";
 
 omise.customers.list({}, (err: Error | null, resp: Customers.ICustomerList) => {
   if (err) {

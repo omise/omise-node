@@ -1,4 +1,4 @@
-import { Schedules } from "../../types";
+import { Schedules } from "omise";
 import omise from "./index";
 
 const chargeEvery2Days: Schedules.ICreateSchedule = {
