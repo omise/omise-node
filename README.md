@@ -1,7 +1,7 @@
 omise-node
 ==========
 
-Please contact [support@opn.ooo](support@opn.ooo) if you have any question regarding this library and the functionality it provides.
+Please contact [support@omise.co](support@omise.co) if you have any question regarding this library and the functionality it provides.
 
 Omise Node.js bindings.
 
@@ -22,12 +22,12 @@ $ npm install omise
 
 This library offers maintenance support for 0.x and active development for 1.x. Please refer to the table for specific version compatibility and requirements.
 
-| Version | Support                 | Omise API Version |        
-| --------| ----------------------- | ------------------| 
-| 0.x     | Maintenance Mode        | <= 2017-11-02     |           
-| 1.x     | Active                  | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2019-05-29     |   
+| Version | Support                 | Omise API Version |
+| --------| ----------------------- | ------------------|
+| 0.x     | Maintenance Mode        | <= 2017-11-02     |
+| 1.x     | Active                  | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2019-05-29     |
 
-This library is designed to work with Node.js versions that are actively maintained by the Node.js project. We recommend following the official [Node.js Releases](https://nodejs.org/en/about/releases/) for selecting a Node.js version. 
+This library is designed to work with Node.js versions that are actively maintained by the Node.js project. We recommend following the official [Node.js Releases](https://nodejs.org/en/about/releases/) for selecting a Node.js version.
 
 <sup><b>*Maintenance mode means bug fixes and security patches only.</b></sup>
 
@@ -36,7 +36,7 @@ This library is designed to work with Node.js versions that are actively maintai
 ### Flow
 
 1. User enters the credit card information on your website or application using a form.
-2. The card information is sent via HTTPS directly from the client to Opn Payment Servers using Omise.js, Card.js or Omise-iOS SDK.
+2. The card information is sent via HTTPS directly from the client to Omise Servers using Omise.js, Card.js or Omise-iOS SDK.
 3. If the card passes the authorization, then your frontend will send the token to `omise-node` backend to finally capture the charge with Omise-node.
 
 ### The code
@@ -68,21 +68,21 @@ omise.charges.create({
 });
 ```
 
-Please see [Opn Payments Documentation](https://docs.opn.ooo/) for more information on how to use the library.
+Please see [Omise Documentation](https://docs.omise.co/) for more information on how to use the library.
 
 ### Important Note:
 
-**Full Credit Card data should never touch or go through your servers. That means, do not send credit card data to Opn Payments from your servers directly unless you are PCI-DSS compliant.**
+**Full Credit Card data should never touch or go through your servers. That means, do not send credit card data to Omise from your servers directly unless you are PCI-DSS compliant.**
 
 The token creation method in the library should only be used either with fake data in test mode (e.g.: quickly creating some fake data, testing our API from a terminal, etc.), or if you are PCI-DSS compliant, send card data from your server.
 You must achieve and maintain PCI compliance at all times following [Security Best Practices](https://www.pcisecuritystandards.org/documents/PCI_DSS_V3.0_Best_Practices_for_Maintaining_PCI_DSS_Compliance.pdf)
 
 So, we recommended that you create a token using the `omise.js` library that runs on the browser.
-It uses Javascript to send the credit card data on the client side to Opn Payments. You can then populate the form with a unique one-time use token, which can be used later on with `omise-node` or [Omise.js](https://docs.opn.ooo/omise-js). By using this library, you can build a credit card payment form window and create a card token, which you can use to create a charge with `omise-node`.
+It uses Javascript to send the credit card data on the client side to Omise. You can then populate the form with a unique one-time use token, which can be used later on with `omise-node` or [Omise.js](https://docs.omise.co/omise-js). By using this library, you can build a credit card payment form window and create a card token, which you can use to create a charge with `omise-node`.
 
-For both methods, the client will directly send the card information to the Opn Payments gateway; your servers don't have to deal with card information at all. The library reduces the risk of supporting card payments.
+For both methods, the client will directly send the card information to the Omise gateway; your servers don't have to deal with card information at all. The library reduces the risk of supporting card payments.
 
-**Please read [Collecting card information](https://docs.opn.ooo/collecting-card-information) for an explanation on collecting card information.**
+**Please read [Collecting card information](https://docs.omise.co/collecting-card-information) for an explanation on collecting card information.**
 
 ## Examples
 
@@ -180,7 +180,7 @@ a sucessful charge or tranfer happens only when there are no failutes - that mea
 
 ## Resource methods
 
-The following API methods are available. Please read [Opn Payments documentation](https://docs.opn.ooo/) for details.
+The following API methods are available. Please read [Omise documentation](https://docs.omise.co/) for details.
 
 * account
   * `retrieve()`
