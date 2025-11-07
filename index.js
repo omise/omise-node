@@ -8,18 +8,18 @@ const Omise = function(config) {
 
 // Enums
 const Scheme = {
-  Http: 'http',
-  Https: 'https'
+  Http:  'http',
+  Https: 'https',
 };
 
 const AuthType = {
-  PreAuth: 'pre_auth',
-  FinalAuth: 'final_auth'
+  PreAuth:   'pre_auth',
+  FinalAuth: 'final_auth',
 };
 
 const Authentication = {
   Passkey: 'PASSKEY',
-  ThreeDS: '3DS'
+  ThreeDS: '3DS',
 };
 
 module.exports = Omise;
