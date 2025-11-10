@@ -1,7 +1,7 @@
 omise-node
 ==========
 
-Please contact [support@omise.co](support@omise.co) if you have any question regarding this library and the functionality it provides.
+Please contact [support@omise.co](mailto:support@omise.co) if you have any question regarding this library and the functionality it provides.
 
 Omise Node.js bindings.
 
