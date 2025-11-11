@@ -949,6 +949,22 @@ declare namespace OmiseExports {
   export import Scheme = Omise.Scheme;
   export import AuthType = Omise.AuthType;
   export import Authentication = Omise.Authentication;
+  export import Account = Omise.Account;
+  export import Balance = Omise.Balance;
+  export import Capability = Omise.Capability;
+  export import Cards = Omise.Cards;
+  export import Charges = Omise.Charges;
+  export import Customers = Omise.Customers;
+  export import Disputes = Omise.Disputes;
+  export import Events = Omise.Events;
+  export import Links = Omise.Links;
+  export import Pagination = Omise.Pagination;
+  export import Recipients = Omise.Recipients;
+  export import Schedules = Omise.Schedules;
+  export import Sources = Omise.Sources;
+  export import Tokens = Omise.Tokens;
+  export import Transactions = Omise.Transactions;
+  export import Transfers = Omise.Transfers;
 }
 
 export = OmiseExports;
