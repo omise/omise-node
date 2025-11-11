@@ -1,6 +1,7 @@
 'use strict';
 
 const omise = require('./index');
+const { Authentication } = require('../..');
 
 const card = {
   name: 'Omise',
@@ -21,7 +22,7 @@ const card = {
       currency: 'thb',
       return_uri: 'http://example.com',
       card: token.id,
-      authentication: 'PASSKEY',
+      authentication: Authentication.Passkey, // or just 'PASSKEY'
     })
 
     console.log(charge.id, 'created with authentication', charge.authenticated_by);
