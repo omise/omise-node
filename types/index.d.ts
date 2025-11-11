@@ -168,6 +168,10 @@ declare namespace Omise {
       ): Promise<IChargeList>;
       capture(
         chargeID: string,
+        callback?: ResponseCallback<ICharge>
+      ): Promise<ICharge>;
+      capture(
+        chargeID: string,
         req?: ICaptureRequest,
         callback?: ResponseCallback<ICharge>
       ): Promise<ICharge>;
@@ -762,12 +766,12 @@ declare namespace Omise {
 
     interface ICard {
       name: string;
-      city: string;
-      postal_code: number | string;
       number: string;
-      security_code: string;
       expiration_month: number | string;
       expiration_year: number | string;
+      security_code?: string;
+      city?: string;
+      postal_code?: number | string;
       country?: string;
       state?: string;
       phone_number?: string;

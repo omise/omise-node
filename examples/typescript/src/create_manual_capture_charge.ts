@@ -1,5 +1,5 @@
 import omise from './index';
-import { Charges, Tokens } from '../../types';
+import { Charges, Tokens } from 'omise';
 
 let cardDetails = {
   card: {

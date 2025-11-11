@@ -1,5 +1,5 @@
 import omise from "./index";
-import { Recipients } from "../../types";
+import { Recipients } from "omise";
 
 omise.recipients.list({limit: 5}, (err: Error | null, resp: Recipients.IRecipientList) => {
   if (err) {

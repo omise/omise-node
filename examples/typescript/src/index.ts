@@ -1,8 +1,7 @@
-
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-import omiseNode from '../../index';
+import omiseNode from 'omise';
 
 const omise = omiseNode({
   publicKey: process.env.OMISE_PUBLIC_KEY,
