@@ -5,8 +5,6 @@
 
 declare function Omise(options: Omise.IOptions): Omise.IOmise;
 
-export = Omise;
-
 declare namespace Omise {
   export interface IOptions {
     host?: string;
@@ -26,6 +24,11 @@ declare namespace Omise {
   export enum AuthType {
     PreAuth = "pre_auth",
     FinalAuth = "final_auth",
+  }
+
+  export enum Authentication {
+    Passkey = "PASSKEY",
+    ThreeDS = "3DS",
   }
 
   export interface IOmise {
@@ -202,6 +205,7 @@ declare namespace Omise {
       description?: string;
       amount: number;
       currency: string;
+      authentication?: Authentication;
       authorization_type?: AuthType;
       capture?: boolean;
       card?: string;
@@ -231,8 +235,11 @@ declare namespace Omise {
     interface ICharge extends IBaseResponse {
       amount: number;
       currency: string;
+      acquirer_reference_number: string | null;
+      approval_code: string | null;
       authorization_type: AuthType;
       authorized_amount: number;
+      authenticated_by: Authentication | null;
       captured_amount: number;
       description: string;
       device: any;
@@ -246,9 +253,12 @@ declare namespace Omise {
       paid: boolean;
       paid_at: string;
       transaction: string | Transactions.ITransaction;
+      transaction_fees: { [key: string]: string };
       refunds: IListRefundResponse;
       failure_code: string;
       failure_message: string;
+      funding_amount: number;
+      funding_currency: string;
       merchant_advice: string | null;
       merchant_advice_code: string | null;
       missing_3ds_fields: string[];
@@ -257,26 +267,28 @@ declare namespace Omise {
       ip: string;
       dispute: string | Disputes.IResponse;
       expired: boolean;
-      expired_at: string;
+      expired_at: string | null;
       expires_at: string;
       interest: number;
       interest_vat: number;
       link: string | Links.ILink;
       net: number;
       platform_fee: IPlatformFee;
+      partially_refundable: boolean;
       refundable: boolean;
       refunded_amount: number;
       return_uri: string;
-      reversed_at: string;
+      reversed_at: string | null;
       reversible: boolean;
       schedule: string | Schedules.ISchedule;
       terminal: any;
+      can_perform_void: boolean;
       voided: boolean;
       zero_interest_installments: boolean;
       metadata: { [key: string]: any };
       source?: Sources.ISource;
       status: ChargeStatus;
-      linked_account?: string;
+      linked_account?: string | null;
     }
 
     interface IListRefundResponse extends IOccurrences {
@@ -931,3 +943,28 @@ declare namespace Omise {
 
   type ResponseCallback<R> = (err: any, resp: R) => void;
 }
+
+declare namespace OmiseExports {
+  export { Omise as default };
+  export import Scheme = Omise.Scheme;
+  export import AuthType = Omise.AuthType;
+  export import Authentication = Omise.Authentication;
+  export import Account = Omise.Account;
+  export import Balance = Omise.Balance;
+  export import Capability = Omise.Capability;
+  export import Cards = Omise.Cards;
+  export import Charges = Omise.Charges;
+  export import Customers = Omise.Customers;
+  export import Disputes = Omise.Disputes;
+  export import Events = Omise.Events;
+  export import Links = Omise.Links;
+  export import Pagination = Omise.Pagination;
+  export import Recipients = Omise.Recipients;
+  export import Schedules = Omise.Schedules;
+  export import Sources = Omise.Sources;
+  export import Tokens = Omise.Tokens;
+  export import Transactions = Omise.Transactions;
+  export import Transfers = Omise.Transfers;
+}
+
+export = OmiseExports;
