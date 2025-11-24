@@ -2,6 +2,10 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 1.1.0 - 2025-11-24
+- Add passkey support. [(#226)](https://github.com/omise/omise-node/pull/226)
+- Fix incorrect types and improve TypeScript examples. [(#225)](https://github.com/omise/omise-node/pull/225)
+
 ## 1.0.0 - 2025-04-23
 - Fix warning from nyc package. [(#219)](https://github.com/omise/omise-node/pull/219)
 - Upgrade omise-node api to v2019 [(#220)](https://github.com/omise/omise-node/pull/220)
