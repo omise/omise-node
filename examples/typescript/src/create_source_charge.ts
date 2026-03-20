@@ -5,7 +5,7 @@ const amount = 500000;
 const currency = 'thb';
 
 const source = {
-  type:     'internet_banking_bbl',
+  type:     'promptpay',
   amount:   500000,
   currency: 'thb',
 };

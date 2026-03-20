@@ -5,7 +5,7 @@ const omise = require('./index');
 let amount = 500000;
 let currency = 'thb';
 let source = {
-  'type':     'internet_banking_bbl',
+  'type':     'promptpay',
   'amount':   500000,
   'currency': 'thb',
 };

@@ -11,7 +11,7 @@ describe('Omise', function() {
     before(function() {
       testHelper.setupMock('sources_create');
       sourceParameters = {
-        type:     'internet_banking_bbl',
+        type:     'mobile_banking_bbl',
         amount:   '500000',
         currency: 'thb',
       };
