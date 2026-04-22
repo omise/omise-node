@@ -2,6 +2,9 @@
 All notable changes to omise-node project will be documented in this file.
 Use [Semantic Versioning](http://semver.org/).
 
+## 1.2.0 - 2026-04-22
+- Remove Internet Banking. [(#228)](https://github.com/omise/omise-node/pull/228)
+
 ## 1.1.0 - 2025-11-24
 - Add passkey support. [(#226)](https://github.com/omise/omise-node/pull/226)
 - Fix incorrect types and improve TypeScript examples. [(#225)](https://github.com/omise/omise-node/pull/225)
